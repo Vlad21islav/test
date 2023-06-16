@@ -2,7 +2,7 @@ function randint(max) {
   return Math.floor(Math.random() * max);
 }
 
-const color = (kind) => {
+const color = (...kind) => {
   const colors = {
     info: `\x1b[0;${kind}m`
   };
@@ -70,4 +70,4 @@ const generateKey = (alphabet) => {
 
 generateKey('159236159236az')('159236159236az'.length)
 
-color(93)('hello')
+color(42)('hello world')
