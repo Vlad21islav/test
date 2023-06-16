@@ -52,10 +52,6 @@ for (let i = 0; i < good_nums.length; i++) {
     console.log(`\x1b[0;${good_nums[i]}m` + 'hello', good_nums[i])
 }
 
-for (num of good_nums) {
-
-}
-
 const generateKey = (alphabet) => {
   const max = alphabet.length;
   return (length) => {
