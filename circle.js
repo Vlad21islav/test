@@ -2,10 +2,31 @@ const readline = require('node:readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  prompt: '> ',
 });
 
-rl.question('Enter your name: ', (name) => {
-  console.log(`Hello, ${name}!`);
-  rl.close();
+rl.prompt();
+
+const commands = {
+  help() {
+    console.log('Commands:', Object.keys(commands).join(', '));
+  },
+  hello() {
+    console.log('Hello there!');
+  },
+  exit() {
+    rl.close();
+  }
+};
+
+rl.on('line', (line) => {
+  line = line.trim();
+  const command = commands[line];
+  if (command) command();
+  else console.log('Unknown command');
+  rl.prompt();
+}).on('close', () => {
+  console.log('Bye!');
+  process.exit(0);
 });
