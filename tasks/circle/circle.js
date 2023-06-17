@@ -9,12 +9,20 @@ const rl = readline.createInterface({
 
 const P = Math.PI
 
-rl.question('Введите радиус окружности в сантиметрах: ', (R) => {
-  if (isFinite(R)) {
-    console.log(`Площадь круга: ${Math.round(P*R*2)} см.кв.`);
-    console.log(`Длина окружности: ${Math.round(2*P*R)} см.`);
+const length = (R) => {
+  return Math.round(2*P*R)
+}
+
+const square = (R) => {
+  return Math.round(P*(Math.pow(R, 2)))
+}
+
+rl.question('Введите радиус окружности в сантиметрах: ', (Radius) => {
+  if (isFinite(Radius)) {
+    console.log(`Площадь круга: ${square(Radius)} см.кв.`);
+    console.log(`Длина окружности: ${length(Radius)} см.`);
   }
-  else {console.log(`${R} - это не число`)
+  else {console.log(`${Radius} - это не число`)
   }
   rl.close();
 });
