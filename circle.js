@@ -1,32 +1,20 @@
+'use strict';
+
 const readline = require('node:readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout,
-  prompt: '> ',
+  output: process.stdout
 });
 
-rl.prompt();
+const P = 3.14
 
-const commands = {
-  help() {
-    console.log('Commands:', Object.keys(commands).join(', '));
-  },
-  hello() {
-    console.log('Hello there!');
-  },
-  exit() {
-    rl.close();
+rl.question('Введите радиус окружности в сантиметрах: ', (R) => {
+  if (isFinite(R)) {
+    console.log(`Площадь круга: ${P*R*2} см.кв.`);
+    console.log(`Длина окружности: ${2*P*R} см.`);
   }
-};
-
-rl.on('line', (line) => {
-  line = line.trim();
-  const command = commands[line];
-  if (command) command();
-  else console.log('Unknown command');
-  rl.prompt();
-}).on('close', () => {
-  console.log('Bye!');
-  process.exit(0);
+  else {console.log(`${R} - это не число`)
+  }
+  rl.close();
 });
