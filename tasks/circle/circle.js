@@ -7,18 +7,18 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const length = (R) => {
-  return Math.round((2*Math.PI*R), 3)
+const calculateTheCircumference = (radius) => {
+  return Math.round((2*Math.PI*radius), 3)
 }
 
-const square = (R) => {
-  return Math.round((Math.PI*(Math.pow(R, 2))), 3)
+const calculateTheAreaOfTheCircle = (radius) => {
+  return Math.round((Math.PI*(Math.pow(radius, 2))), 3)
 }
 
 rl.question('Введите радиус окружности в сантиметрах: ', (Radius) => {
   if (isFinite(Radius)) {
-    console.log(`Площадь круга: ${square(Radius)} см.кв.`);
-    console.log(`Длина окружности: ${length(Radius)} см.`);
+    console.log(`Площадь круга: ${calculateTheCircumference(Radius)} см.кв.`);
+    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(Radius)} см.`);
   }
   else {console.log(`${Radius} - это не число`)
   }
