@@ -7,14 +7,12 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const P = Math.PI
-
 const length = (R) => {
-  return Math.round((2*P*R), 3)
+  return Math.round((2*Math.PI*R), 3)
 }
 
 const square = (R) => {
-  return Math.round((P*(Math.pow(R, 2))), 3)
+  return Math.round((Math.PI*(Math.pow(R, 2))), 3)
 }
 
 rl.question('Введите радиус окружности в сантиметрах: ', (Radius) => {
