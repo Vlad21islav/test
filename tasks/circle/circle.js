@@ -17,8 +17,9 @@ const calculateTheAreaOfTheCircle = (radius) => {
 
 rl.question('Введите радиус окружности в сантиметрах: ', (radiusMassege) => {
   if (isFinite(radiusMassege)) {
-    console.log(`Площадь круга: ${Math.round(calculateTheCircumference(radiusMassege), -1)} см.кв.`);
-    console.log(`Длина окружности: ${Math.round(calculateTheAreaOfTheCircle(radiusMassege), -1)} см.`);
+    const radiusMassegeNumber = Number(radiusMassege)
+    console.log(`Площадь круга: ${calculateTheCircumference(radiusMassegeNumber).toFixed(2)} см.кв.`);
+    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(radiusMassege).toFixed(2)} см.`);
   }
   else {console.log(`${radiusMassege} - это не число`)
   }
