@@ -19,7 +19,7 @@ rl.question('Введите радиус окружности в сантиме�
   if (isFinite(radiusMassege)) {
     const radiusMassegeNumber = Number(radiusMassege)
     console.log(`Площадь круга: ${calculateTheCircumference(radiusMassegeNumber).toFixed(2)} см.кв.`);
-    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(radiusMassege).toFixed(2)} см.`);
+    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(radiusMassegeNumber).toFixed(2)} см.`);
   }
   else {console.log(`${radiusMassege} - это не число`)
   }
