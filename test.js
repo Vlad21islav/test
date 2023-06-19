@@ -147,3 +147,8 @@ const cat = new Cat({
   color: 'black'
 })
 
+const myNamber = 42
+
+localStorage.setItem('number', myNamber.toString())
+console.log(localStorage.getItem('number'))
+
