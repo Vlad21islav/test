@@ -7,13 +7,9 @@ const rl = readline.createInterface({
   output: process.stdout
 });
 
-const calculateTheCircumference = (radius) => {
-  return (2*Math.PI*radius);
-}
+const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
-const calculateTheAreaOfTheCircle = (radius) => {
-  return (Math.PI*(Math.pow(radius, 2)));
-}
+const calculateTheAreaOfTheCircle = (radius) => (Math.PI*(Math.pow(radius, 2)));
 
 rl.question('Введите радиус окружности в сантиметрах: ', (message) => {
   const radius = Number(message)
