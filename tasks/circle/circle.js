@@ -8,20 +8,19 @@ const rl = readline.createInterface({
 });
 
 const calculateTheCircumference = (radius) => {
-  return (2*Math.PI*radius)
+  return (2*Math.PI*radius);
 }
 
 const calculateTheAreaOfTheCircle = (radius) => {
-  return (Math.PI*(Math.pow(radius, 2)))
+  return (Math.PI*(Math.pow(radius, 2)));
 }
 
-rl.question('Введите радиус окружности в сантиметрах: ', (radiusMassege) => {
-  if (isFinite(radiusMassege)) {
-    const radiusMassegeNumber = Number(radiusMassege)
-    console.log(`Площадь круга: ${calculateTheCircumference(radiusMassegeNumber).toFixed(2)} см.кв.`);
-    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(radiusMassegeNumber).toFixed(2)} см.`);
+rl.question('Введите радиус окружности в сантиметрах: ', (message) => {
+  const radius = Number(message)
+  if (!Number.isNaN(radius)) {
+    console.log(`Площадь круга: ${calculateTheCircumference(radius).toFixed(2)} см.кв.`);
+    console.log(`Длина окружности: ${calculateTheAreaOfTheCircle(radius).toFixed(2)} см.`);
   }
-  else {console.log(`${radiusMassege} - это не число`)
-  }
+  else console.log(`${message} - это не число`);
   rl.close();
 });
