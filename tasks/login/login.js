@@ -4,23 +4,21 @@ const readline = require('node:readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  prompt: 'Введите имя: ',
 });
 
-const users = {
-    Vlad: {
-        name: 'Vlad',
-        password: '159478'
-    },
-    Alex: {
-        name: 'Alex',
-        password: '159236'
-    }
-};
+rl.prompt();
+
+const users = [
+  { login: 'Vlad' , password: '1324'},
+  { login: 'Alex' , password: '3256'},
+]
 
 const second_input = (inputName) => {
   rl.question('Введите пароль: ', (inputPassword) => {
-    if (users[inputName][password] === inputPassword) {
+    console.log(users[1])
+    if (users[1] === inputPassword) {
         console.log(`привет ${inputName}`);
     }else {
         console.log(`${inputPassword} - это не правильный пароль`);
@@ -30,15 +28,15 @@ const second_input = (inputName) => {
 }
 
 const first_input = () => {
-  rl.question('Введите имя: ', (inputName) => {
-    if (users[inputName] !== undefined){
+  rl.on('line', (inputName) => {
+    inputName = inputName.trim()
+    if (users[0] !== undefined){
       second_input(inputName);
     }else {
       console.log(`Неизвестный пользователь`);
-      first_input();
+      console.clear();
+      rl.prompt();
     }
-      
-    rl.close();
   });  
 }
 
