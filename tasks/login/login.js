@@ -11,30 +11,49 @@ const rl = readline.createInterface({
 rl.prompt();
 
 const users = [
-  { login: 'Vlad' , password: '1324'},
-  { login: 'Alex' , password: '3256'},
+  ['Vlad', '1324'],
+  ['Alex', '3256'],
 ]
 
-const second_input = (inputName) => {
-  rl.question('Введите пароль: ', (inputPassword) => {
-    console.log(users[1])
-    if (users[1] === inputPassword) {
-        console.log(`привет ${inputName}`);
+let limit = 0;
+const max = 3;
+
+const second_input = (usersName, usersRassword) => {
+  rl.on('line', (inputPassword) => {
+    inputPassword = inputPassword.trim();
+    if (usersRassword === inputPassword) {
+        console.log(`привет ${usersName}`);
     }else {
-        console.log(`${inputPassword} - это не правильный пароль`);
+      if (limit < max) {
+        limit++;
+        console.log(`${inputPassword} - это не правильный пароль, y вас осталось ${max - limit} попыток`);
+        rl.prompt();
+      } else console.log('попытки закончились');
     }
     rl.close();
   });
 }
 
+let isUndefined = undefined;
+
+let usersName = users[0][0];
+let usersPassword = users[0][1];
+
 const first_input = () => {
   rl.on('line', (inputName) => {
-    inputName = inputName.trim()
-    if (users[0] !== undefined){
-      second_input(inputName);
+    inputName = inputName.trim();
+    for (let i in users) {
+      if (users[i][0] === inputName) {
+        isUndefined = false;
+        usersName = users[i][0];
+        usersPassword = users[i][1];
+      }
+    }
+    if (isUndefined !== undefined){
+      second_input(usersName, usersPassword);
     }else {
-      console.log(`Неизвестный пользователь`);
       console.clear();
+      console.log(`Неизвестный пользователь`);
       rl.prompt();
     }
   });  
