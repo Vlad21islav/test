@@ -5,58 +5,51 @@ const readline = require('node:readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-  prompt: 'Введите имя: ',
+  prompt: '> ',
 });
-
-rl.prompt();
 
 const users = [
   { login: 'Vlad' , password: '1324'},
   { login: 'Alex' , password: '2546'},
 ]
 
-let limit = 0;
-const max = 3;
+let isPassword;
 
-const second_input = (usersName, usersRassword) => {
-  rl.on('line', (inputPassword) => {
-    inputPassword = inputPassword.trim();
-    if (usersRassword === inputPassword) {
-        console.log(`привет ${usersName}`);
+let limit = 3;
+
+let user;
+
+console.log('Введите имя: ');
+
+rl.prompt();
+rl.on('line', (line) => {
+  line = line.trim();
+
+  if (isPassword != true) {
+    user = users.find((element) => (element.login === line));
+    if (user !== undefined) {
+      console.log('Введите пароль: ');
+      isPassword = true;
+      rl.prompt();
     }else {
-      if (limit < max) {
-        limit++;
-        console.log(`${inputPassword} - это не правильный пароль, y вас осталось ${max - limit} попыток`);
-        rl.prompt();
-      } else console.log('попытки закончились');
-    }
-    rl.close();
-  });
-}
-
-let isUndefined = undefined;
-
-let usersName = users[0].login;
-let usersPassword = users[0].password;
-
-const first_input = () => {
-  rl.on('line', (inputName) => {
-    inputName = inputName.trim();
-    for (let i in users) {
-      if (users[i][0] === inputName) {
-        isUndefined = false;
-        usersName = users[i].login;
-        usersPassword = users[i].password;
-      }
-    }
-    if (isUndefined !== undefined){
-      second_input(usersName, usersPassword);
-    }else {
-      console.clear();
-      console.log(`Неизвестный пользователь`);
+      console.log('Неизвестный пользователь');
+      console.log('Введите имя: ');
       rl.prompt();
     }
-  });  
-}
-
-first_input();
+  }
+  else {
+    if (line === user.password) {
+      console.log(`Привет, ${user.login}!`);
+      rl.close();
+    } else {
+        if (limit > 1) {
+          limit--;
+          console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
+          rl.prompt();
+        } else {
+          console.log(`Вы потратили все попытки`);
+          rl.close();
+        }
+    }
+  }
+})
