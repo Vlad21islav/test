@@ -4,42 +4,52 @@ const readline = require('node:readline');
 
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
+  prompt: '> ',
 });
 
-const users = {
-    Vlad: {
-        name: 'Vlad',
-        password: '159478'
-    },
-    Alex: {
-        name: 'Alex',
-        password: '159236'
-    }
-};
+const users = [
+  { login: 'Vlad' , password: '1324'},
+  { login: 'Alex' , password: '2546'},
+]
 
-const second_input = (inputName) => {
-  rl.question('Введите пароль: ', (inputPassword) => {
-    if (users[inputName][password] === inputPassword) {
-        console.log(`привет ${inputName}`);
+let isPassword;
+
+let limit = 3;
+
+let user;
+
+console.log('Введите имя: ');
+
+rl.prompt();
+rl.on('line', (line) => {
+  line = line.trim();
+
+  if (isPassword != true) {
+    user = users.find((element) => (element.login === line));
+    if (user !== undefined) {
+      console.log('Введите пароль: ');
+      isPassword = true;
+      rl.prompt();
     }else {
-        console.log(`${inputPassword} - это не правильный пароль`);
+      console.log('Неизвестный пользователь');
+      console.log('Введите имя: ');
+      rl.prompt();
     }
-    rl.close();
-  });
-}
-
-const first_input = () => {
-  rl.question('Введите имя: ', (inputName) => {
-    if (users[inputName] !== undefined){
-      second_input(inputName);
-    }else {
-      console.log(`Неизвестный пользователь`);
-      first_input();
+  }
+  else {
+    if (line === user.password) {
+      console.log(`Привет, ${user.login}!`);
+      rl.close();
+    } else {
+        if (limit > 1) {
+          limit--;
+          console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
+          rl.prompt();
+        } else {
+          console.log(`Вы потратили все попытки`);
+          rl.close();
+        }
     }
-      
-    rl.close();
-  });  
-}
-
-first_input();
+  }
+})
