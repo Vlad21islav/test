@@ -2,15 +2,10 @@
 
 const readline = require('node:readline');
 
-const input1 = readline.createInterface({
+const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-
-const input2 = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
 
 const users = {
     Vlad: {
@@ -23,19 +18,19 @@ const users = {
     }
 };
 
-input1.question('Введите имя: ', (inputName) => {
-  if (users[inputName] != undefined){
-    input2.question('Введите пароль: ', (inputPassword) => {
-        if (users[inputName][password] = inputPassword) {
+rl.question('Введите имя: ', (inputName) => {
+  if (users[inputName] !== undefined){
+    rl.question('Введите пароль: ', (inputPassword) => {
+        if (users[inputName][password] === inputPassword) {
             console.log(`привет ${inputName}`);
         }else {
             console.log(`${inputPassword} - это не правильный пароль`);
         }
-        input2.close();
+        rl.close();
     });
   }else {
     console.log(`Неизвестный пользователь`);
   }
     
-  input1.close();
+  rl.close();
 });
