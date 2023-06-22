@@ -11,8 +11,8 @@ const rl = readline.createInterface({
 rl.prompt();
 
 const users = [
-  ['Vlad', '1324'],
-  ['Alex', '3256'],
+  { login: 'Vlad' , password: '1324'},
+  { login: 'Alex' , password: '2546'},
 ]
 
 let limit = 0;
@@ -36,8 +36,8 @@ const second_input = (usersName, usersRassword) => {
 
 let isUndefined = undefined;
 
-let usersName = users[0][0];
-let usersPassword = users[0][1];
+let usersName = users[0].login;
+let usersPassword = users[0].password;
 
 const first_input = () => {
   rl.on('line', (inputName) => {
@@ -45,8 +45,8 @@ const first_input = () => {
     for (let i in users) {
       if (users[i][0] === inputName) {
         isUndefined = false;
-        usersName = users[i][0];
-        usersPassword = users[i][1];
+        usersName = users[i].login;
+        usersPassword = users[i].password;
       }
     }
     if (isUndefined !== undefined){
