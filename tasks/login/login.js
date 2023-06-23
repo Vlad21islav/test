@@ -19,6 +19,8 @@ let limit = 3;
 
 let user;
 
+console.clear();
+
 console.log('Введите имя: ');
 
 rl.prompt();
