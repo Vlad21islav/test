@@ -44,7 +44,7 @@ rl.on('line', (line) => {
   } else {
     if (line === user.password) {
       console.log(`Привет, ${user.login}!`);
-      rl.close();
+      process.exit(0);
     } else {
         if (limit > 1) {
           limit--;
@@ -52,7 +52,7 @@ rl.on('line', (line) => {
           rl.prompt();
         } else {
           console.log(`Вы потратили все попытки`);
-          rl.close();
+          process.exit(0);
         }
     }
   }
