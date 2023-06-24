@@ -27,19 +27,21 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  if (isPassword != true) {
+  if (line === 'exit') {
+    console.log('bye')
+    process.exit(0);
+  } if (isPassword != true) {
     user = users.find((element) => (element.login === line));
     if (user !== undefined) {
       console.log('Введите пароль: ');
       isPassword = true;
       rl.prompt();
-    }else {
+    } else {
       console.log('Неизвестный пользователь');
       console.log('Введите имя: ');
       rl.prompt();
     }
-  }
-  else {
+  } else {
     if (line === user.password) {
       console.log(`Привет, ${user.login}!`);
       rl.close();
