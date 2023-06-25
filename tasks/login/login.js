@@ -9,8 +9,8 @@ const rl = readline.createInterface({
 });
 
 const users = [
-  { login: 'Vlad' , password: '1324'},
-  { login: 'Alex' , password: '2546'},
+  { login: 'Vlad', password: '1324'},
+  { login: 'Alex', password: '2546'},
 ]
 
 let isPassword;
@@ -27,10 +27,10 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  if (line === 'exit') {
+  if (line === 'exit()') {
     console.log('bye')
     process.exit(0);
-  } if (isPassword != true) {
+  } else if (isPassword != true) {
     user = users.find((element) => (element.login === line));
     if (user !== undefined) {
       console.log('Введите пароль: ');
