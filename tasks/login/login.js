@@ -55,7 +55,7 @@ rl.on('line', (line) => {
           users.splice(user, 1);
           rl.prompt();
         } else {
-          console.log(`Введите команду`);
+          console.log(`Введите команду: `);
           rl.prompt();
         };
         break;
@@ -72,7 +72,7 @@ rl.on('line', (line) => {
         add.password = line;
         users.push(add);
         console.log(`${add.login} добавлен(a)`);
-        console.log(`Введите команду`);
+        console.log(`Введите команду: `);
         rl.prompt();
         break;
       
@@ -83,13 +83,18 @@ rl.on('line', (line) => {
           console.log(`3. exit() - выход`);
           console.log(`4. help() - выводит список всех команд`);
           console.log(`4. show() - показывает список всех пользователей`);
-          console.log(`Введите команду`);
+          console.log(`5. switch() - переключиться на другого пользователя`);
+          console.log(`Введите команду: `);
           rl.prompt();
         } else if (line === 'show()') {
           for (let userNames in users) {
             console.log(users[userNames].login);
           };
           console.log(`Введите команду: `);
+          rl.prompt();
+        } else if (line === 'switch()') {
+          gameStatus = 'isPassword';
+          console.log('Введите имя: ');
           rl.prompt();
         } else if (line === 'add()') {
           add = {};
@@ -124,8 +129,9 @@ rl.on('line', (line) => {
       default:
         if (line === user.password) {
           gameStatus = 'isUser';
+          limit = 3
           console.log(`Привет, ${user.login}!`);
-          console.log('Введите команду: ');
+          console.log('Введите команду(введите help(), чтобы вывести список команд): ');
           rl.prompt();
         } else {
             if (limit > 1) {
