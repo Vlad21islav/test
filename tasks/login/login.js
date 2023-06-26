@@ -56,7 +56,8 @@ rl.on('line', (line) => {
     deletePassword = false;
     if (line === user.password) {
       console.log(`${user.login} удалён(ена)`)
-      users.shift(user);
+      user = users.findIndex((element) => (element.login === line));
+      users.splice(user, 1)
       rl.prompt();
     } else {
       console.log(`Введите команду`)
