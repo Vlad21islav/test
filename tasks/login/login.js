@@ -24,6 +24,9 @@ let isUser = false;
 let addName = false;
 let addPassword = false;
 
+let deleteName;
+let deletePassword;
+
 let add;
 
 console.clear();
@@ -37,12 +40,27 @@ rl.on('line', (line) => {
   if (line === 'exit()') {
     console.log('bye');
     process.exit(0);
-  }else if (line === 'show()') {
-    for (let userNames in users) {
-      console.log(users[userNames])
+  } else if (deleteName === true) {
+    user = users.find((element) => (element.login === line));
+    if (user !== undefined) {
+      console.log('Введите пароль: ');
+      deleteName = false;
+      deletePassword = true
+      rl.prompt();
+    } else {
+      console.log('Неизвестный пользователь');
+      console.log('Введите имя: ');
+      rl.prompt();
     }
-    console.log(`Введите команду: `)
-    rl.prompt();
+  } else if (deletePassword === true) {
+    deletePassword = false;
+    if (line === user.password) {
+      console.log(`${user.login} удалён(ена)`)
+      users.shift(user);
+      rl.prompt();
+    } else {
+      rl.prompt();
+    }
   } else if (addName === true) {
     add.login = line;
     addName = false;
@@ -62,7 +80,18 @@ rl.on('line', (line) => {
       console.log(`4. show() - показывает список всех пользователей`);
       console.log(`Введите команду`)
       rl.prompt();
+    } else if (line === 'show()') {
+      for (let userNames in users) {
+        console.log(users[userNames])
+      }
+      console.log(`Введите команду: `)
+      rl.prompt();
     } else if (line === 'add()') {
+      add = {};
+      addName = true;
+      console.log(`Введите имя: `);
+      rl.prompt();
+    } else if (line === 'delete()') {
       add = {};
       addName = true;
       console.log(`Введите имя: `);
