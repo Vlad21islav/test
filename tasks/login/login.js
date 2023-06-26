@@ -59,6 +59,7 @@ rl.on('line', (line) => {
       users.shift(user);
       rl.prompt();
     } else {
+      console.log(`Введите команду`)
       rl.prompt();
     }
   } else if (addName === true) {
@@ -71,6 +72,8 @@ rl.on('line', (line) => {
     addPassword = false;
     add.password = line;
     users.push(add)
+    console.log(`Введите команду`)
+    rl.prompt();
   } else if (isUser === true) {
     if (line === `help()`) {
       console.log(`1. add() - команда добавления нового пользователя`);
@@ -93,7 +96,7 @@ rl.on('line', (line) => {
       rl.prompt();
     } else if (line === 'delete()') {
       add = {};
-      addName = true;
+      deleteName = true;
       console.log(`Введите имя: `);
       rl.prompt();
     } else {
