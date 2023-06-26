@@ -19,6 +19,13 @@ let limit = 3;
 
 let user;
 
+let isUser = false;
+
+let addName = false;
+let addPassword = false;
+
+let add;
+
 console.clear();
 
 console.log('Введите имя: ');
@@ -28,9 +35,36 @@ rl.on('line', (line) => {
   line = line.trim();
 
   if (line === 'exit()') {
-    console.log('bye')
+    console.log('bye');
     process.exit(0);
-  } else if (isPassword != true) {
+  } else if (addName === true) {
+    add.login = line;
+    addName = false;
+    addPassword = true;
+    console.log(`Введите пароль: `)
+    rl.prompt();
+  } else if (addPassword === true) {
+    addPassword = false;
+    add.password = line;
+    users.push(add)
+  } else if (isUser === true) {
+    if (line === `help()`) {
+      console.log(`1. add() - команда добавления нового пользователя`);
+      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя)`);
+      console.log(`3. exit() - выход`);
+      console.log(`4. help() - выводит список всех команд`);
+      console.log(`Введите команду`)
+      rl.prompt();
+    } else if (line === 'add()') {
+      add = {};
+      addName = true;
+      console.log(`Введите имя: `);
+      rl.prompt();
+    } else {
+      console.log(`Введите команду: `)
+      rl.prompt();
+    }
+  } else if (isPassword !== true) {
     user = users.find((element) => (element.login === line));
     if (user !== undefined) {
       console.log('Введите пароль: ');
@@ -43,8 +77,10 @@ rl.on('line', (line) => {
     }
   } else {
     if (line === user.password) {
+      isUser = true;
       console.log(`Привет, ${user.login}!`);
-      process.exit(0);
+      console.log('Введите команду: ');
+      rl.prompt();
     } else {
         if (limit > 1) {
           limit--;
