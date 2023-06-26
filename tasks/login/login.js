@@ -37,6 +37,12 @@ rl.on('line', (line) => {
   if (line === 'exit()') {
     console.log('bye');
     process.exit(0);
+  }else if (line === 'show()') {
+    for (let userNames in users) {
+      console.log(users[userNames])
+    }
+    console.log(`Введите команду: `)
+    rl.prompt();
   } else if (addName === true) {
     add.login = line;
     addName = false;
@@ -50,9 +56,10 @@ rl.on('line', (line) => {
   } else if (isUser === true) {
     if (line === `help()`) {
       console.log(`1. add() - команда добавления нового пользователя`);
-      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя)`);
+      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
       console.log(`3. exit() - выход`);
       console.log(`4. help() - выводит список всех команд`);
+      console.log(`4. show() - показывает список всех пользователей`);
       console.log(`Введите команду`)
       rl.prompt();
     } else if (line === 'add()') {
@@ -61,6 +68,7 @@ rl.on('line', (line) => {
       console.log(`Введите имя: `);
       rl.prompt();
     } else {
+      console.log(`Такой команды нет`)
       console.log(`Введите команду: `)
       rl.prompt();
     }
