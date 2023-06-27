@@ -125,7 +125,7 @@ rl.on('line', (line) => {
           rl.prompt();
         } else if (line === 'switch()') {
           gameStatus = 'isPassword';
-          console.log('Введите имя: ');
+          console.log('Введите имя(введите help(), чтобы вывести список команд): ');
           lastWord = 'Введите имя: ';
           rl.prompt();
         } else if (line === 'add()') {
