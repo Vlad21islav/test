@@ -21,6 +21,10 @@ let user;
 
 let add;
 
+let lastWord = 'Введите имя: ';
+
+let userDelete;
+
 console.clear();
 
 console.log('Введите имя: ');
@@ -32,30 +36,44 @@ rl.on('line', (line) => {
   if (line === 'exit()') {
     console.log('bye');
     process.exit(0);
+  } else if (line === 'clear()') {
+    console.clear()
+    console.log(lastWord)
+    rl.prompt();
   } else {
     switch (gameStatus) {
       case 'deleteName':
-        user = users.find((element) => (element.login === line));
-        if (user !== undefined) {
-          console.log('Введите пароль: ');
-          gameStatus = 'deletePassword';
-          rl.prompt();
+        userDelete = users.find((element) => (element.login === line));
+        if (userDelete !== undefined) {
+          if (userDelete.login === user.login) {
+            console.log('нельзя удалить самого себя');
+            console.log('Введите имя: ');
+            lastWord = 'Введите имя: ';
+            rl.prompt();
+          } else {
+            console.log('Введите пароль: ');
+            lastWord = 'Введите пароль: ';
+            gameStatus = 'deletePassword';
+            rl.prompt();
+          }
         } else {
           console.log('Неизвестный пользователь');
           console.log('Введите имя: ');
+          lastWord = 'Введите имя: ';
           rl.prompt();
         }
         break;
 
       case 'deletePassword':
         gameStatus = 'isUser';
-        if (line === user.password) {
-          console.log(`${user.login} удалён(ена)`);
-          user = users.findIndex((element) => (element.login === line));
-          users.splice(user, 1);
+        if (line === userDelete.password) {
+          console.log(`${userDelete.login} удалён(ена)`);
+          userDelete = users.findIndex((element) => (element.login === line));
+          users.splice(userDelete, 1);
           rl.prompt();
         } else {
           console.log(`Введите команду: `);
+          lastWord = `Введите команду: `;
           rl.prompt();
         };
         break;
@@ -64,6 +82,7 @@ rl.on('line', (line) => {
         add.login = line;
         gameStatus = 'addPassword';
         console.log(`Введите пароль: `);
+        lastWord = `Введите пароль: `;
         rl.prompt();
         break;
 
@@ -73,6 +92,7 @@ rl.on('line', (line) => {
         users.push(add);
         console.log(`${add.login} добавлен(a)`);
         console.log(`Введите команду: `);
+        lastWord = `Введите команду: `;
         rl.prompt();
         break;
       
@@ -84,31 +104,38 @@ rl.on('line', (line) => {
           console.log(`4. help() - выводит список всех команд`);
           console.log(`4. show() - показывает список всех пользователей`);
           console.log(`5. switch() - переключиться на другого пользователя`);
+          console.log(`6. clear() - отчистить консоль`);
           console.log(`Введите команду: `);
+          lastWord = `Введите команду: `;
           rl.prompt();
         } else if (line === 'show()') {
           for (let userNames in users) {
             console.log(users[userNames].login);
           };
           console.log(`Введите команду: `);
+          lastWord = `Введите команду: `;
           rl.prompt();
         } else if (line === 'switch()') {
           gameStatus = 'isPassword';
           console.log('Введите имя: ');
+          lastWord = 'Введите имя: ';
           rl.prompt();
         } else if (line === 'add()') {
           add = {};
           gameStatus = 'addName';
           console.log(`Введите имя: `);
+          lastWord = 'Введите имя: ';
           rl.prompt();
         } else if (line === 'delete()') {
           add = {};
           gameStatus = 'deleteName';
           console.log(`Введите имя: `);
+          lastWord = 'Введите имя: ';
           rl.prompt();
         } else {
           console.log(`Такой команды нет`);
           console.log(`Введите команду: `);
+          lastWord = `Введите команду: `
           rl.prompt();
         };
         break;
@@ -117,11 +144,13 @@ rl.on('line', (line) => {
         user = users.find((element) => (element.login === line));
         if (user !== undefined) {
           console.log('Введите пароль: ');
+          lastWord = 'Введите пароль: ';
           gameStatus = '';
           rl.prompt();
         } else {
           console.log('Неизвестный пользователь');
           console.log('Введите имя: ');
+          lastWord = 'Введите имя: ';
           rl.prompt();
         };
         break;
@@ -132,18 +161,20 @@ rl.on('line', (line) => {
           limit = 3
           console.log(`Привет, ${user.login}!`);
           console.log('Введите команду(введите help(), чтобы вывести список команд): ');
+          lastWord = 'Введите команду(введите help(), чтобы вывести список команд): '
           rl.prompt();
         } else {
             if (limit > 1) {
               limit--;
               console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
+              lastWord = `Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`
               rl.prompt();
             } else {
               console.log(`Вы потратили все попытки`);
+              lastWord = `Вы потратили все попытки`
               process.exit(0);
             };
         };
-      
     };
   };
 });
