@@ -27,7 +27,7 @@ let userDelete;
 
 console.clear();
 
-console.log('Введите имя: ');
+console.log('Введите имя(введите help(), чтобы вывести список команд): ');
 
 rl.prompt();
 rl.on('line', (line) => {
@@ -40,6 +40,25 @@ rl.on('line', (line) => {
     console.clear()
     console.log(lastWord)
     rl.prompt();
+  } else if (line === 'help()') {
+    if (gameStatus === 'isUser') {
+      console.log(`1. add() - команда добавления нового пользователя`);
+      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+      console.log(`3. exit() - выход`);
+      console.log(`4. help() - выводит список всех команд`);
+      console.log(`4. show() - показывает список всех пользователей`);
+      console.log(`5. switch() - переключиться на другого пользователя`);
+      console.log(`6. clear() - отчистить консоль`);
+      console.log(`Введите команду: `);
+      lastWord = `Введите команду: `;
+      rl.prompt();
+    } else {
+      console.log(`1. exit() - выход`);
+      console.log(`2. help() - выводит список всех команд`);
+      console.log(`3. clear() - отчистить консоль`);
+      console.log(lastWord)
+      rl.prompt()
+    }
   } else {
     switch (gameStatus) {
       case 'deleteName':
@@ -97,18 +116,7 @@ rl.on('line', (line) => {
         break;
       
       case 'isUser':
-        if (line === `help()`) {
-          console.log(`1. add() - команда добавления нового пользователя`);
-          console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-          console.log(`3. exit() - выход`);
-          console.log(`4. help() - выводит список всех команд`);
-          console.log(`4. show() - показывает список всех пользователей`);
-          console.log(`5. switch() - переключиться на другого пользователя`);
-          console.log(`6. clear() - отчистить консоль`);
-          console.log(`Введите команду: `);
-          lastWord = `Введите команду: `;
-          rl.prompt();
-        } else if (line === 'show()') {
+        if (line === 'show()') {
           for (let userNames in users) {
             console.log(users[userNames].login);
           };
