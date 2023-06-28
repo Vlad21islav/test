@@ -25,6 +25,8 @@ let lastWord = 'Введите имя: ';
 
 let userDelete;
 
+let functionWasDone = false;
+
 const commands = [
   'addPassword',
   'isUser',
@@ -92,7 +94,18 @@ function adding_InputPassword(line) {
 
 
 function userIsInHisAcaunt(line) {
-  if (line === 'show()') {
+  if (line === 'help()') {
+    console.log(`1. add() - команда добавления нового пользователя`);
+    console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+    console.log(`3. exit() - выход`);
+    console.log(`4. help() - выводит список всех команд`);
+    console.log(`4. show() - показывает список всех пользователей`);
+    console.log(`5. switch() - переключиться на другого пользователя`);
+    console.log(`6. clear() - отчистить консоль`);
+    console.log(`Введите команду: `);
+    lastWord = `Введите команду: `;
+    rl.prompt();
+  } else if (line === 'show()') {
     for (let userNames in users) {
       console.log(users[userNames].login);
     };
@@ -164,26 +177,28 @@ function ifRegisterd_or_PasswordIsntRight(line) {
 };
 
 
-function ifUserWillRightHelp(gameStatus) {
-  if (gameStatus === 'isUser') {
-    console.log(`1. add() - команда добавления нового пользователя`);
-    console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-    console.log(`3. exit() - выход`);
-    console.log(`4. help() - выводит список всех команд`);
-    console.log(`4. show() - показывает список всех пользователей`);
-    console.log(`5. switch() - переключиться на другого пользователя`);
-    console.log(`6. clear() - отчистить консоль`);
-    console.log(`Введите команду: `);
-    lastWord = `Введите команду: `;
-    rl.prompt();
-  } else {
-    console.log(`1. exit() - выход`);
-    console.log(`2. help() - выводит список всех команд`);
-    console.log(`3. clear() - отчистить консоль`);
-    console.log(lastWord);
-    rl.prompt();
-  };
-};
+function commandsIsntLogIn(line) {
+  switch (line) {
+    case 'exit()':
+      console.log('bye');
+      functionWasDone = true;
+      process.exit(0);
+    case 'clear()':
+      console.clear();
+      console.log(lastWord);
+      rl.prompt();
+      functionWasDone = true;
+      break;
+    case 'help()':
+      console.log(`1. exit() - выход`);
+      console.log(`2. help() - выводит список всех команд`);
+      console.log(`3. clear() - отчистить консоль`);
+      console.log(lastWord);
+      rl.prompt();
+      functionWasDone = true;
+      break;
+  }
+}
 
 
 console.clear();
@@ -194,41 +209,42 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  switch (line) {
-    case 'exit()':
-      console.log('bye');
-      process.exit(0);
-    case 'clear()':
-      console.clear();
-      console.log(lastWord);
-      rl.prompt();
-      break;
-    case 'help()':
-      ifUserWillRightHelp(gameStatus);
-      break;
-    default:
-      switch (gameStatus) {
-        case 'deleteName':
+    switch (gameStatus) {
+      case 'deleteName':
+        commandsIsntLogIn(line)
+        if (functionWasDone) {
           deleting_InputName(line);
-          break;
-          
-        case 'addName':
-          adding_InputName(line);
-          break;
-
-        case 'addPassword':
-          adding_InputPassword(line);
-          break;
+        }
+        break;
         
-        case 'isUser':
-          userIsInHisAcaunt(line);
-          break;
-        case 'isPassword':
-          inputing_Password(line);
-          break;
+      case 'addName':
+        commandsIsntLogIn(line)
+        if (functionWasDone) {
+          adding_InputName(line);
+        }
+        break;
 
-        default:
+      case 'addPassword':
+        commandsIsntLogIn(line)
+        if (functionWasDone) {
+          adding_InputPassword(line);
+        }
+        break;
+      
+      case 'isUser':
+        userIsInHisAcaunt(line);
+        break;
+      case 'isPassword':
+        commandsIsntLogIn(line)
+        if (functionWasDone) {
+          inputing_Password(line);
+        }
+        break;
+
+      default:
+        commandsIsntLogIn(line)
+        if (functionWasDone) {
           ifRegisterd_or_PasswordIsntRight(line);
-      };
-  };
+        }
+    };
 });
