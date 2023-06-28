@@ -164,6 +164,28 @@ function ifRegisterd_or_PasswordIsntRight(line) {
 };
 
 
+function ifUserWillRightHelp(gameStatus) {
+  if (gameStatus === 'isUser') {
+    console.log(`1. add() - команда добавления нового пользователя`);
+    console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+    console.log(`3. exit() - выход`);
+    console.log(`4. help() - выводит список всех команд`);
+    console.log(`4. show() - показывает список всех пользователей`);
+    console.log(`5. switch() - переключиться на другого пользователя`);
+    console.log(`6. clear() - отчистить консоль`);
+    console.log(`Введите команду: `);
+    lastWord = `Введите команду: `;
+    rl.prompt();
+  } else {
+    console.log(`1. exit() - выход`);
+    console.log(`2. help() - выводит список всех команд`);
+    console.log(`3. clear() - отчистить консоль`);
+    console.log(lastWord);
+    rl.prompt();
+  };
+};
+
+
 console.clear();
 
 console.log('Введите имя(введите help(), чтобы вывести список команд): ');
@@ -180,25 +202,10 @@ rl.on('line', (line) => {
       console.clear();
       console.log(lastWord);
       rl.prompt();
+      break;
     case 'help()':
-      if (gameStatus === 'isUser') {
-        console.log(`1. add() - команда добавления нового пользователя`);
-        console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-        console.log(`3. exit() - выход`);
-        console.log(`4. help() - выводит список всех команд`);
-        console.log(`4. show() - показывает список всех пользователей`);
-        console.log(`5. switch() - переключиться на другого пользователя`);
-        console.log(`6. clear() - отчистить консоль`);
-        console.log(`Введите команду: `);
-        lastWord = `Введите команду: `;
-        rl.prompt();
-      } else {
-        console.log(`1. exit() - выход`);
-        console.log(`2. help() - выводит список всех команд`);
-        console.log(`3. clear() - отчистить консоль`);
-        console.log(lastWord);
-        rl.prompt();
-      };
+      ifUserWillRightHelp(gameStatus);
+      break;
     default:
       switch (gameStatus) {
         case 'deleteName':
