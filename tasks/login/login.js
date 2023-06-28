@@ -33,15 +33,15 @@ const commands = [
   'addName',
   'deleteName',
   ''
-]
+];
 
 const changeStatus = (line) => {
   for (let command in commands) {
     if (line === commands[command]) {
-      gameStatus = line
-    }
-  }
-}
+      gameStatus = line;
+    };
+  };
+};
 
 changeStatus('isPassword');
 
@@ -59,7 +59,7 @@ function deleting_InputName(line) {
         userDelete = users.findIndex((element) => (element.login === line));
         users.splice(userDelete, 1);
         changeStatus('isUser'); // isUser
-        console.log(`Введите команду: `)
+        console.log(`Введите команду: `);
         rl.prompt();
       }
     } else {
@@ -67,8 +67,8 @@ function deleting_InputName(line) {
       console.log('Введите имя: ');
       lastWord = 'Введите имя: ';
       rl.prompt();
-    }
-}
+    };
+};
 
 
 function adding_InputName(line) {
@@ -77,7 +77,7 @@ function adding_InputName(line) {
   console.log(`Введите пароль: `);
   lastWord = `Введите пароль: `;
   rl.prompt();
-}
+};
 
 
 function adding_InputPassword(line) {
@@ -88,7 +88,7 @@ function adding_InputPassword(line) {
   console.log(`Введите команду: `);
   lastWord = `Введите команду: `;
   rl.prompt();
-}
+};
 
 
 function userIsInHisAcaunt(line) {
@@ -119,10 +119,10 @@ function userIsInHisAcaunt(line) {
   } else {
     console.log(`Такой команды нет`);
     console.log(`Введите команду: `);
-    lastWord = `Введите команду: `
+    lastWord = `Введите команду: `;
     rl.prompt();
   };
-}
+};
 
 
 function inputing_Password(line) {
@@ -138,7 +138,7 @@ function inputing_Password(line) {
     lastWord = 'Введите имя: ';
     rl.prompt();
   };
-}
+};
 
 
 function ifRegisterd_or_PasswordIsntRight(line) {
@@ -161,7 +161,7 @@ function ifRegisterd_or_PasswordIsntRight(line) {
         process.exit(0);
       };
   };
-}
+};
 
 
 console.clear();
@@ -172,55 +172,56 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  if (line === 'exit()') {
-    console.log('bye');
-    process.exit(0);
-  } else if (line === 'clear()') {
-    console.clear()
-    console.log(lastWord)
-    rl.prompt();
-  } else if (line === 'help()') {
-    if (gameStatus === 'isUser') {
-      console.log(`1. add() - команда добавления нового пользователя`);
-      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-      console.log(`3. exit() - выход`);
-      console.log(`4. help() - выводит список всех команд`);
-      console.log(`4. show() - показывает список всех пользователей`);
-      console.log(`5. switch() - переключиться на другого пользователя`);
-      console.log(`6. clear() - отчистить консоль`);
-      console.log(`Введите команду: `);
-      lastWord = `Введите команду: `;
+  switch (line) {
+    case 'exit()':
+      console.log('bye');
+      process.exit(0);
+    case 'clear()':
+      console.clear();
+      console.log(lastWord);
       rl.prompt();
-    } else {
-      console.log(`1. exit() - выход`);
-      console.log(`2. help() - выводит список всех команд`);
-      console.log(`3. clear() - отчистить консоль`);
-      console.log(lastWord)
-      rl.prompt()
-    }
-  } else {
-    switch (gameStatus) {
-      case 'deleteName':
-        deleting_InputName(line)
-        break;
+    case 'help()':
+      if (gameStatus === 'isUser') {
+        console.log(`1. add() - команда добавления нового пользователя`);
+        console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+        console.log(`3. exit() - выход`);
+        console.log(`4. help() - выводит список всех команд`);
+        console.log(`4. show() - показывает список всех пользователей`);
+        console.log(`5. switch() - переключиться на другого пользователя`);
+        console.log(`6. clear() - отчистить консоль`);
+        console.log(`Введите команду: `);
+        lastWord = `Введите команду: `;
+        rl.prompt();
+      } else {
+        console.log(`1. exit() - выход`);
+        console.log(`2. help() - выводит список всех команд`);
+        console.log(`3. clear() - отчистить консоль`);
+        console.log(lastWord);
+        rl.prompt();
+      };
+    default:
+      switch (gameStatus) {
+        case 'deleteName':
+          deleting_InputName(line);
+          break;
+          
+        case 'addName':
+          adding_InputName(line);
+          break;
+
+        case 'addPassword':
+          adding_InputPassword(line);
+          break;
         
-      case 'addName':
-        adding_InputName(line)
-        break;
+        case 'isUser':
+          userIsInHisAcaunt(line);
+          break;
+        case 'isPassword':
+          inputing_Password(line);
+          break;
 
-      case 'addPassword':
-        adding_InputPassword(line)
-        break;
-      
-      case 'isUser':
-        userIsInHisAcaunt(line)
-        break;
-      case 'isPassword':
-        inputing_Password(line)
-        break;
-
-      default:
-        ifRegisterd_or_PasswordIsntRight(line)
-    };
+        default:
+          ifRegisterd_or_PasswordIsntRight(line);
+      };
   };
 });
