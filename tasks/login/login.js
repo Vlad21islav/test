@@ -212,21 +212,21 @@ rl.on('line', (line) => {
     switch (gameStatus) {
       case 'deleteName':
         commandsIsntLogIn(line)
-        if (functionWasDone) {
+        if (functionWasDone !== true) {
           deleting_InputName(line);
         } else functionWasDone = false;
         break;
         
       case 'addName':
         commandsIsntLogIn(line)
-        if (functionWasDone) {
+        if (functionWasDone !== true) {
           adding_InputName(line);
         } else functionWasDone = false;
         break;
 
       case 'addPassword':
         commandsIsntLogIn(line)
-        if (functionWasDone) {
+        if (functionWasDone !== true) {
           adding_InputPassword(line);
         } else functionWasDone = false;
         break;
@@ -243,7 +243,7 @@ rl.on('line', (line) => {
 
       default:
         commandsIsntLogIn(line)
-        if (functionWasDone) {
+        if (functionWasDone !== true) {
           ifRegisterd_or_PasswordIsntRight(line);
         } else functionWasDone = false;
     };
