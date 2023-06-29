@@ -112,7 +112,7 @@ function adding_InputName(line) {
   const ifTheirIsName = users.find((element) => (element.login === line));
   if (ifTheirIsName === undefined) {
     add.login = line;
-    adding_InputPassword(line);
+    changeStatus('addingPassword');
     console.log(`Введите пароль: `);
     lastWord = `Введите пароль: `;
     rl.prompt();
@@ -140,7 +140,7 @@ function commands(line) {
   switch (line) {
     case 'add()':
       add = {};
-      adding_InputName(line)
+      changeStatus('addingName');
       console.log(`Введите имя: `);
       lastWord = 'Введите имя: ';
       rl.prompt();
@@ -148,7 +148,7 @@ function commands(line) {
 
     case 'delete()':
       add = {};
-      deleting_InputName(line);
+      
       console.log(`Введите имя: `);
       lastWord = 'Введите имя: ';
       rl.prompt();
@@ -215,6 +215,13 @@ rl.on('line', (line) => {
       case 'waitCommand':
         commands(line);
         break;
-      
+      case 'addingName':
+        adding_InputName(line);
+        break;
+      case 'addingPassword':
+        adding_InputPassword(line);
+        break;
+      case 'deletingName':
+        deleting_InputName(line);
     };
 });
