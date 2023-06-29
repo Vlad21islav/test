@@ -214,21 +214,21 @@ rl.on('line', (line) => {
         commandsIsntLogIn(line)
         if (functionWasDone) {
           deleting_InputName(line);
-        }
+        } else functionWasDone = false;
         break;
         
       case 'addName':
         commandsIsntLogIn(line)
         if (functionWasDone) {
           adding_InputName(line);
-        }
+        } else functionWasDone = false;
         break;
 
       case 'addPassword':
         commandsIsntLogIn(line)
         if (functionWasDone) {
           adding_InputPassword(line);
-        }
+        } else functionWasDone = false;
         break;
       
       case 'isUser':
@@ -236,15 +236,15 @@ rl.on('line', (line) => {
         break;
       case 'isPassword':
         commandsIsntLogIn(line)
-        if (functionWasDone) {
+        if (functionWasDone !== true) {
           inputing_Password(line);
-        }
+        } else functionWasDone = false;
         break;
 
       default:
         commandsIsntLogIn(line)
         if (functionWasDone) {
           ifRegisterd_or_PasswordIsntRight(line);
-        }
+        } else functionWasDone = false;
     };
 });
