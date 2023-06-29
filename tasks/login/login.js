@@ -25,7 +25,7 @@ let lastWord = 'Введите имя: ';
 
 let userDelete;
 
-let functionWasDone = false;
+const ifTheirIsName = '';
 
 const allStatuses = [
   'start',
@@ -109,7 +109,7 @@ function deleting_InputName(line) {
 
 
 function adding_InputName(line) {
-  const ifTheirIsName = users.find((element) => (element.login === line));
+  ifTheirIsName = users.find((element) => (element.login === line));
   if (ifTheirIsName === undefined) {
     add.login = line;
     changeStatus('addingPassword');
