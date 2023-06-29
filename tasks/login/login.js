@@ -27,25 +27,60 @@ let userDelete;
 
 let functionWasDone = false;
 
-const commands = [
-  'addPassword',
-  'isUser',
-  'addPassword',
-  'isPassword',
-  'addName',
-  'deleteName',
-  ''
+const allStatuses = [
+  'start',
+  'userlsFound',
+  'waitCommand',
 ];
 
 const changeStatus = (line) => {
-  for (let command in commands) {
-    if (line === commands[command]) {
+  for (let status in allStatuses) {
+    if (line === allStatuses[status]) {
       gameStatus = line;
     };
   };
 };
 
-changeStatus('isPassword');
+changeStatus('start');
+
+
+function inputing_Name(line) {
+  user = users.find((element) => (element.login === line));
+  if (user !== undefined) {
+    console.log('Введите пароль: ');
+    lastWord = 'Введите пароль: ';
+    changeStatus('userlsFound'); // 'userlsFound'
+    rl.prompt();
+  } else {
+    console.log('Пользователь не найден');
+    console.log('Введите имя: ');
+    lastWord = 'Введите имя: ';
+    rl.prompt();
+  };
+};
+
+
+function ifRegisterd_or_PasswordIsntRight(line) {
+  if (line === user.password) {
+    changeStatus('waitCommand'); // isUser
+    limit = 3
+    console.log('Введите команду(введите help(), чтобы вывести список команд): ');
+    lastWord = 'Введите команду(введите help(), чтобы вывести список всех команд): '
+    rl.prompt();
+  } else {
+      if (limit > 1) {
+        limit--;
+        console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
+        console.log(`Введите пароль`);
+        lastWord = `Введите пароль`
+        rl.prompt();
+      } else {
+        console.log(`Вы потратили все попытки`);
+        lastWord = `Вы потратили все попытки`
+        process.exit(0);
+      };
+  };
+};
 
 
 function deleting_InputName(line) {
@@ -60,12 +95,12 @@ function deleting_InputName(line) {
         console.log(`${userDelete.login} удалён(ена)`);
         userDelete = users.findIndex((element) => (element.login === line));
         users.splice(userDelete, 1);
-        changeStatus('isUser'); // isUser
+        changeStatus('waitCommand');
         console.log(`Введите команду: `);
         rl.prompt();
       }
     } else {
-      console.log('Неизвестный пользователь');
+      console.log('Пользователь не найден');
       console.log('Введите имя: ');
       lastWord = 'Введите имя: ';
       rl.prompt();
@@ -74,16 +109,24 @@ function deleting_InputName(line) {
 
 
 function adding_InputName(line) {
-  add.login = line;
-  changeStatus('addPassword'); // addPassword
-  console.log(`Введите пароль: `);
-  lastWord = `Введите пароль: `;
-  rl.prompt();
+  const ifTheirIsName = users.find((element) => (element.login === line));
+  if (ifTheirIsName === undefined) {
+    add.login = line;
+    adding_InputPassword(line);
+    console.log(`Введите пароль: `);
+    lastWord = `Введите пароль: `;
+    rl.prompt();
+  } else {
+    console.log(`Такой пользователь уже есть: `);
+    console.log(`Введите имя: `);
+    lastWord = `Введите имя: `;
+    rl.prompt();
+  }
 };
 
 
 function adding_InputPassword(line) {
-  changeStatus('isUser'); // isUser
+  changeStatus('waitCommand');
   add.password = line;
   users.push(add);
   console.log(`${add.login} добавлен(a)`);
@@ -93,29 +136,25 @@ function adding_InputPassword(line) {
 };
 
 
-function userIsInHisAcaunt(line) {
+function commands(line) {
   switch (line) {
-    case 'exit()':
-      console.log('bye');
-      process.exit(0);
-    case 'clear()':
-      console.clear();
-      console.log(lastWord);
+    case 'add()':
+      add = {};
+      adding_InputName(line)
+      console.log(`Введите имя: `);
+      lastWord = 'Введите имя: ';
       rl.prompt();
       break;
-    case 'help()':
-      console.log(`1. add() - команда добавления нового пользователя`);
-      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-      console.log(`3. exit() - выход`);
-      console.log(`4. help() - выводит список всех команд`);
-      console.log(`4. show() - показывает список всех пользователей`);
-      console.log(`5. switch() - переключиться на другого пользователя`);
-      console.log(`6. clear() - отчистить консоль`);
-      console.log(`Введите команду: `);
-      lastWord = `Введите команду: `;
+
+    case 'delete()':
+      add = {};
+      deleting_InputName(line);
+      console.log(`Введите имя: `);
+      lastWord = 'Введите имя: ';
       rl.prompt();
       break;
-    case 'show()':
+
+    case 'list()':
       for (let userNames in users) {
         console.log(users[userNames].login);
       };
@@ -123,26 +162,29 @@ function userIsInHisAcaunt(line) {
       lastWord = `Введите команду: `;
       rl.prompt();
       break;
-    case 'switch()':
-      changeStatus('isPassword'); // isPassword
-      console.log('Введите имя(введите help(), чтобы вывести список команд): ');
-      lastWord = 'Введите имя: ';
+
+    case 'clear()':
+      console.clear();
+      console.log(lastWord);
       rl.prompt();
       break;
-    case 'add()':
-      add = {};
-      changeStatus('addName'); // addName
-      console.log(`Введите имя: `);
-      lastWord = 'Введите имя: ';
+
+    case 'help()':
+      console.log(`1. add() - команда добавления нового пользователя`);
+      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+      console.log(`3. exit() - выход`);
+      console.log(`4. help() - выводит список всех команд`);
+      console.log(`4. list() - показывает список всех пользователей`);
+      console.log(`6. clear() - отчистить консоль`);
+      console.log(`Введите команду: `);
+      lastWord = `Введите команду: `;
       rl.prompt();
       break;
-    case 'delete()':
-      add = {};
-      changeStatus('deleteName'); // deleteName
-      console.log(`Введите имя: `);
-      lastWord = 'Введите имя: ';
-      rl.prompt();
-      break;
+      
+    case 'exit()':
+      console.log('bye');
+      process.exit(0);
+    
     default:
       console.log(`Такой команды нет`);
       console.log(`Введите команду: `);
@@ -153,113 +195,26 @@ function userIsInHisAcaunt(line) {
 };
 
 
-function inputing_Password(line) {
-  user = users.find((element) => (element.login === line));
-  if (user !== undefined) {
-    console.log('Введите пароль: ');
-    lastWord = 'Введите пароль: ';
-    changeStatus(''); // ''
-    rl.prompt();
-  } else {
-    console.log('Неизвестный пользователь');
-    console.log('Введите имя: ');
-    lastWord = 'Введите имя: ';
-    rl.prompt();
-  };
-};
-
-
-function ifRegisterd_or_PasswordIsntRight(line) {
-  if (line === user.password) {
-    changeStatus('isUser'); // isUser
-    limit = 3
-    console.log(`Привет, ${user.login}!`);
-    console.log('Введите команду(введите help(), чтобы вывести список команд): ');
-    lastWord = 'Введите команду(введите help(), чтобы вывести список команд): '
-    rl.prompt();
-  } else {
-      if (limit > 1) {
-        limit--;
-        console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
-        lastWord = `Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`
-        rl.prompt();
-      } else {
-        console.log(`Вы потратили все попытки`);
-        lastWord = `Вы потратили все попытки`
-        process.exit(0);
-      };
-  };
-};
-
-
-function commandsIsntLogIn(line) {
-  switch (line) {
-    case 'exit()':
-      console.log('bye');
-      functionWasDone = true;
-      process.exit(0);
-    case 'clear()':
-      console.clear();
-      console.log(lastWord);
-      rl.prompt();
-      functionWasDone = true;
-      break;
-    case 'help()':
-      console.log(`1. exit() - выход`);
-      console.log(`2. help() - выводит список всех команд`);
-      console.log(`3. clear() - отчистить консоль`);
-      console.log(lastWord);
-      rl.prompt();
-      functionWasDone = true;
-      break;
-  }
-}
-
-
 console.clear();
 
-console.log('Введите имя(введите help(), чтобы вывести список команд): ');
+console.log('Введите имя');
 
 rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
     switch (gameStatus) {
-      case 'deleteName':
-        commandsIsntLogIn(line)
-        if (functionWasDone !== true) {
-          deleting_InputName(line);
-        } else functionWasDone = false;
+      case 'start':
+        inputing_Name(line);
         break;
         
-      case 'addName':
-        commandsIsntLogIn(line)
-        if (functionWasDone !== true) {
-          adding_InputName(line);
-        } else functionWasDone = false;
+      case 'userlsFound':
+          ifRegisterd_or_PasswordIsntRight(line);
         break;
 
-      case 'addPassword':
-        commandsIsntLogIn(line)
-        if (functionWasDone !== true) {
-          adding_InputPassword(line);
-        } else functionWasDone = false;
+      case 'waitCommand':
+        commands(line);
         break;
       
-      case 'isUser':
-        userIsInHisAcaunt(line);
-        break;
-      case 'isPassword':
-        commandsIsntLogIn(line)
-        if (functionWasDone !== true) {
-          inputing_Password(line);
-        } else functionWasDone = false;
-        break;
-
-      default:
-        commandsIsntLogIn(line)
-        if (functionWasDone !== true) {
-          ifRegisterd_or_PasswordIsntRight(line);
-        } else functionWasDone = false;
     };
 });
