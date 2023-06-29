@@ -97,13 +97,11 @@ function userIsInHisAcaunt(line) {
   switch (line) {
     case 'exit()':
       console.log('bye');
-      functionWasDone = true;
       process.exit(0);
     case 'clear()':
       console.clear();
       console.log(lastWord);
       rl.prompt();
-      functionWasDone = true;
       break;
     case 'help()':
       console.log(`1. add() - команда добавления нового пользователя`);
