@@ -118,8 +118,9 @@ function adding_InputName(line) {
     rl.prompt();
   } else {
     console.log(`Такой пользователь уже есть: `);
-    console.log(`Введите имя: `);
-    lastWord = `Введите имя: `;
+    console.log(`Введите команду: `);
+    lastWord = `Введите команду: `;
+    changeStatus('waitCommand')
     rl.prompt();
   }
 };
