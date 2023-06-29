@@ -94,47 +94,64 @@ function adding_InputPassword(line) {
 
 
 function userIsInHisAcaunt(line) {
-  if (line === 'help()') {
-    console.log(`1. add() - команда добавления нового пользователя`);
-    console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-    console.log(`3. exit() - выход`);
-    console.log(`4. help() - выводит список всех команд`);
-    console.log(`4. show() - показывает список всех пользователей`);
-    console.log(`5. switch() - переключиться на другого пользователя`);
-    console.log(`6. clear() - отчистить консоль`);
-    console.log(`Введите команду: `);
-    lastWord = `Введите команду: `;
-    rl.prompt();
-  } else if (line === 'show()') {
-    for (let userNames in users) {
-      console.log(users[userNames].login);
-    };
-    console.log(`Введите команду: `);
-    lastWord = `Введите команду: `;
-    rl.prompt();
-  } else if (line === 'switch()') {
-    changeStatus('isPassword'); // isPassword
-    console.log('Введите имя(введите help(), чтобы вывести список команд): ');
-    lastWord = 'Введите имя: ';
-    rl.prompt();
-  } else if (line === 'add()') {
-    add = {};
-    changeStatus('addName'); // addName
-    console.log(`Введите имя: `);
-    lastWord = 'Введите имя: ';
-    rl.prompt();
-  } else if (line === 'delete()') {
-    add = {};
-    changeStatus('deleteName'); // deleteName
-    console.log(`Введите имя: `);
-    lastWord = 'Введите имя: ';
-    rl.prompt();
-  } else {
-    console.log(`Такой команды нет`);
-    console.log(`Введите команду: `);
-    lastWord = `Введите команду: `;
-    rl.prompt();
-  };
+  switch (line) {
+    case 'exit()':
+      console.log('bye');
+      functionWasDone = true;
+      process.exit(0);
+    case 'clear()':
+      console.clear();
+      console.log(lastWord);
+      rl.prompt();
+      functionWasDone = true;
+      break;
+    case 'help()':
+      console.log(`1. add() - команда добавления нового пользователя`);
+      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+      console.log(`3. exit() - выход`);
+      console.log(`4. help() - выводит список всех команд`);
+      console.log(`4. show() - показывает список всех пользователей`);
+      console.log(`5. switch() - переключиться на другого пользователя`);
+      console.log(`6. clear() - отчистить консоль`);
+      console.log(`Введите команду: `);
+      lastWord = `Введите команду: `;
+      rl.prompt();
+      break;
+    case 'show()':
+      for (let userNames in users) {
+        console.log(users[userNames].login);
+      };
+      console.log(`Введите команду: `);
+      lastWord = `Введите команду: `;
+      rl.prompt();
+      break;
+    case 'switch()':
+      changeStatus('isPassword'); // isPassword
+      console.log('Введите имя(введите help(), чтобы вывести список команд): ');
+      lastWord = 'Введите имя: ';
+      rl.prompt();
+      break;
+    case 'add()':
+      add = {};
+      changeStatus('addName'); // addName
+      console.log(`Введите имя: `);
+      lastWord = 'Введите имя: ';
+      rl.prompt();
+      break;
+    case 'delete()':
+      add = {};
+      changeStatus('deleteName'); // deleteName
+      console.log(`Введите имя: `);
+      lastWord = 'Введите имя: ';
+      rl.prompt();
+      break;
+    default:
+      console.log(`Такой команды нет`);
+      console.log(`Введите команду: `);
+      lastWord = `Введите команду: `;
+      rl.prompt();
+      break;
+  }
 };
 
 
