@@ -25,7 +25,7 @@ changeStatus('start');
 
 
 function inputing_Name(line) {
-  const user = users.find((element) => (element.login === line));
+  user = users.find((element) => (element.login === line));
   if (user !== undefined) {
     console.log('Введите пароль: ');
     changeStatus('userlsFound'); // 'userlsFound'
