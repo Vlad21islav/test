@@ -3,4 +3,5 @@ let gameStatus;
 const changeStatus = (line) => {
     gameStatus = line;
 };
-module.exports = changeStatus, gameStatus;
+exports.changeStatus = changeStatus;
+exports.gameStatus = gameStatus;

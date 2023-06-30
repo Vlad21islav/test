@@ -25,7 +25,7 @@ let limit = 3;
 
 let gameStatus, add, user;
 
-changeStatus('start');
+changeStatus.changeStatus('start');
 
 console.clear();
 
@@ -35,7 +35,7 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  switch (gameStatus) {
+  switch (changeStatus.gameStatus) {
     case 'start':
       inputName(line, users, user);
       break;

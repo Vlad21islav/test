@@ -2,7 +2,7 @@ const changeStatus = require('./changeStatus')
 
 function inputCommandOrIsPasswordRight(line, limit, user) {
   if (line === user.password) {
-    changeStatus('waitCommand'); // isUser
+    changeStatus.changeStatus('waitCommand'); // isUser
     limit = 3
     console.log('Введите команду(введите help(), чтобы вывести список команд): ');
   } else {

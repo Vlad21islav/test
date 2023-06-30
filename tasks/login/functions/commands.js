@@ -4,13 +4,13 @@ function commands(line, users, add) {
     switch (line) {
       case 'add()':
         add = {};
-        changeStatus('addingName');
+        changeStatus.changeStatus('addingName');
         console.log(`Введите имя: `);
         break;
   
       case 'delete()':
         add = {};
-        changeStatus('deletingName')
+        changeStatus.changeStatus('deletingName')
         console.log(`Введите имя: `);
         break;
   
