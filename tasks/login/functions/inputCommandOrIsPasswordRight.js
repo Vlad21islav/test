@@ -1,3 +1,5 @@
+const changeStatus = require('./functions/changeStatus')
+
 function inputCommandOrIsPasswordRight(line, limit, user) {
   if (line === user.password) {
     changeStatus('waitCommand'); // isUser

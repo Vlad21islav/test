@@ -1,3 +1,5 @@
+let gameStatus;
+
 const changeStatus = (line) => {
     gameStatus = line;
 };

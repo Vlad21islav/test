@@ -1,3 +1,5 @@
+const changeStatus = require('./functions/changeStatus')
+
 function setName(line, users, add) {
   const user = users.find((element) => (element.login === line));
   if (user === undefined) {

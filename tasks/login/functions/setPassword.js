@@ -1,3 +1,5 @@
+const changeStatus = require('./functions/changeStatus')
+
 function setPassword(line, users, add) {
     changeStatus('waitCommand');
     add.password = line;

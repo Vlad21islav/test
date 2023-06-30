@@ -1,3 +1,5 @@
+const changeStatus = require('./functions/changeStatus')
+
 function commands(line, users, add) {
     switch (line) {
       case 'add()':
