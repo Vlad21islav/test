@@ -15,27 +15,23 @@ const users = [
 
 let limit = 3;
 
-let lastWord = 'Введите имя: ';
-
-let gameStatus, user, add, userDelete, ifTheirIsName;
+let gameStatus, add, user;
 
 const changeStatus = (line) => {
-      gameStatus = line;
+  gameStatus = line;
 };
 
 changeStatus('start');
 
 
 function inputing_Name(line) {
-  user = users.find((element) => (element.login === line));
+  const user = users.find((element) => (element.login === line));
   if (user !== undefined) {
     console.log('Введите пароль: ');
-    lastWord = 'Введите пароль: ';
     changeStatus('userlsFound'); // 'userlsFound'
   } else {
     console.log('Пользователь не найден');
     console.log('Введите имя: ');
-    lastWord = 'Введите имя: ';
   };
 };
 
@@ -45,16 +41,13 @@ function ifRegisterd_or_PasswordIsntRight(line) {
     changeStatus('waitCommand'); // isUser
     limit = 3
     console.log('Введите команду(введите help(), чтобы вывести список команд): ');
-    lastWord = 'Введите команду(введите help(), чтобы вывести список всех команд): '
   } else {
       if (limit > 1) {
         limit--;
         console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
         console.log(`Введите пароль`);
-        lastWord = `Введите пароль`
       } else {
         console.log(`Вы потратили все попытки`);
-        lastWord = `Вы потратили все попытки`
         process.exit(0);
       };
   };
@@ -62,12 +55,12 @@ function ifRegisterd_or_PasswordIsntRight(line) {
 
 
 function deleting_InputName(line) {
-  userDelete = users.find((element) => (element.login === line));
+  const userDelete = users.find((element) => (element.login === line));
     if (userDelete !== undefined) {
       if (userDelete.login === user.login) {
         console.log('нельзя удалить самого себя');
-        console.log('Введите имя: ');
-        lastWord = 'Введите имя: ';
+        changeStatus('waitCommand');
+        console.log(`Введите команду: `);
       } else {
         console.log(`${userDelete.login} удалён(ена)`);
         userDelete = users.findIndex((element) => (element.login === line));
@@ -78,22 +71,19 @@ function deleting_InputName(line) {
     } else {
       console.log('Пользователь не найден');
       console.log('Введите имя: ');
-      lastWord = 'Введите имя: ';
     };
 };
 
 
 function adding_InputName(line) {
-  ifTheirIsName = users.find((element) => (element.login === line));
+  const ifTheirIsName = users.find((element) => (element.login === line));
   if (ifTheirIsName === undefined) {
     add.login = line;
     changeStatus('addingPassword');
     console.log(`Введите пароль: `);
-    lastWord = `Введите пароль: `;
   } else {
     console.log(`Такой пользователь уже есть: `);
     console.log(`Введите команду: `);
-    lastWord = `Введите команду: `;
     changeStatus('waitCommand')
   }
 };
@@ -105,7 +95,6 @@ function adding_InputPassword(line) {
   users.push(add);
   console.log(`${add.login} добавлен(a)`);
   console.log(`Введите команду: `);
-  lastWord = `Введите команду: `;
 };
 
 
@@ -115,14 +104,12 @@ function commands(line) {
       add = {};
       changeStatus('addingName');
       console.log(`Введите имя: `);
-      lastWord = 'Введите имя: ';
       break;
 
     case 'delete()':
       add = {};
       changeStatus('deletingName')
       console.log(`Введите имя: `);
-      lastWord = 'Введите имя: ';
       break;
 
     case 'list()':
@@ -130,12 +117,11 @@ function commands(line) {
         console.log(users[userNames].login);
       };
       console.log(`Введите команду: `);
-      lastWord = `Введите команду: `;
       break;
 
     case 'clear()':
       console.clear();
-      console.log(lastWord);
+      console.log(`Введите команду: `);
       break;
 
     case 'help()':
@@ -146,7 +132,6 @@ function commands(line) {
       console.log(`4. list() - показывает список всех пользователей`);
       console.log(`6. clear() - отчистить консоль`);
       console.log(`Введите команду: `);
-      lastWord = `Введите команду: `;
       break;
       
     case 'exit()':
@@ -156,7 +141,6 @@ function commands(line) {
     default:
       console.log(`Такой команды нет`);
       console.log(`Введите команду: `);
-      lastWord = `Введите команду: `;
       break;
   }
 };
