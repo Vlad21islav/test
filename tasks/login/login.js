@@ -23,126 +23,12 @@ const changeStatus = (line) => {
 
 changeStatus('start');
 
-
-function InputName(line) {
-  user = users.find((element) => (element.login === line));
-  if (user !== undefined) {
-    console.log('Введите пароль: ');
-    changeStatus('userlsFound'); // 'userlsFound'
-  } else {
-    console.log('Пользователь не найден');
-    console.log('Введите имя: ');
-  };
-};
-
-
-function inputCommandOrIsPasswordRight(line) {
-  if (line === user.password) {
-    changeStatus('waitCommand'); // isUser
-    limit = 3
-    console.log('Введите команду(введите help(), чтобы вывести список команд): ');
-  } else {
-    if (limit > 1) {
-      limit--;
-      console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
-      console.log(`Введите пароль`);
-    } else {
-      console.log(`Вы потратили все попытки`);
-      process.exit(0);
-    };
-  };
-};
-
-
-function deleteUser(line) {
-  const index = users.findIndex((user) => (user.login === line));
-  if (users[index] !== undefined) {
-    if (users[index].login === user.login) {
-      console.log('нельзя удалить самого себя');
-      console.log(`Введите команду: `);
-    } else {
-      console.log(`${users[index].login} удалён(ена)`);
-      users.splice(index, 1);
-      console.log(`Введите команду: `);
-    }
-  } else {
-    console.log('Пользователь не найден');
-    console.log(`Введите команду: `);
-  };
-  changeStatus('waitCommand');
-};
-
-
-function setName(line) {
-  const user = users.find((element) => (element.login === line));
-  if (user === undefined) {
-    add.login = line;
-    changeStatus('addingPassword');
-    console.log(`Введите пароль: `);
-  } else {
-    console.log(`Такой пользователь уже есть: `);
-    console.log(`Введите команду: `);
-    changeStatus('waitCommand')
-  }
-};
-
-
-function setPassword(line) {
-  changeStatus('waitCommand');
-  add.password = line;
-  users.push(add);
-  console.log(`${add.login} добавлен(a)`);
-  console.log(`Введите команду: `);
-};
-
-
-function commands(line) {
-  switch (line) {
-    case 'add()':
-      add = {};
-      changeStatus('addingName');
-      console.log(`Введите имя: `);
-      break;
-
-    case 'delete()':
-      add = {};
-      changeStatus('deletingName')
-      console.log(`Введите имя: `);
-      break;
-
-    case 'list()':
-      for (let userNames of users) {
-        console.log(userNames.login);
-      };
-      console.log(`Введите команду: `);
-      break;
-
-    case 'clear()':
-      console.clear();
-      console.log(`Введите команду: `);
-      break;
-
-    case 'help()':
-      console.log(`1. add() - команда добавления нового пользователя`);
-      console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
-      console.log(`3. exit() - выход`);
-      console.log(`4. help() - выводит список всех команд`);
-      console.log(`4. list() - показывает список всех пользователей`);
-      console.log(`6. clear() - отчистить консоль`);
-      console.log(`Введите команду: `);
-      break;
-
-    case 'exit()':
-      console.log('bye');
-      process.exit(0);
-
-    default:
-      console.log(`Такой команды нет`);
-      console.log(`Введите команду: `);
-      break;
-  }
-};
-
+const commands = require('./functions/commands')
+const deleteUser = require('./functions/deleteUser')
+const inputCommandOrIsPasswordRight = require('./functions/inputCommandOrIsPasswordRight')
+const inputName = require('./functions/inputName')
+const setName = require('./functions/setName')
+const setPassword = require('./functions/setPassword')
 
 console.clear();
 
@@ -154,27 +40,27 @@ rl.on('line', (line) => {
 
   switch (gameStatus) {
     case 'start':
-      InputName(line);
+      inputName(line, users, user);
       break;
 
     case 'userlsFound':
-      inputCommandOrIsPasswordRight(line);
+      inputCommandOrIsPasswordRight(line, limit, user);
       break;
 
     case 'waitCommand':
-      commands(line);
+      commands(line, users, add);
       break;
 
     case 'addingName':
-      setName(line);
+      setName(line, users, add);
       break;
 
     case 'addingPassword':
-      setPassword(line);
+      setPassword(line, users, add);
       break;
 
     case 'deletingName':
-      deleteUser(line);
+      deleteUser(line, users, user);
   };
   rl.prompt()
 });
