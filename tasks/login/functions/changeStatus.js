@@ -1,4 +1,4 @@
 const changeStatus = (line) => {
     gameStatus = line;
 };
-module.export = commands;
+module.export = changeStatus;
