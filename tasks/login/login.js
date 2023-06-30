@@ -69,7 +69,8 @@ function deleting_InputName(line) {
       }
     } else {
       console.log('Пользователь не найден');
-      console.log('Введите имя: ');
+      changeStatus('waitCommand');
+      console.log(`Введите команду: `);
     };
 };
 
