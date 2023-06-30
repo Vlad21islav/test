@@ -13,19 +13,11 @@ const users = [
   { login: 'Alex', password: '2546'},
 ]
 
-let gameStatus;
-
 let limit = 3;
-
-let user;
-
-let add;
 
 let lastWord = 'Введите имя: ';
 
-let userDelete;
-
-let ifTheirIsName;
+let gameStatus, user, add, userDelete, ifTheirIsName;
 
 const changeStatus = (line) => {
       gameStatus = line;
@@ -178,26 +170,26 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-    switch (gameStatus) {
-      case 'start':
-        inputing_Name(line);
-        break;
-        
-      case 'userlsFound':
-          ifRegisterd_or_PasswordIsntRight(line);
-        break;
+  switch (gameStatus) {
+    case 'start':
+      inputing_Name(line);
+      break;
+      
+    case 'userlsFound':
+        ifRegisterd_or_PasswordIsntRight(line);
+      break;
 
-      case 'waitCommand':
-        commands(line);
-        break;
-      case 'addingName':
-        adding_InputName(line);
-        break;
-      case 'addingPassword':
-        adding_InputPassword(line);
-        break;
-      case 'deletingName':
-        deleting_InputName(line);
-    rl.prompt()
-    };
+    case 'waitCommand':
+      commands(line);
+      break;
+    case 'addingName':
+      adding_InputName(line);
+      break;
+    case 'addingPassword':
+      adding_InputPassword(line);
+      break;
+    case 'deletingName':
+      deleting_InputName(line);
+  };
+  rl.prompt()
 });
