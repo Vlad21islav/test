@@ -55,15 +55,14 @@ function ifRegisterd_or_PasswordIsntRight(line) {
 
 
 function deleting_InputName(line) {
-  const userDelete = users.find((element) => (element.login === line));
-    if (userDelete !== undefined) {
-      if (userDelete.login === user.login) {
+  const userDelete = users.findIndex((element) => (element.login === line));
+    if (users[userDelete] !== undefined) {
+      if (users[userDelete].login === user.login) {
         console.log('нельзя удалить самого себя');
         changeStatus('waitCommand');
         console.log(`Введите команду: `);
       } else {
-        console.log(`${userDelete.login} удалён(ена)`);
-        userDelete = users.findIndex((element) => (element.login === line));
+        console.log(`${users[userDelete].login} удалён(ена)`);
         users.splice(userDelete, 1);
         changeStatus('waitCommand');
         console.log(`Введите команду: `);
