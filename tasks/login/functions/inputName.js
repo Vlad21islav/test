@@ -1,4 +1,4 @@
-module.export = function inputName(line, users, user) {
+function inputName(line, users, user) {
     user = users.find((element) => (element.login === line));
     if (user !== undefined) {
         console.log('Введите пароль: ');
@@ -8,3 +8,4 @@ module.export = function inputName(line, users, user) {
         console.log('Введите имя: ');
     };
 };
+module.export = inputName;

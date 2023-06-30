@@ -1,4 +1,4 @@
-module.export = function setPassword(line, users, add) {
+function setPassword(line, users, add) {
     changeStatus('waitCommand');
     add.password = line;
     users.push(add);

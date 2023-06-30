@@ -1,4 +1,4 @@
-module.export = function commands(line, users, add) {
+function commands(line, users, add) {
     switch (line) {
       case 'add()':
         add = {};
@@ -44,3 +44,4 @@ module.export = function commands(line, users, add) {
         break;
     }
 };
+module.export = commands;
