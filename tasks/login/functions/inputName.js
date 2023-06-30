@@ -1,4 +1,4 @@
-const changeStatus = require('./functions/changeStatus')
+const changeStatus = require('./changeStatus')
 
 function inputName(line, users, user) {
     user = users.find((element) => (element.login === line));

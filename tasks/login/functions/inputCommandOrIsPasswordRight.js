@@ -1,4 +1,4 @@
-const changeStatus = require('./functions/changeStatus')
+const changeStatus = require('./changeStatus')
 
 function inputCommandOrIsPasswordRight(line, limit, user) {
   if (line === user.password) {

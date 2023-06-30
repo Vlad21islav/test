@@ -1,4 +1,4 @@
-const changeStatus = require('./functions/changeStatus')
+const changeStatus = require('./changeStatus')
 
 function deleteUser(line, users, user) {
   const index = users.findIndex((user) => (user.login === line));
