@@ -5,4 +5,4 @@ function setPassword(line, users, add) {
     console.log(`${add.login} добавлен(a)`);
     console.log(`Введите команду: `);
 };
-module.export = setPassword;
+module.exports = setPassword;

@@ -15,4 +15,4 @@ function deleteUser(line, users, user) {
   };
   changeStatus('waitCommand');
 };
-module.export = deleteUser;
+module.exports = deleteUser;

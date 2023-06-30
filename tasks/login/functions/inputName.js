@@ -8,4 +8,4 @@ function inputName(line, users, user) {
         console.log('Введите имя: ');
     };
 };
-module.export = inputName;
+module.exports = inputName;

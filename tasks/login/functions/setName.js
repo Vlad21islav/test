@@ -10,4 +10,4 @@ function setName(line, users, add) {
     changeStatus('waitCommand')
   }
 };
-module.export = setName;
+module.exports = setName;

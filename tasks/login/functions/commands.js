@@ -44,4 +44,4 @@ function commands(line, users, add) {
         break;
     }
 };
-module.export = commands;
+module.exports = commands;

@@ -14,4 +14,4 @@ function inputCommandOrIsPasswordRight(line, limit, user) {
     };
   };
 };
-module.export = inputCommandOrIsPasswordRight;
+module.exports = inputCommandOrIsPasswordRight;
