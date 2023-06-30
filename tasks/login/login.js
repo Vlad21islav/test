@@ -40,12 +40,10 @@ function inputing_Name(line) {
     console.log('Введите пароль: ');
     lastWord = 'Введите пароль: ';
     changeStatus('userlsFound'); // 'userlsFound'
-    rl.prompt();
   } else {
     console.log('Пользователь не найден');
     console.log('Введите имя: ');
     lastWord = 'Введите имя: ';
-    rl.prompt();
   };
 };
 
@@ -56,14 +54,12 @@ function ifRegisterd_or_PasswordIsntRight(line) {
     limit = 3
     console.log('Введите команду(введите help(), чтобы вывести список команд): ');
     lastWord = 'Введите команду(введите help(), чтобы вывести список всех команд): '
-    rl.prompt();
   } else {
       if (limit > 1) {
         limit--;
         console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
         console.log(`Введите пароль`);
         lastWord = `Введите пароль`
-        rl.prompt();
       } else {
         console.log(`Вы потратили все попытки`);
         lastWord = `Вы потратили все попытки`
@@ -80,20 +76,17 @@ function deleting_InputName(line) {
         console.log('нельзя удалить самого себя');
         console.log('Введите имя: ');
         lastWord = 'Введите имя: ';
-        rl.prompt();
       } else {
         console.log(`${userDelete.login} удалён(ена)`);
         userDelete = users.findIndex((element) => (element.login === line));
         users.splice(userDelete, 1);
         changeStatus('waitCommand');
         console.log(`Введите команду: `);
-        rl.prompt();
       }
     } else {
       console.log('Пользователь не найден');
       console.log('Введите имя: ');
       lastWord = 'Введите имя: ';
-      rl.prompt();
     };
 };
 
@@ -105,13 +98,11 @@ function adding_InputName(line) {
     changeStatus('addingPassword');
     console.log(`Введите пароль: `);
     lastWord = `Введите пароль: `;
-    rl.prompt();
   } else {
     console.log(`Такой пользователь уже есть: `);
     console.log(`Введите команду: `);
     lastWord = `Введите команду: `;
     changeStatus('waitCommand')
-    rl.prompt();
   }
 };
 
@@ -123,7 +114,6 @@ function adding_InputPassword(line) {
   console.log(`${add.login} добавлен(a)`);
   console.log(`Введите команду: `);
   lastWord = `Введите команду: `;
-  rl.prompt();
 };
 
 
@@ -134,7 +124,6 @@ function commands(line) {
       changeStatus('addingName');
       console.log(`Введите имя: `);
       lastWord = 'Введите имя: ';
-      rl.prompt();
       break;
 
     case 'delete()':
@@ -142,7 +131,6 @@ function commands(line) {
       changeStatus('deletingName')
       console.log(`Введите имя: `);
       lastWord = 'Введите имя: ';
-      rl.prompt();
       break;
 
     case 'list()':
@@ -151,13 +139,11 @@ function commands(line) {
       };
       console.log(`Введите команду: `);
       lastWord = `Введите команду: `;
-      rl.prompt();
       break;
 
     case 'clear()':
       console.clear();
       console.log(lastWord);
-      rl.prompt();
       break;
 
     case 'help()':
@@ -169,7 +155,6 @@ function commands(line) {
       console.log(`6. clear() - отчистить консоль`);
       console.log(`Введите команду: `);
       lastWord = `Введите команду: `;
-      rl.prompt();
       break;
       
     case 'exit()':
@@ -180,7 +165,6 @@ function commands(line) {
       console.log(`Такой команды нет`);
       console.log(`Введите команду: `);
       lastWord = `Введите команду: `;
-      rl.prompt();
       break;
   }
 };
@@ -214,5 +198,6 @@ rl.on('line', (line) => {
         break;
       case 'deletingName':
         deleting_InputName(line);
+    rl.prompt()
     };
 });
