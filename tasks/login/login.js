@@ -24,7 +24,7 @@ const changeStatus = (line) => {
 changeStatus('start');
 
 
-function inputing_Name(line) {
+function InputName(line) {
   user = users.find((element) => (element.login === line));
   if (user !== undefined) {
     console.log('Введите пароль: ');
@@ -36,7 +36,7 @@ function inputing_Name(line) {
 };
 
 
-function ifRegisterd_or_PasswordIsntRight(line) {
+function inputCommandOrIsPasswordRight(line) {
   if (line === user.password) {
     changeStatus('waitCommand'); // isUser
     limit = 3
@@ -54,7 +54,7 @@ function ifRegisterd_or_PasswordIsntRight(line) {
 };
 
 
-function deleting_InputName(line) {
+function deleteUser(line) {
   const index = users.findIndex((user) => (user.login === line));
   if (users[index] !== undefined) {
     if (users[index].login === user.login) {
@@ -73,7 +73,7 @@ function deleting_InputName(line) {
 };
 
 
-function adding_InputName(line) {
+function setName(line) {
   const user = users.find((element) => (element.login === line));
   if (user === undefined) {
     add.login = line;
@@ -87,7 +87,7 @@ function adding_InputName(line) {
 };
 
 
-function adding_InputPassword(line) {
+function setPassword(line) {
   changeStatus('waitCommand');
   add.password = line;
   users.push(add);
@@ -111,8 +111,8 @@ function commands(line) {
       break;
 
     case 'list()':
-      for (let userNames in users) {
-        console.log(users[userNames].login);
+      for (let userNames of users) {
+        console.log(userNames.login);
       };
       console.log(`Введите команду: `);
       break;
@@ -154,11 +154,11 @@ rl.on('line', (line) => {
 
   switch (gameStatus) {
     case 'start':
-      inputing_Name(line);
+      InputName(line);
       break;
 
     case 'userlsFound':
-      ifRegisterd_or_PasswordIsntRight(line);
+      inputCommandOrIsPasswordRight(line);
       break;
 
     case 'waitCommand':
@@ -166,15 +166,15 @@ rl.on('line', (line) => {
       break;
 
     case 'addingName':
-      adding_InputName(line);
+      setName(line);
       break;
 
     case 'addingPassword':
-      adding_InputPassword(line);
+      setPassword(line);
       break;
 
     case 'deletingName':
-      deleting_InputName(line);
+      deleteUser(line);
   };
   rl.prompt()
 });
