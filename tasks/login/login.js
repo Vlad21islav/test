@@ -25,20 +25,10 @@ let lastWord = 'Введите имя: ';
 
 let userDelete;
 
-const ifTheirIsName = '';
-
-const allStatuses = [
-  'start',
-  'userlsFound',
-  'waitCommand',
-];
+let ifTheirIsName;
 
 const changeStatus = (line) => {
-  for (let status in allStatuses) {
-    if (line === allStatuses[status]) {
       gameStatus = line;
-    };
-  };
 };
 
 changeStatus('start');
@@ -149,7 +139,7 @@ function commands(line) {
 
     case 'delete()':
       add = {};
-      
+      changeStatus('deletingName')
       console.log(`Введите имя: `);
       lastWord = 'Введите имя: ';
       rl.prompt();
