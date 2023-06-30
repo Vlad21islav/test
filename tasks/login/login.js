@@ -75,8 +75,8 @@ function deleting_InputName(line) {
 
 
 function adding_InputName(line) {
-  const ifTheirIsName = users.find((element) => (element.login === line));
-  if (ifTheirIsName === undefined) {
+  const user = users.find((element) => (element.login === line));
+  if (user === undefined) {
     add.login = line;
     changeStatus('addingPassword');
     console.log(`Введите пароль: `);
