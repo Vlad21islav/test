@@ -23,7 +23,7 @@ const users = [
 
 let limit = 3;
 
-let gameStatus, add, user;
+let add, user;
 
 changeStatus.changeStatus('start');
 
