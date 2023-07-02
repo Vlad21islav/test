@@ -2,7 +2,7 @@
 
 const readline = require('node:readline');
 
-const changeStatus = require('./functions/changeStatus')
+const {getState, setState} = require('./functions/changeStatus')
 const commands = require('./functions/commands')
 const deleteUser = require('./functions/deleteUser')
 const inputCommandOrIsPasswordRight = require('./functions/inputCommandOrIsPasswordRight')
@@ -21,12 +21,6 @@ const users = [
   { login: 'Alex', password: '2546' },
 ]
 
-let limit = 3;
-
-let add, user;
-
-changeStatus.changeStatus('start');
-
 console.clear();
 
 console.log('Введите имя');
@@ -35,13 +29,16 @@ rl.prompt();
 rl.on('line', (line) => {
   line = line.trim();
 
-  switch (changeStatus.gameStatus) {
+  const {status} = getState();
+
+  console.log(status)
+  switch (status) {
     case 'start':
-      inputName(line, users, user);
+      inputName(line, users);
       break;
 
     case 'userlsFound':
-      inputCommandOrIsPasswordRight(line, limit, user);
+      inputCommandOrIsPasswordRight(line);
       break;
 
     case 'waitCommand':

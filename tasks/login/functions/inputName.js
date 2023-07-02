@@ -1,10 +1,10 @@
-const changeStatus = require('./changeStatus')
+const {setState} = require('./changeStatus')
 
-function inputName(line, users, user) {
-    user = users.find((element) => (element.login === line));
+function inputName(line, users) {
+    const user = users.find((element) => (element.login === line));
     if (user !== undefined) {
         console.log('Введите пароль: ');
-        changeStatus.changeStatus('userlsFound'); // 'userlsFound'
+        setState({status: 'userlsFound', user});
     } else {
         console.log('Пользователь не найден');
         console.log('Введите имя: ');

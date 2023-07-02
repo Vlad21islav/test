@@ -1,13 +1,15 @@
-const changeStatus = require('./changeStatus')
+const {getState, setState} = require('./changeStatus')
 
-function inputCommandOrIsPasswordRight(line, limit, user) {
+function inputCommandOrIsPasswordRight(line) {
+  const {user} = getState();
+  const {limit} = getState();
   if (line === user.password) {
-    changeStatus.changeStatus('waitCommand'); // isUser
-    limit = 3
+    setState({status: 'waitCommand', user});
+    setState({limit: 3, user});
     console.log('Введите команду(введите help(), чтобы вывести список команд): ');
   } else {
     if (limit > 1) {
-      limit--;
+      setState({limit: limit - 1, user});
       console.log(`Пароль не верный. Попробуйте еще раз. y вас осталось ${limit} попытки`);
       console.log(`Введите пароль`);
     } else {
