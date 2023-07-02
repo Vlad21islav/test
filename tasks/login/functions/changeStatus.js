@@ -1,4 +1,4 @@
-const state = {
+let state = {
     status: 'start',
     add: undefined,
     user: undefined,
@@ -7,7 +7,7 @@ const state = {
 
 const getState = () => state;
 const setState = (object) => {
-    return {...state,...object}
+    state = {...state,...object}
 }
 
 module.exports = {getState, setState}
