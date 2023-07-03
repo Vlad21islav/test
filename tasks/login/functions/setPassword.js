@@ -1,7 +1,8 @@
-const changeStatus = require('./changeStatus')
+const {getState, setState} = require('./changeStatus')
 
-function setPassword(line, users, add) {
-    changeStatus.changeStatus('waitCommand');
+function setPassword(line, users) {
+    const {user, add} = getState(); 
+    setState({status: 'waitCommand', user});
     add.password = line;
     users.push(add);
     console.log(`${add.login} добавлен(a)`);

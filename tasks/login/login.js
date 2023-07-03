@@ -30,7 +30,7 @@ rl.on('line', (line) => {
   line = line.trim();
 
   const {status} = getState();
-  
+
   switch (status) {
     case 'start':
       inputName(line, users);
@@ -49,7 +49,7 @@ rl.on('line', (line) => {
       break;
 
     case 'addingPassword':
-      setPassword(line, users, add);
+      setPassword(line, users);
       break;
 
     case 'deletingName':
