@@ -5,13 +5,11 @@ function commands(line) {
   const {user} = getState();
     switch (line) {
       case 'add()':
-        setState({add: {}, user});
         setState({status: 'addingName', user});
         console.log(`Введите имя: `);
         break;
   
       case 'delete()':
-        setState({add: {}, user});
         setState({status: 'deletingName', user});
         console.log(`Введите имя: `);
         break;

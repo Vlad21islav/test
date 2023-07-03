@@ -17,6 +17,6 @@ function deleteUser(line) {
     console.log('Пользователь не найден');
     console.log(`Введите команду: `);
   };
-  setState({status: 'waitCommand', user});
+  setState({status: 'waitCommand'});
 };
 module.exports = deleteUser;

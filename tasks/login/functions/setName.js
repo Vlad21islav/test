@@ -3,7 +3,6 @@ const users = require('./users')
 
 function setName(line) {
   const user = users.find((element) => (element.login === line));  
-  setState({user: user, user});
   if (user === undefined) {
     const {add} = getState(); 
     add.login = line;
@@ -12,7 +11,7 @@ function setName(line) {
   } else {
     console.log(`Такой пользователь уже есть: `);
     console.log(`Введите команду: `);
-    setState({status: 'waitCommand', user});
+    setState({status: 'waitCommand'});
   }
 };
 module.exports = setName;
