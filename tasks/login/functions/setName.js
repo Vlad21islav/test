@@ -1,8 +1,12 @@
-const {getState, setState} = require('./stateManager')
+const {setState} = require('./stateManager')
+const string = require('./getCommand')
 const users = require('./users')
 
 function setName(line) {
-  const user = users.find((element) => (element.login === line));  
+
+  string = string();
+
+  const user = users.find((element) => (element.login === string));  
   if (user === undefined) {
     const add = line 
     setState({status: 'addingPassword', add});

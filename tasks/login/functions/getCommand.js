@@ -2,13 +2,12 @@ const {getState, setState} = require('./stateManager')
 const users = require('./users')
 
 function commands(line) {
-  const {user} = getState();
+  if (String(line).split(' ')[0] === 'add') {
+    let string = () => String(line).split(' ')[1].split('"')[1];
+    setState({status: 'addingName'});
+    module.exports = string;
+  } else {
     switch (line) {
-      case 'add()':
-        setState({status: 'addingName'});
-        console.log(`Введите имя: `);
-        break;
-  
       case 'delete()':
         setState({status: 'deletingName'});
         console.log(`Введите имя: `);
@@ -45,5 +44,6 @@ function commands(line) {
         console.log(`Введите команду: `);
         break;
     }
+  }
 };
 module.exports = commands;
