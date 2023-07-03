@@ -1,7 +1,8 @@
-const changeStatus = require('./changeStatus')
+const {getState, setState} = require('./changeStatus')
 
-function deleteUser(line, users, user) {
+function deleteUser(line, users) {
   const index = users.findIndex((user) => (user.login === line));
+  const {user} = getState(); 
   if (users[index] !== undefined) {
     if (users[index].login === user.login) {
       console.log('нельзя удалить самого себя');
@@ -15,6 +16,6 @@ function deleteUser(line, users, user) {
     console.log('Пользователь не найден');
     console.log(`Введите команду: `);
   };
-  changeStatus.changeStatus('waitCommand');
+  setState({status: 'waitCommand', user});
 };
 module.exports = deleteUser;

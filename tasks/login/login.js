@@ -53,7 +53,7 @@ rl.on('line', (line) => {
       break;
 
     case 'deletingName':
-      deleteUser(line, users, user);
+      deleteUser(line, users);
   };
   rl.prompt()
 });
