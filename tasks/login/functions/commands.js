@@ -1,16 +1,17 @@
-const changeStatus = require('./changeStatus')
+const {getState, setState} = require('./changeStatus')
 
-function commands(line, users, add) {
+function commands(line, users) {
+  const {user} = getState();
     switch (line) {
       case 'add()':
-        add = {};
-        changeStatus.changeStatus('addingName');
+        setState({add: {}, user});
+        setState({status: 'addingName', user});
         console.log(`Введите имя: `);
         break;
   
       case 'delete()':
-        add = {};
-        changeStatus.changeStatus('deletingName')
+        setState({add: {}, user});
+        setState({status: 'deletingName', user});
         console.log(`Введите имя: `);
         break;
   

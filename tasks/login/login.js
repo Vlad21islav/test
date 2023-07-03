@@ -30,8 +30,7 @@ rl.on('line', (line) => {
   line = line.trim();
 
   const {status} = getState();
-
-  console.log(status)
+  
   switch (status) {
     case 'start':
       inputName(line, users);
@@ -42,11 +41,11 @@ rl.on('line', (line) => {
       break;
 
     case 'waitCommand':
-      commands(line, users, add);
+      commands(line, users);
       break;
 
     case 'addingName':
-      setName(line, users, add);
+      setName(line, users);
       break;
 
     case 'addingPassword':

@@ -1,15 +1,18 @@
-const changeStatus = require('./changeStatus')
+const {getState, setState} = require('./changeStatus')
 
-function setName(line, users, add) {
-  const user = users.find((element) => (element.login === line));
+function setName(line, users) {
+  const {user} = getState();  
+  setState({user: users.find((element) => (element.login === line)), user});
+  console.log(user)
   if (user === undefined) {
+    const {add} = getState(); 
     add.login = line;
-    changeStatus.changeStatus('addingPassword');
+    setState({status: 'addingPassword', user});
     console.log(`Введите пароль: `);
   } else {
     console.log(`Такой пользователь уже есть: `);
     console.log(`Введите команду: `);
-    changeStatus.changeStatus('waitCommand')
+    setState({status: 'waitCommand', user});
   }
 };
 module.exports = setName;
