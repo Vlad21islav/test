@@ -1,7 +1,7 @@
 const {getState, setState} = require('./changeStatus')
+const users = require('./users')
 
 function deleteUser(line) {
-  const {users} = getUser();
   const index = users.findIndex((user) => (user.login === line));
   const {user} = getState(); 
   if (users[index] !== undefined) {
@@ -10,7 +10,7 @@ function deleteUser(line) {
       console.log(`Введите команду: `);
     } else {
       console.log(`${users[index].login} удалён(ена)`);
-      setUser({users: users.splice(index, 1)});
+      users.splice(index, 1);
       console.log(`Введите команду: `);
     }
   } else {
