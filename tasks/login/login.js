@@ -3,10 +3,10 @@
 const readline = require('node:readline');
 
 const {getState} = require('./functions/stateManager')
-const commands = require('./functions/getCommand')
+const getCommand = require('./functions/getCommand')
 const deleteUser = require('./functions/deleteUser')
-const inputCommandOrIsPasswordRight = require('./functions/comparePassword')
-const inputName = require('./functions/findUser')
+const comparePassword = require('./functions/comparePassword')
+const findUser = require('./functions/findUser')
 const setName = require('./functions/setName')
 const setPassword = require('./functions/setPassword')
 
@@ -28,15 +28,15 @@ rl.on('line', (line) => {
 
   switch (status) {
     case 'start':
-      inputName(line);
+      findUser(line);
       break;
 
     case 'userlsFound':
-      inputCommandOrIsPasswordRight(line);
+      comparePassword(line);
       break;
 
     case 'waitCommand':
-      commands(line);
+      getCommand(line);
       break;
 
     case 'addingName':
