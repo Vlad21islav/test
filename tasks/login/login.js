@@ -16,11 +16,6 @@ const rl = readline.createInterface({
   prompt: '──> ',
 });
 
-const users = [
-  { login: 'Vlad', password: '1324' },
-  { login: 'Alex', password: '2546' },
-]
-
 console.clear();
 
 console.log('Введите имя');
@@ -33,7 +28,7 @@ rl.on('line', (line) => {
 
   switch (status) {
     case 'start':
-      inputName(line, users);
+      inputName(line);
       break;
 
     case 'userlsFound':
@@ -41,19 +36,19 @@ rl.on('line', (line) => {
       break;
 
     case 'waitCommand':
-      commands(line, users);
+      commands(line);
       break;
 
     case 'addingName':
-      setName(line, users);
+      setName(line);
       break;
 
     case 'addingPassword':
-      setPassword(line, users);
+      setPassword(line);
       break;
 
     case 'deletingName':
-      deleteUser(line, users);
+      deleteUser(line);
   };
   rl.prompt()
 });

@@ -1,6 +1,7 @@
 const {getState, setState} = require('./changeStatus')
+const users = require('./users')
 
-function commands(line, users) {
+function commands(line) {
   const {user} = getState();
     switch (line) {
       case 'add()':
