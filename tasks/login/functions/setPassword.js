@@ -1,11 +1,11 @@
-const {getState, setState} = require('./stateManager')
+const {setState} = require('./stateManager')
 const users = require('./users')
+const userToAdd = require('./getCommand')
 
-function setPassword(line) {
-    const {add} = getState(); 
+function setPassword() {
     setState({status: 'waitCommand'});
-    users.push({login: add, password: line});
-    console.log(`${add.login} добавлен(a)`);
+    users.push({login: userToAdd.login, password: userToAdd.password});
+    console.log(`${userToAdd.login} добавлен(a)`);
     console.log(`Введите команду: `);
 };
 module.exports = setPassword;

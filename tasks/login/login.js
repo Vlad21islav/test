@@ -40,11 +40,11 @@ rl.on('line', (line) => {
       break;
 
     case 'addingName':
-      setName(line);
+      setName();
       break;
 
     case 'addingPassword':
-      setPassword(line);
+      setPassword();
       break;
 
     case 'deletingName':
