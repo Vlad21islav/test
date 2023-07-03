@@ -13,7 +13,10 @@ function commands(line) {
         if (password.length === 3) {
           if (password[0] === 'password') {
           password = password[1]
-          users.push({login: login, password: password});
+          addUser = {
+            login: login,
+            password: password,
+          }
           }
         }
       }
