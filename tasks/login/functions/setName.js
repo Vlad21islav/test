@@ -1,5 +1,4 @@
 const {setState} = require('./stateManager')
-const userToAdd = require('./getCommand')
 const users = require('./users')
 
 function setName() {

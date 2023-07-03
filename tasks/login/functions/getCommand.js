@@ -6,16 +6,16 @@ function commands(line) {
   const command = splited[0]
   switch (command) {
     case 'add':
-      // add login="name" password="password"
-      let login = splited[1].split('=')
-      if (login[0] === 'login') {
-        login = login[1]
-        let password = splited[2].split('=')
-        if (password[0] === 'password') {
-          password = password[1]
-          userToAdd = {login, password}
-          setState({status: 'deletingName'});
-          module.exports = userToAdd;
+      if (line > 3) {
+        // add login="name" password="password"
+        let login = splited[1].split('=')
+        if (login[0] === 'login') {
+          login = login[1]
+          let password = splited[2].split('=')
+          if (password[0] === 'password') {
+            password = password[1]
+            users.push({login: login, password: password});
+          }
         }
       }
 
