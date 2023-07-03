@@ -1,4 +1,4 @@
-const {getState, setState} = require('./changeStatus')
+const {getState, setState} = require('./stateManager')
 
 function inputCommandOrIsPasswordRight(line) {
   const {user, limit} = getState();

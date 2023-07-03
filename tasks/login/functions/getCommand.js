@@ -1,4 +1,4 @@
-const {getState, setState} = require('./changeStatus')
+const {getState, setState} = require('./stateManager')
 const users = require('./users')
 
 function commands(line) {

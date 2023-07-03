@@ -1,4 +1,4 @@
-const {setState} = require('./changeStatus')
+const {setState} = require('./stateManager')
 const users = require('./users')
 
 function inputName(line) {

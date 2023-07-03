@@ -2,11 +2,11 @@
 
 const readline = require('node:readline');
 
-const {getState, setState} = require('./functions/changeStatus')
-const commands = require('./functions/commands')
+const {getState} = require('./functions/stateManager')
+const commands = require('./functions/getCommand')
 const deleteUser = require('./functions/deleteUser')
-const inputCommandOrIsPasswordRight = require('./functions/inputCommandOrIsPasswordRight')
-const inputName = require('./functions/inputName')
+const inputCommandOrIsPasswordRight = require('./functions/comparePassword')
+const inputName = require('./functions/findUser')
 const setName = require('./functions/setName')
 const setPassword = require('./functions/setPassword')
 
