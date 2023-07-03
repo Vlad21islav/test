@@ -6,15 +6,14 @@ function commands(line) {
   const command = splited[0]
   switch (command) {
     case 'add':
-      if (line > 3) {
-        // add login="name" password="password"
-        let login = splited[1].split('=')
-        if (login[0] === 'login') {
-          login = login[1]
-          let password = splited[2].split('=')
+      let login = splited[1].split('=')
+      if (login[0] === 'login') {
+        login = login[1]
+        let password = splited[2].split('=')
+        if (password.length === 3) {
           if (password[0] === 'password') {
-            password = password[1]
-            users.push({login: login, password: password});
+          password = password[1]
+          users.push({login: login, password: password});
           }
         }
       }
