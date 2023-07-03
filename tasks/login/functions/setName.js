@@ -4,8 +4,7 @@ const users = require('./users')
 function setName(line) {
   const user = users.find((element) => (element.login === line));  
   if (user === undefined) {
-    const add = { login: line }; 
-    add.login = line;
+    const add = line 
     setState({status: 'addingPassword', add});
     console.log(`Введите пароль: `);
   } else {

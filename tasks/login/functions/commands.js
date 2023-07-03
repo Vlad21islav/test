@@ -5,18 +5,18 @@ function commands(line) {
   const {user} = getState();
     switch (line) {
       case 'add()':
-        setState({status: 'addingName', user});
+        setState({status: 'addingName'});
         console.log(`Введите имя: `);
         break;
   
       case 'delete()':
-        setState({status: 'deletingName', user});
+        setState({status: 'deletingName'});
         console.log(`Введите имя: `);
         break;
   
       case 'list()':
-        for (let userNames of users) {
-          console.log(userNames.login);
+        for (let user of users) {
+          console.log(user.login);
         };
         console.log(`Введите команду: `);
         break;
