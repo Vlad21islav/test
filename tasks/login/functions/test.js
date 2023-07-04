@@ -12,7 +12,7 @@ function paraming(params) {
                     let paramsKey2 = splitParams[2].split('=')
                     let paramsKey2Len = paramsKey2.filter(() => true).length;
                     if (paramsKey2Len === 2) {
-                        if (paramsKey1[0] === 'password') {
+                        if (paramsKey2[0] === 'password') {
                             paramObject.password = paramsKey2[1]
                         }
                     }
