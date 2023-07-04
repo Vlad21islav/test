@@ -3,8 +3,7 @@ function paraming(params) {
     let splitParams = params.split(' ')
         for (let param of splitParams) {
             let paramsKey = param.split('=')
-            let paramsKeyLen = paramsKey.filter(() => true).length;
-            if (paramsKeyLen === 2) {
+            if (paramsKey.length === 2) {
                 let key = paramsKey[0]
                 let value = paramsKey[1]
                 paramObject[key] = value
