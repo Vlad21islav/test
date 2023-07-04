@@ -1,28 +1,19 @@
 function paraming(params) {
-    let over = false
     paramObject = {}
     let splitParams = params.split(' ')
-    let splitParamsLen = splitParams.filter(() => true).length;
-    if (splitParamsLen === 3) {
-        const isAdd = splitParams.shift() 
-        if (isAdd === 'add') {
-            for (let param of splitParams) {
-                let paramsKey = param.split('=')
-                let paramsKeyLen = paramsKey.filter(() => true).length;
-                if (paramsKeyLen === 2) {
-                    if (paramsKey[0] === 'login') {
-                        paramObject.login = paramsKey[1]
-                    }
-                }
+    const isAdd = splitParams.shift() 
+    if (isAdd === 'add') {
+        for (let param of splitParams) {
+            let paramsKey = param.split('=')
+            let paramsKeyLen = paramsKey.filter(() => true).length;
+            if (paramsKeyLen === 2) {
+                let key = paramsKey[0]
+                let value = paramsKey[1]
+                paramObject[key] = value
             }
-            over = true
         }
     }
-    if (over) {
-        return paramObject
-    } else {
-        return 'Вы ввели не правильную строку'
-    }
+    return paramObject
 }
 
 console.log(paraming('add login=Привет😂 password=Приветович🤣'))
