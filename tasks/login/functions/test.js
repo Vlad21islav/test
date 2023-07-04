@@ -1,8 +1,6 @@
 function paraming(params) {
     paramObject = {}
     let splitParams = params.split(' ')
-    const isAdd = splitParams.shift() 
-    if (isAdd === 'add') {
         for (let param of splitParams) {
             let paramsKey = param.split('=')
             let paramsKeyLen = paramsKey.filter(() => true).length;
@@ -12,7 +10,6 @@ function paraming(params) {
                 paramObject[key] = value
             }
         }
-    }
     return paramObject
 }
 
