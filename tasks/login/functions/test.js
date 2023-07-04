@@ -1,4 +1,5 @@
 function paraming(params) {
+    let over = false
     paramObject = {}
     let splitParams = params.split(' ')
     let splitParamsLen = splitParams.filter(() => true).length;
@@ -20,7 +21,11 @@ function paraming(params) {
             }
         }
     }
-    return paramObject
+    if (over) {
+        return paramObject
+    } else {
+        return 'Вы ввели не правильную строку'
+    }
 }
 
-console.log(paraming('add login=Привет😂 password=Приветович🤣'))
+console.log(paraming('add logn=Привет😂 password=Приветович🤣'))
