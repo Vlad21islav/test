@@ -1,5 +1,4 @@
 function paraming(params) {
-    const logAndPass = ['']
     let over = false
     paramObject = {}
     let splitParams = params.split(' ')
@@ -7,7 +6,7 @@ function paraming(params) {
     if (splitParamsLen === 3) {
         const isAdd = splitParams.shift() 
         if (isAdd === 'add') {
-            for (let param in splitParams) {
+            for (let param of splitParams) {
                 let paramsKey = param.split('=')
                 let paramsKeyLen = paramsKey.filter(() => true).length;
                 if (paramsKeyLen === 2) {
