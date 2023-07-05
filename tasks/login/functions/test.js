@@ -5,12 +5,10 @@ function paraming(str) {
     for (const param of splited) {
         if (param !== '') {
             const paramsValue = param.split('=')
-            if (paramsValue.length >= 1) {
-                const key = paramsValue.shift()
-                let value = paramsValue.join('=')
+            const key = paramsValue.shift()
+            let value = paramsValue.join('=')
 
-                params[key] = value
-            }
+            params[key] = value
         }
     }
     return {action, params}
