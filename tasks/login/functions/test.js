@@ -6,12 +6,10 @@ function paraming(params) {
     let parametrs = paramObject.params = {}
     for (const param of splitParams) {
         const paramsKey = param.split('=')
-        if (paramsKey.length >= 2) {
-            const key = paramsKey[0]
-            let value = paramsKey[1]
-            for (let values = 2; values !== paramsKey.length; values++) {
-                value += `=${paramsKey[values]}`
-            }
+        if (paramsKey.length >= 1) {
+            const key = paramsKey.shift()
+            let value = paramsKey.join('=')
+            
             parametrs[key] = value
         }
     }
