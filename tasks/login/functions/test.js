@@ -1,9 +1,9 @@
 function paraming(str) {
-    const Object = {}
+    const output = {}
     const input = str.split(' ')
     let commandName = input.shift()
-    Object.action = commandName
-    let params = Object.params = {}
+    output.action = commandName
+    let params = output.params = {}
     for (const param of input) {
         if (param !== '') {
             const paramsValue = param.split('=')
@@ -15,7 +15,7 @@ function paraming(str) {
             }
         }
     }
-    return Object
+    return output
 }
 
 console.log(paraming('add     login=Привет😂    password=Приветович🤣'))
