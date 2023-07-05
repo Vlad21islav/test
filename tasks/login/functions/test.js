@@ -1,6 +1,13 @@
 function paraming(params) {
     const paramObject = {}
-    const splitParams = params.split(' ')
+    let splitParams = params.split(' ')
+    let isStr = []
+    for (const param of splitParams) {
+        if (param !== '') {
+            isStr.push(param)
+        }
+    }
+    splitParams = isStr
     let firstParam = splitParams.shift() 
     paramObject.action = firstParam
     let parametrs = paramObject.params = {}
