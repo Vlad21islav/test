@@ -1,21 +1,21 @@
-function paraming(params) {
-    const paramObject = {}
-    const splitParams = params.split(' ')
-    let firstParam = splitParams.shift()
-    paramObject.action = firstParam
-    let parametrs = paramObject.params = {}
-    for (const param of splitParams) {
+function paraming(str) {
+    const Object = {}
+    const input = str.split(' ')
+    let commandName = input.shift()
+    Object.action = commandName
+    let params = Object.params = {}
+    for (const param of input) {
         if (param !== '') {
             const paramsKey = param.split('=')
             if (paramsKey.length >= 1) {
                 const key = paramsKey.shift()
                 let value = paramsKey.join('=')
 
-                parametrs[key] = value
+                params[key] = value
             }
         }
     }
-    return paramObject
+    return Object
 }
 
 console.log(paraming('add     login=Привет😂    password=Приветович🤣'))
