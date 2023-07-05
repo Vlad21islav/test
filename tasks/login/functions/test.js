@@ -6,10 +6,10 @@ function paraming(str) {
     let params = Object.params = {}
     for (const param of input) {
         if (param !== '') {
-            const paramsKey = param.split('=')
-            if (paramsKey.length >= 1) {
-                const key = paramsKey.shift()
-                let value = paramsKey.join('=')
+            const paramsValue = param.split('=')
+            if (paramsValue.length >= 1) {
+                const key = paramsValue.shift()
+                let value = paramsValue.join('=')
 
                 params[key] = value
             }
