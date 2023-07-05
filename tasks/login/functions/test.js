@@ -6,7 +6,7 @@ function paraming(params) {
     let parametrs = paramObject.params = {}
     for (const param of splitParams) {
         const paramsKey = param.split('=')
-        if (paramsKey.length === 2) {
+        if (paramsKey.length >= 2) {
             const key = paramsKey[0]
             const value = paramsKey[1]
             parametrs[key] = value
@@ -15,4 +15,4 @@ function paraming(params) {
     return paramObject
 }
 
-console.log(paraming('add login=Привет😂 password=Приветович🤣'))
+console.log(paraming('add login=Привет😂 password=Приветович🤣=привет'))
