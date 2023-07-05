@@ -5,15 +5,17 @@ function paraming(params) {
     paramObject.action = firstParam
     let parametrs = paramObject.params = {}
     for (const param of splitParams) {
-        const paramsKey = param.split('=')
-        if (paramsKey.length >= 1) {
-            const key = paramsKey.shift()
-            let value = paramsKey.join('=')
+        if (param !== '') {
+            const paramsKey = param.split('=')
+            if (paramsKey.length >= 1) {
+                const key = paramsKey.shift()
+                let value = paramsKey.join('=')
 
-            parametrs[key] = value
+                parametrs[key] = value
+            }
         }
     }
     return paramObject
 }
 
-console.log(paraming('add login=Привет😂 password=Приветович🤣'))
+console.log(paraming('add     login=Привет😂    password=Приветович🤣'))
