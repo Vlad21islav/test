@@ -1,6 +1,5 @@
 const getActionParams = require('./getActionParams')
 const {setState} = require('./stateManager')
-const { getActionParams } = require('./getActionParams')
 const users = require('./users')
 
 function commands(line) {
@@ -8,7 +7,21 @@ function commands(line) {
   const command = splited[0];
   switch (command) {
     case 'add':
-      console.log(getActionParams(line));
+      const params = getActionParams(line).params
+      const user = users.find((element) => (element.login === params.login));
+      if (user === undefined) {
+        if (params.login !== undefined && params.password !== undefined) {
+          users.push(params)
+          console.log(`${params.login} добавлен(a)`);
+          console.log(`Введите команду: `);
+        } else {
+          console.log('Вы ввели не правильную команду')
+          console.log(`Введите команду: `);
+        }
+      } else {
+        console.log('Такой пользователь уже есть')
+        console.log(`Введите команду: `);
+      }
       break;
 
     case 'delete':
