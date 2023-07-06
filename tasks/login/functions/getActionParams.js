@@ -7,7 +7,6 @@ function getActionParams(str) {
             const paramsValue = param.split('=');
             const key = paramsValue.shift();
             const value = paramsValue.join('=');
-
             params[key] = value;
         }
     }

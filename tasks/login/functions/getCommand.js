@@ -8,19 +8,21 @@ function commands(line) {
   switch (command) {
     case 'add':
       const params = getActionParams(line).params
-      const user = users.find((element) => (element.login === params.login));
-      if (user === undefined) {
-        if (params.login !== undefined && params.password !== undefined) {
+      if (params.login !== undefined && params.password !== undefined) {
+        const user = users.find((element) => (element.login === params.login));
+        if (user === undefined) {
           users.push(params)
           console.log(`${params.login} добавлен(a)`);
           console.log(`Введите команду: `);
         } else {
-          console.log('Вы ввели не правильную команду')
+          console.log('Такой пользователь уже есть')
           console.log(`Введите команду: `);
         }
       } else {
-        console.log('Такой пользователь уже есть')
+        console.log('Вы ввели не правильную команду')
         console.log(`Введите команду: `);
+      }
+      
       }
       break;
 
