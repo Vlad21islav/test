@@ -42,7 +42,7 @@ function commands(line) {
       break;
 
     case 'help':
-      console.log(`1. add() - команда добавления нового пользователя`);
+      console.log(`1. add login=name password=password - команда добавления нового пользователя`);
       console.log(`2. delete() - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
       console.log(`3. exit() - выход`);
       console.log(`4. help() - выводит список всех команд`);
