@@ -1,25 +1,15 @@
+const getActionParams = require('./getActionParams')
 const {setState} = require('./stateManager')
+const { getActionParams } = require('./getActionParams')
 const users = require('./users')
 
 function commands(line) {
-  const splited = line.split(' ')
-  const command = splited[0]
+  const splited = line.split(' ');
+  const command = splited[0];
   switch (command) {
     case 'add':
-      let login = splited[1].split('=')
-      if (login[0] === 'login') {
-        login = login[1]
-        let password = splited[2].split('=')
-        if (password.length === 3) {
-          if (password[0] === 'password') {
-          password = password[1]
-          addUser = {
-            login: login,
-            password: password,
-          }
-          }
-        }
-      }
+      console.log(getActionParams(line));
+      break;
 
     case 'delete':
       setState({status: 'deletingName'});
