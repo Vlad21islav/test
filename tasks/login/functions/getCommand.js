@@ -7,7 +7,7 @@ function commands(line) {
   const command = splited[0];
   switch (command) {
     case 'add':
-      const params = getActionParams(line).params
+      const params = getActionParams(splited).params
       if (params.login !== undefined && params.password !== undefined) {
         const user = users.find((element) => (element.login === params.login));
         if (user === undefined) {
