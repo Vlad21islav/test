@@ -22,8 +22,6 @@ function commands(line) {
         console.log('Вы ввели не правильную команду')
         console.log(`Введите команду: `);
       }
-      
-      }
       break;
 
     case 'delete':
