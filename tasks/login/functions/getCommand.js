@@ -1,5 +1,4 @@
 const getActionParams = require('./getActionParams')
-const {setState} = require('./stateManager')
 const users = require('./users')
 
 function commands(line) {
@@ -24,8 +23,8 @@ function commands(line) {
 
     case 'delete':
       if (params.login !== undefined) {
-        const user = users.find((element) => (element.login === params.login));
-        if (user !== undefined) {
+        const index = users.findIndex((user) => (user.login === line));
+        if (users[index] !== undefined) {
           console.log(`${users[index].login} удалён(ена)`);
           users.splice(index, 1);
           console.log(`Введите команду: `);
