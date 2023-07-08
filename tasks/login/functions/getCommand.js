@@ -3,11 +3,9 @@ const {setState} = require('./stateManager')
 const users = require('./users')
 
 function commands(line) {
-  const splited = line.split(' ');
-  const command = splited[0];
-  switch (command) {
+  const {action, params} = getActionParams(line)
+  switch (action) {
     case 'add':
-      const params = getActionParams(line).params
       if (params.login !== undefined && params.password !== undefined) {
         const user = users.find((element) => (element.login === params.login));
         if (user === undefined) {
