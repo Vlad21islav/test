@@ -23,7 +23,7 @@ function commands(line) {
 
     case 'delete':
       if (params.login !== undefined) {
-        const index = users.findIndex((user) => (user.login === line));
+        const index = users.findIndex((user) => (user.login === params.login));
         if (users[index] !== undefined) {
           console.log(`${users[index].login} удалён(ена)`);
           users.splice(index, 1);
