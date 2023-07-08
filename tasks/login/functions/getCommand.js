@@ -23,8 +23,20 @@ function commands(line) {
       break;
 
     case 'delete':
-      setState({status: 'deletingName'});
-      console.log(`Введите имя: `);
+      if (params.login !== undefined) {
+        const user = users.find((element) => (element.login === params.login));
+        if (user !== undefined) {
+          users.push(params)
+          console.log(`${params.login} добавлен(a)`);
+          console.log(`Введите команду: `);
+        } else {
+          console.log('Такого пользователя нет')
+          console.log(`Введите команду: `);
+        }
+      } else {
+        console.log('Вы ввели не правильную команду')
+        console.log(`Введите команду: `);
+      }
       break;
 
     case 'list':
