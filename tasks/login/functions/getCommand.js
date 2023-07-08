@@ -1,3 +1,4 @@
+const {getState} = require('./stateManager')
 const getActionParams = require('./getActionParams')
 const users = require('./users')
 
