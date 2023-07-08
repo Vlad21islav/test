@@ -1,4 +1,5 @@
-function getActionParams(splited) {
+function getActionParams(line) {
+    const splited = line.split(' ');
     const action = splited.shift();
     const params = splited.params = {};
     for (const param of splited) {
