@@ -26,8 +26,8 @@ function commands(line) {
       if (params.login !== undefined) {
         const user = users.find((element) => (element.login === params.login));
         if (user !== undefined) {
-          users.push(params)
-          console.log(`${params.login} добавлен(a)`);
+          console.log(`${users[index].login} удалён(ена)`);
+          users.splice(index, 1);
           console.log(`Введите команду: `);
         } else {
           console.log('Такого пользователя нет')
