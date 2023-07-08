@@ -25,9 +25,15 @@ function commands(line) {
       if (params.login !== undefined) {
         const index = users.findIndex((user) => (user.login === params.login));
         if (users[index] !== undefined) {
-          console.log(`${users[index].login} удалён(ена)`);
-          users.splice(index, 1);
-          console.log(`Введите команду: `);
+          const {user} = getState(); 
+          if (users[index].login === user.login) {
+            console.log('нельзя удалить самого себя');
+            console.log(`Введите команду: `);
+          } else {
+            console.log(`${users[index].login} удалён(ена)`);
+            users.splice(index, 1);
+            console.log(`Введите команду: `);
+          }
         } else {
           console.log('Такого пользователя нет')
           console.log(`Введите команду: `);
