@@ -2,7 +2,7 @@ function getActionParams(line) {
     const splited = line.split(' ');
     const action = splited.shift();
     const params = {};
-    for (const param of splited) {
+    for (const param of line) {
         if (param !== '') {
             const paramsValue = param.split('=');
             const key = paramsValue.shift();
