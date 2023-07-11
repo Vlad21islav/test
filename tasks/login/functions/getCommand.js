@@ -50,7 +50,7 @@ function commands(line) {
         const take = Number(params.take)
         const skip = Number(params.skip)
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (take > skip && skip >= 0) {
+          if (take > skip && skip >= 0 && take < users.length) {
             let usersData = []
             for (let user = skip; user !== take; user++) {
               usersData.push(users[user])
