@@ -47,10 +47,23 @@ function commands(line) {
 
     case 'list':
       if (params.take !== undefined && params.skip !== undefined) {
-        if (isNaN(params.take) !== true && isNaN(params.skip) !== true) {
-          if (params.skip >= 0 && params.take >= params.skip) {
-            console.table([params.take, params.skip]);
+        const take = params.take
+        const skip = params.skip
+        if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
+          if (skip > take >= 0 ) {
+            let usersData = []
+            for (let users = skip; users !== take; users++) {
+              usersData.push(take)
+            }
+            console.table(usersData)
+            console.log(`Введите команду: `);
+          } else {
+            console.log('He возможная команда')
+            console.log(`Введите команду: `);
           }
+        } else {
+          console.log('Вы ввели не цифры')
+          console.log(`Введите команду: `);
         }
       }
       break;
@@ -62,10 +75,10 @@ function commands(line) {
 
     case 'help':
       console.log(`1. add login=name password=password - команда добавления нового пользователя`);
-      console.log(`2. delete login=name - команда удаления пользователя (нельзя удалить самого себя) (чтобы удалить, надо ввести пароль)`);
+      console.log(`2. delete login=name - команда удаления пользователя (нельзя удалить самого себя)`);
       console.log(`3. exit - выход`);
       console.log(`4. help - выводит список всех команд`);
-      console.log(`4. list - показывает список всех пользователей`);
+      console.log(`4. list take=20 skip=10 - выводит список (c 11 по 20 строки)`);
       console.log(`6. clear - отчистить консоль`);
       console.log(`Введите команду: `);
       break;
