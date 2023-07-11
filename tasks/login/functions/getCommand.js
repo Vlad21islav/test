@@ -47,10 +47,10 @@ function commands(line) {
 
     case 'list':
       if (params.take !== undefined && params.skip !== undefined) {
-        const take = Number(params.take)
-        const skip = Number(params.skip)
+        const take = Number(params.take) - 1
+        const skip = Number(params.skip) - 1
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (take > skip && skip >= 0 && take < users.length + 1) {
+          if (take > skip && skip >= 1 && take < users.length + 1) {
             let usersData = []
             for (let user = skip; user !== take; user++) {
               usersData.push(users[user])
