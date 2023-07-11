@@ -47,8 +47,8 @@ function commands(line) {
 
     case 'list':
       if (params.take !== undefined && params.skip !== undefined) {
-        const take = params.take
-        const skip = params.skip
+        const take = Number(params.take)
+        const skip = Number(params.skip)
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
           if (skip > take >= 0 ) {
             let usersData = []
