@@ -55,7 +55,7 @@ function commands(line) {
             for (let users = skip; users !== take; users++) {
               usersData.push(take)
             }
-            console.table(usersData)
+            console.log(usersData)
             console.log(`Введите команду: `);
           } else {
             console.log('He возможная команда')
