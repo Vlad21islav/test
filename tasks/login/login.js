@@ -4,11 +4,8 @@ const readline = require('node:readline');
 
 const {getState} = require('./functions/stateManager')
 const getCommand = require('./functions/getCommand')
-const deleteUser = require('./functions/deleteUser')
 const comparePassword = require('./functions/comparePassword')
 const findUser = require('./functions/findUser')
-const setName = require('./functions/setName')
-const setPassword = require('./functions/setPassword')
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -39,16 +36,6 @@ rl.on('line', (line) => {
       getCommand(line);
       break;
 
-    case 'addingName':
-      setName();
-      break;
-
-    case 'addingPassword':
-      setPassword();
-      break;
-
-    case 'deletingName':
-      deleteUser(line);
   };
   rl.prompt()
 });
