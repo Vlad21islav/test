@@ -50,15 +50,15 @@ function commands(line) {
         const take = Number(params.take) - 1
         const skip = Number(params.skip) - 1
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (take > skip && skip >= 1 && take < users.length + 1) {
+          if (skip >= 1 && take < users.length + 1) {
             let usersData = []
-            for (let user = skip; user !== take; user++) {
+            for (let user = skip; user !== skip + take; user++) {
               usersData.push(users[user])
             }
             console.table(usersData)
             console.log(`Введите команду: `);
           } else {
-            console.table([])
+            console.log('He возможная команда')
             console.log(`Введите команду: `);
           }
         } else {
