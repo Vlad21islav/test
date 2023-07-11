@@ -25,7 +25,7 @@ function commands(line) {
     case 'delete':
       if (params.login !== undefined) {
         const index = users.findIndex((user) => (user.login === params.login));
-        if (users[index] !== undefined) {
+        if (users[index] !== -1) {
           const {user} = getState(); 
           if (users[index].login === user.login) {
             console.log('нельзя удалить самого себя');
