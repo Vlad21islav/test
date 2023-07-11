@@ -50,7 +50,7 @@ function commands(line) {
         const take = Number(params.take)
         const skip = Number(params.skip)
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (take > skip >= 0) {
+          if (take > skip && skip >= 0) {
             let usersData = []
             for (let user = skip; user !== take; user++) {
               usersData.push(users[user])
@@ -65,6 +65,9 @@ function commands(line) {
           console.log('Вы ввели не цифры')
           console.log(`Введите команду: `);
         }
+      } else {
+        console.log('Вы ввели не правильную команду')
+        console.log(`Введите команду: `);
       }
       break;
 
