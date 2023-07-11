@@ -58,7 +58,7 @@ function commands(line) {
             console.table(usersData)
             console.log(`Введите команду: `);
           } else {
-            console.log('He возможная команда')
+            console.table([])
             console.log(`Введите команду: `);
           }
         } else {
