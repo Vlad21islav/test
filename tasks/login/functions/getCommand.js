@@ -46,10 +46,13 @@ function commands(line) {
       break;
 
     case 'list':
-      for (let user of users) {
-        console.log(user.login);
-      };
-      console.log(`Введите команду: `);
+      if (params.take !== undefined && params.skip !== undefined) {
+        if (isNaN(params.take) !== true && isNaN(params.skip) !== true) {
+          if (params.skip >= 0 && params.take >= params.skip) {
+            console.table([params.take, params.skip]);
+          }
+        }
+      }
       break;
 
     case 'clear':
