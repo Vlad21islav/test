@@ -52,8 +52,8 @@ function commands(line) {
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
           if (take > skip >= 0) {
             let usersData = []
-            for (let users = skip; users !== take; users++) {
-              usersData.push(take)
+            for (let user = skip; user !== take; user++) {
+              usersData.push(users[user])
             }
             console.table(usersData)
             console.log(`Введите команду: `);
