@@ -40,26 +40,21 @@ function commands(line) {
 
     case 'list':
       if (params.take === undefined && params.skip === undefined) {
-        console.log('Вы ввели не правильную команду')
+        console.log('Вы ввели не правильную команду');
         break;
-      }
+      };
 
       const take = Number(params.take);
       const skip = Number(params.skip);
-      if (Number.isNaN(take) === true && Number.isNaN(skip) === true) {
-        console.log('Вы ввели не цифры');
+      if (Number.isNaN(take) && Number.isInteger(take) && take <= 0) {
+        console.log('Параметр "take" должен быть целым положительным числом и должен быть больше нуля');
         break;
       };
 
-      if (Number.isInteger(take) === true && Number.isInteger(skip) === true) {
-        console.log('Вы ввели не целые числа');
+      if (Number.isNaN(skip) && Number.isInteger(skip) && skip < 0) {
+        console.log('Параметр "take" должен быть целым неотрицательным числом и должен быть меньше илиравен нулю');
         break;
       };
-
-      if (take <= 0 && skip < 0) {
-        console.log('He возможная команда');
-        break;
-      }
 
       let usersData = [];
       for (let i = skip; i < skip + take && i < users.length; i++) {
