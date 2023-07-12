@@ -39,25 +39,25 @@ function commands(line) {
       break;
 
     case 'list':
-      if (params.take === undefined && params.skip === undefined) {
+      if (params.take === undefined || params.skip === undefined) {
         console.log('Вы ввели не правильную команду');
         break;
       };
 
       const take = Number(params.take);
       const skip = Number(params.skip);
-      if (Number.isNaN(take) && Number.isInteger(take) && take <= 0) {
+      if (Number.isNaN(take) || Number.isInteger(take) || take <= 0) {
         console.log('Параметр "take" должен быть целым положительным числом и должен быть больше нуля');
         break;
       };
 
-      if (Number.isNaN(skip) && Number.isInteger(skip) && skip < 0) {
+      if (Number.isNaN(skip) || Number.isInteger(skip) || skip < 0) {
         console.log('Параметр "take" должен быть целым неотрицательным числом и должен быть меньше илиравен нулю');
         break;
       };
 
       let usersData = [];
-      for (let i = skip; i < skip + take && i < users.length; i++) {
+      for (let i = skip; i < skip + take || i < users.length; i++) {
         usersData.push(users[i]);
       }
       console.table(usersData);
