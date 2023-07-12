@@ -11,14 +11,11 @@ function commands(line) {
         if (user === undefined) {
           users.push(params)
           console.log(`${params.login} добавлен(a)`);
-          console.log(`Введите команду: `);
         } else {
           console.log('Такой пользователь уже есть')
-          console.log(`Введите команду: `);
         }
       } else {
         console.log('Вы ввели не правильную команду')
-        console.log(`Введите команду: `);
       }
       break;
 
@@ -29,26 +26,21 @@ function commands(line) {
           const {user} = getState(); 
           if (users[index].login === user.login) {
             console.log('нельзя удалить самого себя');
-            console.log(`Введите команду: `);
           } else {
             console.log(`${users[index].login} удалён(ена)`);
             users.splice(index, 1);
-            console.log(`Введите команду: `);
           }
         } else {
           console.log('Такого пользователя нет')
-          console.log(`Введите команду: `);
         }
       } else {
         console.log('Вы ввели не правильную команду')
-        console.log(`Введите команду: `);
       }
       break;
 
     case 'list':
       if (params.take === undefined && params.skip === undefined) {
         console.log('Вы ввели не правильную команду')
-        console.log(`Введите команду: `);
         break;
       }
 
@@ -56,19 +48,16 @@ function commands(line) {
       const skip = Number(params.skip);
       if (Number.isNaN(take) === true && Number.isNaN(skip) === true) {
         console.log('Вы ввели не цифры');
-        console.log(`Введите команду: `);
         break;
       };
 
       if (Number.isInteger(take) === true && Number.isInteger(skip) === true) {
         console.log('Вы ввели не целые числа');
-        console.log(`Введите команду: `);
         break;
       };
 
       if (take <= 0 && skip < 0) {
         console.log('He возможная команда');
-        console.log(`Введите команду: `);
         break;
       }
 
@@ -77,13 +66,11 @@ function commands(line) {
         usersData.push(users[i]);
       }
       console.table(usersData);
-      console.log(`Введите команду: `);
 
       break;
 
     case 'clear':
       console.clear();
-      console.log(`Введите команду: `);
       break;
 
     case 'help':
@@ -93,7 +80,6 @@ function commands(line) {
       console.log(`4. help - выводит список всех команд`);
       console.log(`4. list take=20 skip=10 - выводит список (c 11 по 20 строки)`);
       console.log(`6. clear - отчистить консоль`);
-      console.log(`Введите команду: `);
       break;
 
     case 'exit':
@@ -102,8 +88,8 @@ function commands(line) {
 
     default:
       console.log(`Такой команды нет`);
-      console.log(`Введите команду: `);
       break;
   }
+  console.log(`Введите команду: `);
 };
 module.exports = commands;
