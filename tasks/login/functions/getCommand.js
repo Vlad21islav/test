@@ -50,15 +50,20 @@ function commands(line) {
         const take = Number(params.take)
         const skip = Number(params.skip)
         if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (take > 0 && skip >= 0) {
-            let usersData = []
-            for (let i = skip; i < skip + take && i < users.length; i++) {
-              usersData.push(users[i])
+          if (Number.isInteger(take) !== true && Number.isInteger(skip) !== true) {
+            if (take > 0 && skip >= 0) {
+              let usersData = []
+              for (let i = skip; i < skip + take && i < users.length; i++) {
+                usersData.push(users[i])
+              }
+              console.table(usersData)
+              console.log(`Введите команду: `);
+            } else {
+              console.log('He возможная команда')
+              console.log(`Введите команду: `);
             }
-            console.table(usersData)
-            console.log(`Введите команду: `);
           } else {
-            console.log('He возможная команда')
+            console.log('Вы ввели не целые числа')
             console.log(`Введите команду: `);
           }
         } else {
