@@ -46,34 +46,39 @@ function commands(line) {
       break;
 
     case 'list':
-      if (params.take !== undefined && params.skip !== undefined) {
-        const take = Number(params.take)
-        const skip = Number(params.skip)
-        if (Number.isNaN(take) !== true && Number.isNaN(skip) !== true) {
-          if (Number.isInteger(take) !== true && Number.isInteger(skip) !== true) {
-            if (take > 0 && skip >= 0) {
-              let usersData = []
-              for (let i = skip; i < skip + take && i < users.length; i++) {
-                usersData.push(users[i])
-              }
-              console.table(usersData)
-              console.log(`Введите команду: `);
-            } else {
-              console.log('He возможная команда')
-              console.log(`Введите команду: `);
-            }
-          } else {
-            console.log('Вы ввели не целые числа')
-            console.log(`Введите команду: `);
-          }
-        } else {
-          console.log('Вы ввели не цифры')
-          console.log(`Введите команду: `);
-        }
-      } else {
+      if (params.take === undefined && params.skip === undefined) {
         console.log('Вы ввели не правильную команду')
         console.log(`Введите команду: `);
+        break;
       }
+
+      const take = Number(params.take);
+      const skip = Number(params.skip);
+      if (Number.isNaN(take) === true && Number.isNaN(skip) === true) {
+        console.log('Вы ввели не цифры');
+        console.log(`Введите команду: `);
+        break;
+      };
+
+      if (Number.isInteger(take) === true && Number.isInteger(skip) === true) {
+        console.log('Вы ввели не целые числа');
+        console.log(`Введите команду: `);
+        break;
+      };
+
+      if (take <= 0 && skip < 0) {
+        console.log('He возможная команда');
+        console.log(`Введите команду: `);
+        break;
+      }
+
+      let usersData = [];
+      for (let i = skip; i < skip + take && i < users.length; i++) {
+        usersData.push(users[i]);
+      }
+      console.table(usersData);
+      console.log(`Введите команду: `);
+
       break;
 
     case 'clear':
