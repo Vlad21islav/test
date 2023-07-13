@@ -57,7 +57,7 @@ function commands(line) {
       };
 
       let usersData = [];
-      for (let i = skip; i < skip + take || i < users.length; i++) {
+      for (let i = skip; i < skip + take && i < users.length; i++) {
         usersData.push(users[i]);
       }
       console.table(usersData);
