@@ -6,36 +6,28 @@ function commands(line) {
   const {action, params} = getActionParams(line)
   switch (action) {
     case 'add':
-      if (params.login !== undefined && params.password !== undefined) {
-        const user = users.find((element) => (element.login === params.login));
-        if (user === undefined) {
-          users.push(params)
-          console.log(`${params.login} добавлен(a)`);
-        } else {
-          console.log('Такой пользователь уже есть')
-        }
-      } else {
-        console.log('Вы ввели не правильную команду')
-      }
+      
       break;
 
-    case 'delete':
-      if (params.login !== undefined) {
-        const index = users.findIndex((user) => (user.login === params.login));
-        if (users[index] !== -1) {
-          const {user} = getState(); 
-          if (users[index].login === user.login) {
-            console.log('нельзя удалить самого себя');
-          } else {
-            console.log(`${users[index].login} удалён(ена)`);
-            users.splice(index, 1);
-          }
-        } else {
-          console.log('Такого пользователя нет')
-        }
-      } else {
-        console.log('Вы ввели не правильную команду')
-      }
+    case 'delete':zz
+      if (params.login === undefined) {
+        console.log('Вы ввели не правильную команду');
+        break;
+      };
+
+      const index = users.findIndex((user) => (user.login === params.login));
+      if (users[index] === -1) {
+        console.log('Такого пользователя нет');
+        break;
+      };
+
+      const {user} = getState(); 
+      if (users[index].login !== user.login) {
+        console.log(`${users[index].login} удалён(ена)`);
+        users.splice(index, 1);
+        break;
+      };
+      console.log('нельзя удалить самого себя');
       break;
 
     case 'list':
