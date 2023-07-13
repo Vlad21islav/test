@@ -32,12 +32,12 @@ function commands(line) {
       };
 
       const {user} = getState();
-      if (users[index].login !== user.login) {
-        console.log(`${users[index].login} удалён(ена)`);
-        users.splice(index, 1);
+      if (users[index].login === user.login) {
+        console.log('нельзя удалить самого себя');
         break;
       };
-      console.log('нельзя удалить самого себя');
+      console.log(`${users[index].login} удалён(ена)`);
+      users.splice(index, 1);
       break;
 
     case 'list':
