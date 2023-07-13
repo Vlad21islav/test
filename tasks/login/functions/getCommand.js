@@ -56,12 +56,10 @@ function commands(line) {
         break;
       };
 
-      let usersData = [];
-      for (let i = skip; i < skip + take && i < users.length; i++) {
-        usersData.push(users[i]);
-      }
-      console.table(usersData);
-
+      if (take + skip > users.length) {
+        console.table(users.slice(take, take + skip));
+      };
+      
       break;
 
     case 'clear':
