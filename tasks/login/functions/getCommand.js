@@ -46,12 +46,12 @@ function commands(line) {
 
       const take = Number(params.take);
       const skip = Number(params.skip);
-      if (Number.isNaN(take) || Number.isInteger(take) || take <= 0) {
+      if (Number.isNaN(take) || !Number.isInteger(take) || take <= 0) {
         console.log('Параметр "take" должен быть целым положительным числом и должен быть больше нуля');
         break;
       };
 
-      if (Number.isNaN(skip) || Number.isInteger(skip) || skip < 0) {
+      if (Number.isNaN(skip) || !Number.isInteger(skip) || skip < 0) {
         console.log('Параметр "take" должен быть целым неотрицательным числом и должен быть меньше илиравен нулю');
         break;
       };
