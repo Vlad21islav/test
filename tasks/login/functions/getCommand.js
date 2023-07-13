@@ -57,7 +57,7 @@ function commands(line) {
       };
 
       if (take + skip > users.length) {
-        console.table(users.slice(take, take + skip));
+        console.table(users.slice(take, skip));
       };
       
       break;
