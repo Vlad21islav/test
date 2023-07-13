@@ -6,7 +6,17 @@ function commands(line) {
   const {action, params} = getActionParams(line)
   switch (action) {
     case 'add':
-      
+      if (params.login === undefined && params.password === undefined) {
+        console.log('Вы ввели не правильную команду');
+        break;
+      };
+      const findUser = users.find((element) => (element.login === params.login));
+      if (findUser !== undefined) {
+        console.log('Такой пользователь уже есть');
+        break;
+      };
+      users.push(params)
+      console.log(`${params.login} добавлен(a)`);
       break;
 
     case 'delete':zz
@@ -21,7 +31,7 @@ function commands(line) {
         break;
       };
 
-      const {user} = getState(); 
+      const {user} = getState();
       if (users[index].login !== user.login) {
         console.log(`${users[index].login} удалён(ена)`);
         users.splice(index, 1);
