@@ -6,7 +6,7 @@ function commands(line) {
   const {action, params} = getActionParams(line)
   switch (action) {
     case 'add':
-      if (params.login === undefined && params.password === undefined) {
+      if (params.login === undefined || params.password === undefined) {
         console.log('Вы ввели не правильную команду');
         break;
       };
@@ -19,7 +19,7 @@ function commands(line) {
       console.log(`${params.login} добавлен(a)`);
       break;
 
-    case 'delete':zz
+    case 'delete':
       if (params.login === undefined) {
         console.log('Вы ввели не правильную команду');
         break;
