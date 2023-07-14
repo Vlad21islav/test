@@ -2,6 +2,12 @@
 
 const readline = require('node:readline');
 
+const {getState} = require('./functions/stateManager')
+const getCommand = require('./functions/getCommand')
+const comparePassword = require('./functions/comparePassword')
+const findUser = require('./functions/findUser')
+
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
