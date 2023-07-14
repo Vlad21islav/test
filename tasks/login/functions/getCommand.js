@@ -2,7 +2,7 @@ const getActionParams = require('./getActionParams')
 
 const addCommand = require('./commands/add')
 const clearCommand = require('./commands/clear')
-const deleteCommand = require('./commands/add')
+const deleteCommand = require('./commands/delete')
 const exitCommand = require('./commands/exit')
 const helpCommand = require('./commands/help')
 const listCommand = require('./commands/list')
