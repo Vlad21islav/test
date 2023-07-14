@@ -1,4 +1,4 @@
-const users = require('./users');
+const users = require('../users');
 
 function addCommand(params) {
     if (params.login === undefined || params.password === undefined) {

@@ -1,4 +1,4 @@
-const users = require('./users');
+const users = require('../users');
 
 function listCommand(params) {
     if (params.take === undefined || params.skip === undefined) {
