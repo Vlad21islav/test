@@ -3,6 +3,7 @@ const getActionParams = require('./getActionParams')
 const users = require('./users')
 
 const addCommand = require('./commands/add')
+const clearCommand = require('./commands/clear')
 const deleteCommand = require('./commands/add')
 const exitCommand = require('./commands/exit')
 const helpCommand = require('./commands/help')
@@ -24,7 +25,7 @@ function commands(line) {
       break;
 
     case 'clear':
-      console.clear();
+      clearCommand()
       break;
 
     case 'help':
@@ -32,8 +33,8 @@ function commands(line) {
       break;
 
     case 'exit':
-      console.log('bye');
-      process.exit(0);
+      exitCommand()
+      break;
 
     default:
       console.log(`Такой команды нет`);
