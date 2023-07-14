@@ -19,6 +19,7 @@ function shuffleArray(array) {
 
 const words = shuffleArray(['привет', '', '', '', '', ]);
 let exit = false;
+console.log(words)
 
 for (let word = 0; !exit || word <= words.length; word++) {
   console.clear();
@@ -33,12 +34,12 @@ for (let word = 0; !exit || word <= words.length; word++) {
 
     switch (line) {
       case words[word]:
+        rl.prompt()
         break;
 
       default:
         console.log(`Вы проиграли ваш рекорд ${word}`);
         exit = true;
     };
-    rl.prompt()
   });
 };
