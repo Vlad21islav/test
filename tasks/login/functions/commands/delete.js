@@ -1,4 +1,5 @@
 const users = require('./users');
+const {getState} = require('./stateManager')
 
 function deleteCommand(params) {
     if (params.login === undefined) {

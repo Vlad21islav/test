@@ -1,6 +1,4 @@
-const {getState} = require('./stateManager')
 const getActionParams = require('./getActionParams')
-const users = require('./users')
 
 const addCommand = require('./commands/add')
 const clearCommand = require('./commands/clear')
