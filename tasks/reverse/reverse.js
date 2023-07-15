@@ -1,5 +1,6 @@
 'use strict';
 
+const { clear } = require('node:console');
 const readline = require('node:readline');
 
 const rl = readline.createInterface({
@@ -15,31 +16,68 @@ function shuffleArray(array) {
         array[i] = array[j];
         array[j] = temp;
     };
+    return array;
 };
 
-const words = shuffleArray(['привет', '', '', '', '', ]);
-let exit = false;
-console.log(words)
+function sleep(ms) {
+  return new Promise(resolve => {
+    setTimeout(() => resolve(), ms);
+  })
+} 
 
-for (let word = 0; !exit || word <= words.length; word++) {
+const words = shuffleArray(['привет', 'эскалатор', 'завтрак', 'тенис', 'телефон']);
+let word = 0;
+let isSleep = true;
+
+console.clear();
+console.log('Запомните слово:');
+console.log(words[word].split('').reverse().join(''));
+sleep(3000).then(() => {
   console.clear();
-  console.log('Запомните слово:');
-  console.log(words[word].split(''.reverse().join('')));
-  sleep(2000).then(() => console.clear());
   console.log('Введите слово правильно');
+  console.log(words[word])
+  sleep(5000).then(() => {
+    if (isSleep) {
+      console.clear();
+      console.log(`время вышло, ваш рекорд ${word}`);
+      process.exit(0);
+    } else {
+      isSleep = true;
+    };
+  });
 
   rl.prompt();
   rl.on('line', (line) => {
     line = line.trim();
 
-    switch (line) {
-      case words[word]:
-        rl.prompt()
-        break;
+    if (word <= words.length) {
+      switch (line) {
+        case words[word]:
+          isSleep = false;
+          word++;
 
-      default:
-        console.log(`Вы проиграли ваш рекорд ${word}`);
-        exit = true;
+          sleep(3000).then(() => {
+            console.clear();
+            console.log('Введите слово правильно');
+            sleep(5000).then(() => {
+              if (isSleep) {
+                console.clear();
+                console.log(`время вышло, ваш рекорд ${word}`);
+                process.exit(0);
+              } else {
+                isSleep = true;
+              };
+            });
+            rl.prompt();
+          });
+
+        default:
+          console.log(`Вы проиграли ваш рекорд ${word}`);
+          process.exit(0);
+      }
+    } else {
+      process.exit(0);
     };
   });
-};
+
+});
