@@ -25,62 +25,46 @@ function sleep(ms) {
   })
 } 
 
+function logWords() {
+  console.clear();
+  console.log('Запомните слово:');
+  console.log(words[word].split('').reverse().join(''));
+  sleep(3000).then(() => {
+    console.clear();
+    console.log('Введите слово правильно');
+    rl.prompt();
+    sleep(5000).then(() => {
+      if (isSleep) {
+        console.clear();
+        console.log(`время вышло, ваш рекорд ${word}`);
+        process.exit(0);
+      } else {
+        isSleep = true;
+      };
+    });
+  });
+};
+
 const words = shuffleArray(['привет', 'эскалатор', 'завтрак', 'тенис', 'телефон']);
 let word = 0;
 let isSleep = true;
 
-console.clear();
-console.log('Запомните слово:');
-console.log(words[word].split('').reverse().join(''));
-sleep(3000).then(() => {
-  console.clear();
-  console.log('Введите слово правильно');
-  sleep(5000).then(() => {
-    if (isSleep) {
-      console.clear();
-      console.log(`время вышло, ваш рекорд ${word}`);
-      process.exit(0);
-    } else {
-      isSleep = true;
-    };
-  });
+logWords();
 
-  rl.prompt();
-  rl.on('line', (line) => {
+rl.on('line', (line) => {
+  if (word < words.length) {
+    switch (line) {
+      case words[word]:
+        isSleep = false;
+        word++;
+        logWords();
+        break;
 
-
-
-    if (word < words.length) {
-      switch (line) {
-        case words[word]:
-          isSleep = false;
-          word++;
-          console.clear();
-          console.log('Запомните слово:');
-          console.log(words[word].split('').reverse().join(''));
-          sleep(3000).then(() => {
-            console.clear();
-            console.log('Введите слово правильно');
-            rl.prompt();
-            sleep(5000).then(() => {
-              if (isSleep) {
-                console.clear();
-                console.log(`время вышло, ваш рекорд ${word}`);
-                process.exit(0);
-              } else {
-                isSleep = true;
-              };
-            });
-          });
-          break;
-
-        default:
-          console.log(`Вы проиграли ваш рекорд ${word}`);
-          process.exit(0);
-      }
-    } else {
-      process.exit(0);
-    };
-  });
-
+      default:
+        console.log(`Вы проиграли ваш рекорд ${word}`);
+        process.exit(0);
+    }
+  } else {
+    process.exit(0);
+  };
 });
