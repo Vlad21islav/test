@@ -48,17 +48,21 @@ sleep(3000).then(() => {
 
   rl.prompt();
   rl.on('line', (line) => {
-    line = line.trim();
 
-    if (word <= words.length) {
+
+
+    if (word < words.length) {
       switch (line) {
         case words[word]:
           isSleep = false;
           word++;
+          console.clear();
+          console.log('Запомните слово:');
 
           sleep(3000).then(() => {
             console.clear();
             console.log('Введите слово правильно');
+            rl.prompt();
             sleep(5000).then(() => {
               if (isSleep) {
                 console.clear();
@@ -70,6 +74,7 @@ sleep(3000).then(() => {
             });
             rl.prompt();
           });
+          break;
 
         default:
           console.log(`Вы проиграли ваш рекорд ${word}`);
