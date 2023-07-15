@@ -58,7 +58,7 @@ sleep(3000).then(() => {
           word++;
           console.clear();
           console.log('Запомните слово:');
-
+          console.log(words[word])
           sleep(3000).then(() => {
             console.clear();
             console.log('Введите слово правильно');
