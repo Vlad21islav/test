@@ -71,7 +71,6 @@ sleep(3000).then(() => {
                 isSleep = true;
               };
             });
-            rl.prompt();
           });
           break;
 
