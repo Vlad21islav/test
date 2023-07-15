@@ -35,7 +35,6 @@ console.log(words[word].split('').reverse().join(''));
 sleep(3000).then(() => {
   console.clear();
   console.log('Введите слово правильно');
-  console.log(words[word])
   sleep(5000).then(() => {
     if (isSleep) {
       console.clear();
@@ -58,7 +57,7 @@ sleep(3000).then(() => {
           word++;
           console.clear();
           console.log('Запомните слово:');
-          console.log(words[word])
+          console.log(words[word].split('').reverse().join(''));
           sleep(3000).then(() => {
             console.clear();
             console.log('Введите слово правильно');
