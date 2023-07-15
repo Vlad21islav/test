@@ -1,7 +1,7 @@
 'use strict';
 const logWords = require('./functions/logWords');
 const shuffleArray = require('./functions/shuffleArray');
-const {setState} = require('./functions/variable');
+const {setState, getState} = require('./functions/variable');
 
 const readline = require('node:readline');
 
@@ -12,7 +12,7 @@ const rl = readline.createInterface({
 });
 
 const words = shuffleArray(['привет', 'эскалатор', 'завтрак', 'тенис', 'телефон']);
-let word = 0;
+let {word} = getState();
 
 logWords();
 
@@ -21,7 +21,7 @@ rl.on('line', (line) => {
     switch (line) {
       case words[word]:
         setState({isSleep: false});
-        word++;
+        setState({word: word + 1});
         logWords();
         break;
 

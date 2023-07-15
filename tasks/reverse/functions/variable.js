@@ -1,5 +1,7 @@
 let state = {
-    isSleep: true
+    isSleep: true,
+    word: 0,
+    words: undefined
 };
 
 const getState = () => state;

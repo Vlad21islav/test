@@ -1,10 +1,12 @@
 const sleep = require('./sleep')
 const {getState, setState} = require('./variable')
 const {isSleep} = getState()
+let {word} = getState();
 
 function logWords() {
     console.clear();
     console.log('Запомните слово:');
+    console.log(words)
     console.log(words[word].split('').reverse().join(''));
     sleep(3000).then(() => {
         console.clear();
