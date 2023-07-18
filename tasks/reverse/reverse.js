@@ -26,7 +26,7 @@ function logWords() {
     console.clear();
     console.log('Введите слово правильно');
     rl.prompt();
-    let gameOver = setTimeout(() => {
+    let timeoutId = setTimeout(() => {
         console.clear();
         console.log(`время вышло, ваш рекорд ${index}`);
         process.exit(0);
@@ -36,13 +36,14 @@ function logWords() {
 
 const words = shuffleArray(['привет', 'эскалатор', 'завтрак', 'тенис', 'телефон']);
 let index = 0;
+let timeoutId;
 
 logWords();
 
 rl.on('line', (line) => {
   if (index < words.length) {
     if (line === words[index]) {
-      clearTimeout(gameOver);
+      clearTimeout(timeoutId);
       index++;
       logWords();
     } else {
