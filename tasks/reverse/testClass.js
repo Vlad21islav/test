@@ -7,7 +7,7 @@ class Game {
         this.words = words;
         this.index = 0
         this.timeoutId;
-        this.readline = readline.createInterface({
+        this.rl = readline.createInterface({
             input: process.stdin,
             output: process.stdout,
             prompt: '──> '
@@ -15,13 +15,13 @@ class Game {
     };
 
     start() {
-        new Game(words).next();
+        this.next();
         this.rl.on('line', (line) => {
         if (this.index < words.length - 1) {
             if (line === words[this.index]) {
-            clearTimeout(timeoutId);
+            clearTimeout(this.timeoutId);
             this.index++;
-            new Game(words).next();
+            this.next();
             } else {
             console.log(`Вы проиграли ваш рекорд ${this.index}`);
             process.exit(0);
@@ -41,8 +41,8 @@ class Game {
         setTimeout(() => {
             console.clear();
             console.log('Введите слово правильно');
-            rl.prompt();
-            timeoutId = setTimeout(() => {
+            this.rl.prompt();
+            this.timeoutId = setTimeout(() => {
                 console.clear();
                 console.log(`время вышло, ваш рекорд ${this.index}`);
                 process.exit(0);
