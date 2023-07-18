@@ -15,8 +15,8 @@ class Game {
     };
 
     start() {
-        this.next();
         this.rl.on('line', (line) => {
+        this.next();
         if (this.index < words.length - 1) {
             if (line === words[this.index]) {
             clearTimeout(this.timeoutId);
