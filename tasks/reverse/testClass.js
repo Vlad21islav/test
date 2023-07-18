@@ -4,7 +4,7 @@ const readline = require('node:readline');
 
 class Game {
     constructor(words) {
-        this.words = words;
+        this.words = this.shuffleWords(words);
         this.index = 0
         this.timeoutId;
         this.rl = readline.createInterface({
