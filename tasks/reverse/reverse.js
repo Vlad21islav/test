@@ -22,16 +22,16 @@ function logWords() {
   console.clear();
   console.log('Запомните слово:');
   console.log(words[index].split('').reverse().join(''));
-  setTimeout(3000).then(() => {
+  setTimeout(() => {
     console.clear();
     console.log('Введите слово правильно');
     rl.prompt();
-    gameOver = setTimeout(5000).then(() => {
+    gameOver = setTimeout(() => {
         console.clear();
         console.log(`время вышло, ваш рекорд ${index}`);
         process.exit(0);
-    });
-  });
+    }, 5000)
+  }, 3000)
 };
 
 const words = shuffleArray(['привет', 'эскалатор', 'завтрак', 'тенис', 'телефон']);
