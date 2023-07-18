@@ -51,8 +51,8 @@ class Game {
         console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
         process.exit(0);
       }, 5000)
-      this.overNum += 1;
-      this.overTime += new Date().getSeconds() - this.seconds;
+    this.overNum += 1;
+    this.overTime += new Date().getSeconds() - this.seconds;
     }, 3000)
   }
 
