@@ -26,7 +26,7 @@ function logWords() {
     console.clear();
     console.log('Введите слово правильно');
     rl.prompt();
-    let timeoutId = setTimeout(() => {
+    timeoutId = setTimeout(() => {
         console.clear();
         console.log(`время вышло, ваш рекорд ${index}`);
         process.exit(0);
