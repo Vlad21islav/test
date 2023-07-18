@@ -51,6 +51,7 @@ rl.on('line', (line) => {
       process.exit(0);
     };
   } else {
+    console.clear();
     console.log(`Слова закончились, вы выиграли`);
     process.exit(0);
   };
