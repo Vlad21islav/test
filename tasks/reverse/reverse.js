@@ -41,7 +41,7 @@ let timeoutId;
 logWords();
 
 rl.on('line', (line) => {
-  if (index < words.length) {
+  if (index < words.length - 1) {
     if (line === words[index]) {
       clearTimeout(timeoutId);
       index++;
