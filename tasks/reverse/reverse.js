@@ -30,6 +30,7 @@ class Game {
           } else {
             console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime(false)} секунд, общее время - ${this.overTime} секунд`);
           };
+          process.exit(0);
         };
       } else {
         console.clear();
