@@ -53,7 +53,6 @@ class Game {
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
-        this.overNum += 1;
         if (this.index === 0) {
           console.log(`время вышло, ваш рекорд ${this.index}`);
         } else {
