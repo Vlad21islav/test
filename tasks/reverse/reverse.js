@@ -27,13 +27,11 @@ class Game {
           if (this.index === 0) {
             console.log(`Вы проиграли, ваш рекорд ${this.index}`);
           } else {
-            this.overTime += Date.now() - this.startTime;
             console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.index} секунд, общее время - ${this.overTime} секунд`);
           };
         };
       } else {
         console.clear();
-        this.overTime += Date.now() - this.startTime;
         console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / (this.index + 1)} секунд, общее время - ${this.overTime} секунд`);
         process.exit(0);
       };
@@ -53,10 +51,10 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         this.overNum += 1;
+        this.overTime += Date.now() - this.startTime;
         if (this.index === 0) {
           console.log(`время вышло, ваш рекорд ${this.index}`);
         } else {
-          this.overTime += Date.now() - this.startTime;
           console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.index} секунд, общее время - ${this.overTime} секунд`);
         };
         process.exit(0);
