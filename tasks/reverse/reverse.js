@@ -18,6 +18,9 @@ class Game {
 
   start() {
     this.rl.on('line', (line) => {
+      this.overNum += 1;
+      this.endTime = Date.now()
+      this.overTime += this.endTime / 60 - this.startTime / 60;
     if (this.index < this.words.length - 1) {
       if (line === this.words[this.index]) {
         clearTimeout(this.timeoutId);
@@ -25,7 +28,7 @@ class Game {
         this.next();
       } else {
         console.clear()
-        console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
+        console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum} секунд, общее время - ${this.overTime} секунд`);
         process.exit(0);
       };
     } else {
@@ -45,14 +48,12 @@ class Game {
       console.clear();
       console.log('Введите слово правильно');
       this.rl.prompt();
-      this.seconds = new Date().getSeconds();
+      this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
         console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
         process.exit(0);
       }, 5000);
-      this.overNum += 1;
-      this.overTime += new Date().getSeconds() - this.seconds;
     }, 3000);
   }
 
