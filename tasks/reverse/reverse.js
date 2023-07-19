@@ -34,7 +34,7 @@ class Game {
         };
       } else {
         console.clear();
-        console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime(true)} секунд, общее время - ${this.overTime} секунд`);
+        console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index + 1}, среднее время записи слова - ${this.getAverageTime(true)} секунд, общее время - ${this.overTime} секунд`);
         process.exit(0);
       };
     });
