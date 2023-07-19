@@ -24,8 +24,12 @@ class Game {
           this.next();
         } else {
           console.clear()
-          console.log(`Вы проиграли , ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
-          process.exit(0);
+          if (this.index === 0) {
+            console.log(`Вы проиграли, ваш рекорд ${this.index}`);
+          } else {
+            this.overTime += Date.now() - this.startTime;
+            console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
+          };
         };
       } else {
         console.clear();
@@ -49,7 +53,12 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         this.overNum += 1;
-        console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
+        if (this.index === 0) {
+          console.log(`время вышло, ваш рекорд ${this.index}`);
+        } else {
+          this.overTime += Date.now() - this.startTime;
+          console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
+        };
         process.exit(0);
       }, 5000);
     }, 3000);
