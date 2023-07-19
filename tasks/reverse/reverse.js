@@ -5,7 +5,6 @@ const readline = require('node:readline');
 class Game {
   constructor(words) {
     this.words = this.shuffleWords(words);
-    this.overNum = 0;
     this.overTime = 0;
     this.index = 0;
     this.timeoutId;
@@ -18,9 +17,7 @@ class Game {
 
   start() {
     this.rl.on('line', (line) => {
-      this.overNum += 1;
-      this.endTime = Date.now()
-      this.overTime += Math.floor(this.endTime / 60 / 60) - Math.floor(this.startTime / 60 / 60);
+      this.overTime += Date.now() - this.startTime;
       if (this.index < this.words.length - 1) {
         if (line === this.words[this.index]) {
           clearTimeout(this.timeoutId);
@@ -28,12 +25,12 @@ class Game {
           this.next();
         } else {
           console.clear()
-          console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.overNum)} секунд, общее время - ${this.overTime} секунд`);
+          console.log(`Вы проиграли , ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
           process.exit(0);
         };
       } else {
         console.clear();
-        console.log(`Слова закончились, вы выиграли, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
+        console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
         process.exit(0);
       };
     });
@@ -52,9 +49,8 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         this.overNum += 1;
-        this.endTime = Date.now()
-        this.overTime += Math.floor(this.endTime / 60 / 60) - Math.floor(this.startTime / 60 / 60);
-        console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
+        this.overTime += Date.now() - this.startTime;
+        console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.index / 60 / 60 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 60 / 60 * 100) / 100} секунд`);
         process.exit(0);
       }, 5000);
     }, 3000);
