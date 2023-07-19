@@ -18,9 +18,9 @@ class Game {
   start() {
     this.rl.on('line', (line) => {
       this.overTime += Date.now() - this.startTime;
+      clearTimeout(this.timeoutId);
       if (this.index < this.words.length - 1) {
         if (line === this.words[this.index]) {
-          clearTimeout(this.timeoutId);
           this.index++;
           this.next();
         } else {
