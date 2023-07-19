@@ -21,21 +21,21 @@ class Game {
       this.overNum += 1;
       this.endTime = Date.now()
       this.overTime += this.endTime / 60 - this.startTime / 60;
-    if (this.index < this.words.length - 1) {
-      if (line === this.words[this.index]) {
-        clearTimeout(this.timeoutId);
-        this.index++;
-        this.next();
+      if (this.index < this.words.length - 1) {
+        if (line === this.words[this.index]) {
+          clearTimeout(this.timeoutId);
+          this.index++;
+          this.next();
+        } else {
+          console.clear()
+          console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum} секунд, общее время - ${this.overTime} секунд`);
+          process.exit(0);
+        };
       } else {
-        console.clear()
-        console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum} секунд, общее время - ${this.overTime} секунд`);
+        console.clear();
+        console.log(`Слова закончились, вы выиграли, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
         process.exit(0);
       };
-    } else {
-      console.clear();
-      console.log(`Слова закончились, вы выиграли, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
-      process.exit(0);
-    };
     });
     this.next();
   };
