@@ -28,14 +28,14 @@ class Game {
           if (this.index === 0) {
             console.log(`Вы проиграли, ваш рекорд ${this.index}`);
           } else {
-            console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.getAverageTime() / 1000 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
+            console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.getAverageTime() / 1000 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
+        console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
         process.exit(0);
       };
     });
@@ -57,7 +57,7 @@ class Game {
         if (this.index === 0) {
           console.log(`время вышло, ваш рекорд ${this.index}`);
         } else {
-          console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.getAverageTime() / 1000 * 100) / 100} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
+          console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
         };
         process.exit(0);
       }, 5000);
@@ -75,7 +75,7 @@ class Game {
   };
 
   getAverageTime() {
-    return this.overTime / this.index;
+    return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
   }
 };
 
