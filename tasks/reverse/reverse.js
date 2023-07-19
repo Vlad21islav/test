@@ -17,6 +17,7 @@ class Game {
 
   start() {
     this.rl.on('line', (line) => {
+      this.overTime += Date.now() - this.startTime;
       if (this.index < this.words.length - 1) {
         if (line === this.words[this.index]) {
           clearTimeout(this.timeoutId);
@@ -51,7 +52,6 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         this.overNum += 1;
-        this.overTime += Date.now() - this.startTime;
         if (this.index === 0) {
           console.log(`время вышло, ваш рекорд ${this.index}`);
         } else {
