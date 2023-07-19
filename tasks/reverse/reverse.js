@@ -28,7 +28,7 @@ class Game {
           this.next();
         } else {
           console.clear()
-          console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum} секунд, общее время - ${this.overTime} секунд`);
+          console.log(`Вы проиграли ваш рекорд ${this.index}, среднее время записи слова - ${Math.floor(this.overTime / this.overNum)} секунд, общее время - ${this.overTime} секунд`);
           process.exit(0);
         };
       } else {
