@@ -20,7 +20,7 @@ class Game {
     this.rl.on('line', (line) => {
       this.overNum += 1;
       this.endTime = Date.now()
-      this.overTime += this.endTime / 60 - this.startTime / 60;
+      this.overTime += Math.floor(this.endTime / 60) - Math.floor(this.startTime / 60);
       if (this.index < this.words.length - 1) {
         if (line === this.words[this.index]) {
           clearTimeout(this.timeoutId);
@@ -51,6 +51,9 @@ class Game {
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
+        this.overNum += 1;
+        this.endTime = Date.now()
+        this.overTime += Math.floor(this.endTime / 60 / 60) - Math.floor(this.startTime / 60 / 60);
         console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
         process.exit(0);
       }, 5000);
