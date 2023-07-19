@@ -75,7 +75,7 @@ class Game {
 
   getAverageTime(isRight) {
     if (isRight) {
-      return this.overTime / this.index
+      return this.overTime / (this.index + 1)
     } else {
       return this.overTime / this.index
     };
