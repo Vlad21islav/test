@@ -53,7 +53,7 @@ class Game {
         console.clear();
         this.overNum += 1;
         this.endTime = Date.now()
-        this.overTime += Math.floor(this.startTime / 60) - Math.floor(this.endTime / 60);
+        this.overTime += Math.floor(this.endTime / 60) - Math.floor(this.startTime / 60);
         console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.overTime / this.overNum}, общее время - ${this.overTime}`);
         process.exit(0);
       }, 5000);
