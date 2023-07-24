@@ -86,6 +86,7 @@ if (process.env.LANG === 'рус' || process.env.LANG === 'русский') {
 } else if (process.env.LANG === 'eng' || process.env.LANG ===  'english') {
   new Game(englishWords).start();
 } else {
+  console.clear()
   console.log('Введите в консоль "cross-env LANG=язык(рус / русскый, eng / english) node .\tasks\reverse\reverse.js"');
   process.exit(0);
 };
