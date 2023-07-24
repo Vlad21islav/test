@@ -1,5 +1,5 @@
 'use strict';
-
+const words = require('./words')
 const readline = require('node:readline');
 
 class Game {
@@ -78,13 +78,5 @@ class Game {
   }
 };
 
-if (process.env.LANG === 'рус' || process.env.LANG === 'русский') {
-  const {russianWords} = require('./words')
-  new Game(russianWords).start();
-} else if (process.env.LANG === 'eng' || process.env.LANG ===  'english') {
-  const {englishWords} = require('./words')
-  new Game(englishWords).start();
-} else {
-  const {russianWords} = require('./words')
-  new Game(russianWords).start();
-};
+const LANG = process.env.LANG || 'rus'
+new Game(words[LANG])
