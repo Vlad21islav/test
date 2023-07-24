@@ -3,7 +3,7 @@ const words = require('./words')
 const readline = require('node:readline');
 
 class Game {
-  constructor(words, LANG) {
+  constructor(words, languege) {
     this.words = this.shuffleWords(words);
     this.overTime = 0;
     this.index = 0;
@@ -25,29 +25,17 @@ class Game {
           this.next();
         } else {
           console.clear()
-          if (LANG === 'рус') {
-            if (this.index === 0) {
-              console.log(`Вы проиграли, ваш рекорд ${this.index}`);
-            } else {
-              console.log(`Вы проиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
-            };
-          } else if (LANG === 'eng') {
-            if (this.index === 0) {
-              console.log(`You lost, your record is ${this.index}`);
-            } else {
-              console.log(`You lost, your record is ${this.index}, the average time of writing a word is ${this.getAverageTime()} seconds, total time is ${Math.floor(this.overTime / 1000 * 100) / 100} seconds`);
-            };
+          if (this.index === 0) {
+            console.log(`${languege.YOU_HAVE_LOST}, ${languege.RECORD}`)
+          } else {
+            console.log(`${languege.YOU_HAVE_LOST}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        if (LANG === 'рус') {
-          console.log(`Слова закончились, вы выиграли, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
-        } else if (LANG === 'eng') {
-          console.log(`The words are over, you have won, your record is ${this.index}, the average time of writing a word is ${this.getAverageTime()} seconds, total time is ${Math.floor(this.overTime / 1000 * 100) / 100} seconds`);
-        };
+        console.log(`${languege.YOU_WON}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
         process.exit(0);
       };
     });
@@ -56,35 +44,19 @@ class Game {
 
   next() {
     console.clear();
-    if (LANG === 'рус') {
-      console.log('Запомните слово:');
-    } else if (LANG === 'eng') {
-      console.log('Remember the word:');
-    };
+    console.log(`${languege.REMEMBER_WORD}`)
     console.log(this.words[this.index].split('').reverse().join(''));
     setTimeout(() => {
       console.clear();
-      if (LANG === 'рус') {
-        console.log('Введите слово правильно');
-      } else if (LANG === 'eng') {
-        console.log('Enter the word correctly');
-      };
+      console.log(`${languege.ENTER_WORD}`)
       this.rl.prompt();
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
-        if (LANG === 'рус') {
-          if (this.index === 0) {
-            console.log(`время вышло, ваш рекорд ${this.index}`);
-          } else {
-            console.log(`время вышло, ваш рекорд ${this.index}, среднее время записи слова - ${this.getAverageTime()} секунд, общее время - ${Math.floor(this.overTime / 1000 * 100) / 100} секунд`);
-          };
-        } else if (LANG === 'рус') {
-          if (this.index === 0) {
-            console.log(`time is up, your record is ${this.index}`);
-          } else {
-            console.log(`time is up, your record is ${this.index}, the average time to write a word is ${this.getAverageTime()} seconds, total time is ${Math.floor(this.overTime / 1000 * 100) / 100} seconds`);
-          };
+        if (this.index === 0) {
+          console.log(`${languege.TIME_IS_UP}, ${languege.RECORD}`)
+        } else {
+          console.log(`${languege.TIME_IS_UP}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
         };
         process.exit(0);
       }, 5000);
@@ -106,7 +78,14 @@ class Game {
   }
 };
 
-const LANG = process.env.LANG !== 'рус' && process.env.LANG !== 'eng'
-  ? 'рус'
+const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
+  ? 'rus'
   : process.env.LANG
-new Game(words[LANG], LANG).start()
+
+if (LANG === 'rus') {
+  const languege = require('./langueges/rus')
+} else if (LANG === 'eng') {
+  const languege = require('./langueges/eng')
+};
+
+new Game(words[LANG], languege).start()
