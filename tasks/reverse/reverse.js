@@ -79,4 +79,4 @@ class Game {
 };
 
 const LANG = process.env.LANG || 'rus'
-new Game(words[LANG])
+new Game(words[LANG]).start()
