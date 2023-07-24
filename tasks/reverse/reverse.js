@@ -85,7 +85,6 @@ if (process.env.LANG === 'рус' || process.env.LANG === 'русский') {
   const {englishWords} = require('./words')
   new Game(englishWords).start();
 } else {
-  console.clear()
-  console.log('Введите в консоль "cross-env LANG=язык(рус / русскый, eng / english) node .\tasks\reverse\reverse.js"');
-  process.exit(0);
+  const {russianWords} = require('./words')
+  new Game(russianWords).start();
 };
