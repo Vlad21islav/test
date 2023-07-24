@@ -75,7 +75,11 @@ class Game {
 
   getAverageTime() {
     return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
-  }
+  };
+
+  redoNumber(str) {
+    return str.replace(`$1`, `${this.index}`).replace(`$2`, `${this.getAverageTime()}`).replace(`$3`, `${Math.floor(this.overTime / 1000 * 100) / 100}`);
+  };
 };
 
 const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
