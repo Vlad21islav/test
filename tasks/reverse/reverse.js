@@ -106,5 +106,7 @@ class Game {
   }
 };
 
-const LANG = process.env.LANG || 'рус'
-new Game(words[LANG] || words.рус, LANG).start()
+const LANG = process.env.LANG !== 'рус' && process.env.LANG !== 'eng'
+  ? 'рус'
+  : process.env.LANG
+new Game(words[LANG], LANG).start()
