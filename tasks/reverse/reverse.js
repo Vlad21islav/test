@@ -78,5 +78,5 @@ class Game {
   }
 };
 
-const LANG = process.env.LANG || 'rus'
+const LANG = process.env.LANG || 'рус'
 new Game(words[LANG]).start()
