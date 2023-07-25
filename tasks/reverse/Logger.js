@@ -4,6 +4,7 @@ const words = require('./words')
 class Logger {
   constructor(massage) {
     this.massage = massage
+    this.output = this.replace$1(massage, 'Vlad')
   };
 
   replace$1(str, value) {
@@ -15,5 +16,5 @@ class Logger {
     };
   };
 };
-
-new Logger('hello $1').start()
+ 
+new Logger('hello $1');
