@@ -7,7 +7,7 @@ class Logger {
   };
 
   info(str, value) {
-    const otv = this.massage.str.replace(`$1`, value);
+    const otv = this.massage[str].replace(`$1`, value);
     if (otv === this.massage.str) {
       console.log(str);
     } else {
