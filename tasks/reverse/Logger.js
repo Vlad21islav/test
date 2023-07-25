@@ -3,10 +3,10 @@
 class Logger {
   constructor(massage) {
     this.massage = massage;
-    this.output = this.replace$1('RECORD', 'Vlad');
+    this.output = this.info('RECORD', 'Vlad');
   };
 
-  replace$1(str, value) {
+  info(str, value) {
     const otv = this.massage.str.replace(`$1`, value);
     if (otv === this.massage.str) {
       console.log(str);
