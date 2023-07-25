@@ -77,7 +77,7 @@ class Game {
     return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
   };
 
-  redoNumber(str, value) {
+  peplace$1(str, value) {
     return str.replace(`$1`, value);
   };
 };
