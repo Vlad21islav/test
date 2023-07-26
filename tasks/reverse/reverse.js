@@ -1,5 +1,6 @@
 'use strict';
 const words = require('./words')
+const Logger = require('./Logger')
 const readline = require('node:readline');
 
 class Game {
@@ -91,5 +92,5 @@ if (LANG === 'rus') {
 } else if (LANG === 'eng') {
   const languege = require('./langueges/eng')
 };
-
+new Logger(languege);
 new Game(words[LANG], languege).start()
