@@ -6,11 +6,10 @@ class Logger {
   };
 
   info(str, value) {
-    const otv = this.massages[str].replace(`$1`, value);
-    if (otv === this.massages.str) {
+    if (this.massages[str] === undefined) {
       return(str);
     } else {
-      return(otv);
+      return(this.massages[str].replace(`$1`, value));
     };
   };
 };

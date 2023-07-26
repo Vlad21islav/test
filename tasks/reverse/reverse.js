@@ -5,6 +5,7 @@ const readline = require('node:readline');
 
 class Game {
   constructor(words, languege) {
+    this.languege = languege
     this.words = this.shuffleWords(words);
     this.overTime = 0;
     this.index = 0;
@@ -27,16 +28,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            console.log(`${languege.YOU_HAVE_LOST}, ${languege.RECORD}`)
+            console.log(`${this.languege.YOU_HAVE_LOST}, ${new Logger(this.languege).info('RECORD', this.index)}`)
           } else {
-            console.log(`${languege.YOU_HAVE_LOST}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
+            console.log(`${this.languege.YOU_HAVE_LOST}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        console.log(`${languege.YOU_WON}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
+        console.log(`${this.languege.YOU_WON}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
         process.exit(0);
       };
     });
@@ -45,19 +46,19 @@ class Game {
 
   next() {
     console.clear();
-    console.log(`${languege.REMEMBER_WORD}`)
+    console.log(`${this.languege.REMEMBER_WORD}`)
     console.log(this.words[this.index].split('').reverse().join(''));
     setTimeout(() => {
       console.clear();
-      console.log(`${languege.ENTER_WORD}`)
+      console.log(`${this.languege.ENTER_WORD}`)
       this.rl.prompt();
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          console.log(`${languege.TIME_IS_UP}, ${languege.RECORD}`)
+          console.log(`${this.languege.TIME_IS_UP}, ${new Logger(this.languege).info('RECORD', this.index)}`)
         } else {
-          console.log(`${languege.TIME_IS_UP}, ${languege.RECORD}, ${languege.EVERAGE_TIME}, ${languege.TOTAL_TIME}`)
+          console.log(`${this.languege.TIME_IS_UP}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
         };
         process.exit(0);
       }, 5000);
@@ -87,10 +88,14 @@ const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
   ? 'rus'
   : process.env.LANG
 
+let languege;
 if (LANG === 'rus') {
-  const languege = require('./langueges/rus')
+  languege = require('./langueges/rus')
 } else if (LANG === 'eng') {
-  const languege = require('./langueges/eng')
-};
-new Logger(languege);
+  languege = require('./langueges/eng')
+} else {
+  languege = require('./langueges/rus')
+}
+
+new Logger(languege).info('YOU_HAVE_LOST', );
 new Game(words[LANG], languege).start()
