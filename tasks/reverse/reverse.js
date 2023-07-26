@@ -28,16 +28,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            console.log(`${this.languege.YOU_HAVE_LOST}, ${new Logger(this.languege).info('RECORD', this.index)}`)
+            console.log(this.languege.YOU_HAVE_LOST); new Logger(this.languege).info('RECORD', this.index);
           } else {
-            console.log(`${this.languege.YOU_HAVE_LOST}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
+            console.log(this.languege.YOU_HAVE_LOST); new Logger(this.languege).info('RECORD', this.index); new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime()); new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        console.log(`${this.languege.YOU_WON}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
+        console.log(this.languege.YOU_WON); new Logger(this.languege).info('RECORD', this.index); new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime()); new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         process.exit(0);
       };
     });
@@ -46,19 +46,19 @@ class Game {
 
   next() {
     console.clear();
-    console.log(`${this.languege.REMEMBER_WORD}`)
+    console.log(this.languege.REMEMBER_WORD)
     console.log(this.words[this.index].split('').reverse().join(''));
     setTimeout(() => {
       console.clear();
-      console.log(`${this.languege.ENTER_WORD}`)
+      console.log(this.languege.ENTER_WORD)
       this.rl.prompt();
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          console.log(`${this.languege.TIME_IS_UP}, ${new Logger(this.languege).info('RECORD', this.index)}`)
+          console.log(this.languege.TIME_IS_UP); new Logger(this.languege).info('RECORD', this.index)
         } else {
-          console.log(`${this.languege.TIME_IS_UP}, ${new Logger(this.languege).info('RECORD', this.index)}, ${new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime())}, ${new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100)}`)
+          console.log(this.languege.TIME_IS_UP); new Logger(this.languege).info('RECORD', this.index); new Logger(this.languege).info('EVERAGE_TIME', this.getAverageTime()); new Logger(this.languege).info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         };
         process.exit(0);
       }, 5000);

@@ -7,9 +7,10 @@ class Logger {
 
   info(str, value) {
     if (this.massages[str] === undefined) {
-      return(str);
+      console.log(str);
+    } else {
+      console.log(this.massages[str].replace(`$1`, value));
     };
-    return(this.massages[str].replace(`$1`, value));
   };
 };
 module.exports = Logger;
