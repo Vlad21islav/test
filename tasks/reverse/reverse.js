@@ -4,8 +4,8 @@ const Logger = require('./Logger')
 const readline = require('node:readline');
 
 class Game {
-  constructor(words, languege) {
-    this.languege = languege
+  constructor(words, logger) {
+    this.logger = logger
     this.words = this.shuffleWords(words);
     this.overTime = 0;
     this.index = 0;
@@ -28,16 +28,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            console.log(languege.info('YOU_HAVE_LOST', '')); languege.info('RECORD', this.index);
+            logger.info('YOU_HAVE_LOST', ''); logger.info('RECORD', this.index);
           } else {
-            console.log(languege.info('YOU_HAVE_LOST', '')); languege.info('RECORD', this.index); languege.info('EVERAGE_TIME', this.getAverageTime()); languege.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+            logger.info('YOU_HAVE_LOST', ''); logger.info('RECORD', this.index); logger.info('EVERAGE_TIME', this.getAverageTime()); logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        console.log(languege.info('YOU_WON', '')); languege.info('RECORD', this.index); languege.info('EVERAGE_TIME', this.getAverageTime()); languege.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+        logger.info('YOU_WON', ''); logger.info('RECORD', this.index); logger.info('EVERAGE_TIME', this.getAverageTime()); logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         process.exit(0);
       };
     });
@@ -46,19 +46,19 @@ class Game {
 
   next() {
     console.clear();
-    console.log(languege.info('REMEMBER_WORD', ''))
+    logger.info('REMEMBER_WORD', '')
     console.log(this.words[this.index].split('').reverse().join(''));
     setTimeout(() => {
       console.clear();
-      console.log(languege.info('ENTER_WORD', ''))
+      logger.info('ENTER_WORD', '')
       this.rl.prompt();
       this.startTime = Date.now() 
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          console.log(languege.info('TIME_IS_UP', '')); languege.info('RECORD', this.index)
+          logger.info('TIME_IS_UP', ''); logger.info('RECORD', this.index)
         } else {
-          console.log(languege.info('TIME_IS_UP', '')); languege.info('RECORD', this.index); languege.info('EVERAGE_TIME', this.getAverageTime()); languege.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+          logger.info('TIME_IS_UP', ''); logger.info('RECORD', this.index); logger.info('EVERAGE_TIME', this.getAverageTime()); logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         };
         process.exit(0);
       }, 5000);
@@ -88,13 +88,13 @@ const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
   ? 'rus'
   : process.env.LANG
 
-let languege;
+let massages;
 if (LANG === 'rus') {
-  languege = require('./langueges/rus')
+  massages = require('./langueges/rus')
 } else if (LANG === 'eng') {
-  languege = require('./langueges/eng')
+  massages = require('./langueges/eng')
 } else {
-  languege = require('./langueges/rus')
+  massages = require('./langueges/rus')
 }
 
-new Game(words[LANG], new Logger(languege)).start()
+new Game(words[LANG], new Logger(massages)).start()
