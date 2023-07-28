@@ -78,10 +78,6 @@ class Game {
   getAverageTime() {
     return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
   };
-
-  peplace$1(str, value) {
-    return str.replace(`$1`, value);
-  };
 };
 
 const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
@@ -90,11 +86,11 @@ const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
 
 let massages;
 if (LANG === 'rus') {
-  massages = require('./langueges/rus')
+  massages = require('./massages/rus')
 } else if (LANG === 'eng') {
-  massages = require('./langueges/eng')
+  massages = require('./massages/eng')
 } else {
-  massages = require('./langueges/rus')
+  massages = require('./massages/rus')
 }
 
 new Game(words[LANG], new Logger(massages)).start()
