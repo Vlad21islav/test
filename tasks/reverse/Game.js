@@ -26,16 +26,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            this.logger.info('YOU_HAVE_LOST', ''); console.log(','); this.logger.info('RECORD', this.index);
+            this.logger.info('YOU_HAVE_LOST', ''); this.logger.info('RECORD', this.index);
           } else {
-            this.logger.info('YOU_HAVE_LOST', ''); console.log(','); this.logger.info('RECORD', this.index); console.log(','); this.logger.info('EVERAGE_TIME', this.getAverageTime()); console.log(','); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+            this.logger.info('YOU_HAVE_LOST', ''); this.logger.info('RECORD', this.index); this.logger.info('EVERAGE_TIME', this.getAverageTime()); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        this.logger.info('YOU_WON', ''); console.log(','); this.logger.info('RECORD', this.index); console.log(','); this.logger.info('EVERAGE_TIME', this.getAverageTime()); console.log(','); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+        this.logger.info('YOU_WON', ''); this.logger.info('RECORD', this.index); this.logger.info('EVERAGE_TIME', this.getAverageTime()); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         process.exit(0);
       };
     });
@@ -54,9 +54,9 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          this.logger.info('TIME_IS_UP', ''); console.log(','); this.logger.info('RECORD', this.index)
+          this.logger.info('TIME_IS_UP', ''); this.logger.info('RECORD', this.index)
         } else {
-          this.logger.info('TIME_IS_UP', ''); console.log(','); this.logger.info('RECORD', this.index); console.log(','); this.logger.info('EVERAGE_TIME', this.getAverageTime()); console.log(','); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
+          this.logger.info('TIME_IS_UP', ''); this.logger.info('RECORD', this.index); this.logger.info('EVERAGE_TIME', this.getAverageTime()); this.logger.info('TOTAL_TIME', Math.floor(this.overTime / 1000 * 100) / 100);
         };
         process.exit(0);
       }, 5000);
