@@ -1,6 +1,4 @@
 'use strict';
-const words = require('./words')
-const Logger = require('./Logger')
 const readline = require('node:readline');
 
 class Game {
@@ -80,17 +78,4 @@ class Game {
   };
 };
 
-const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
-  ? 'rus'
-  : process.env.LANG
-
-let massages;
-if (LANG === 'rus') {
-  massages = require('./massages/rus')
-} else if (LANG === 'eng') {
-  massages = require('./massages/eng')
-} else {
-  massages = require('./massages/rus')
-}
-
-new Game(words[LANG], new Logger(massages)).start()
+module.exports = Game;
