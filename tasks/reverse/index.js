@@ -1,4 +1,4 @@
-const {massages, words} = require('./massages/index')
+const {words, messages} = require('./massages/index')
 const Logger = require('./Logger')
 const Game = require('./Game')
 
@@ -14,6 +14,6 @@ if (LANG === 'rus') {
   LANG = 'rus'
 };
 
-const logger =  new Logger(massages[LANG]) 
+const logger =  new Logger(messages[LANG]) 
 const game = new Game(words[LANG], logger)
 game.start()
