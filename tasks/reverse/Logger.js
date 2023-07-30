@@ -6,7 +6,9 @@ class Logger {
   };
 
   info(str, value) {
-    if (this.massages[str] === undefined) {
+    if (value === undefined) {
+      console.log(this.massages[str])
+    } else if (this.massages[str] === undefined) {
       console.log(str);
     } else {
       console.log(this.massages[str].replace(`$1`, value));
