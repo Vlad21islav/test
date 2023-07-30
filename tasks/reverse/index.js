@@ -1,4 +1,4 @@
-const words = require('./massages/index')
+const massages = require('./massages/index')
 const Logger = require('./Logger')
 const Game = require('./Game')
 
@@ -6,13 +6,14 @@ const LANG = process.env.LANG !== 'rus' && process.env.LANG !== 'eng'
   ? 'rus'
   : process.env.LANG
 
-let massages;
 if (LANG === 'rus') {
-  massages = require('./massages/rus')
+  LANG = 'rus'
 } else if (LANG === 'eng') {
-  massages = require('./massages/eng')
+  LANG = 'eng'
 } else {
-  massages = require('./massages/rus')
-}
+  LANG = 'rus'
+};
 
-new Game(words[LANG], new Logger(massages)).start()
+const logger =  new Logger(massages[LANG]) 
+const game = new Game(words[LANG], logger)
+game.start()
