@@ -2,17 +2,19 @@
 
 class Logger {
   constructor(massages) {
-    this.massages = massages;
+    this.massages = massages
   };
 
   info(str, value) {
-    if (this.massages[str] === undefined) {
-      console.log(str);
-    } else if (value === undefined) {
-      console.log(this.massages[str])
-    } else {
-      console.log(this.massages[str].replace(`$1`, value));
+    let otv;
+    for (let names of str) {
+      otv += this.massages[names];
     };
+    for (let num = 0; num != value.length; num++) {
+      otv = otv.replace(('$' + (num + 1)), value[num])
+      console.log(('$' + (num + 1)), value[num])
+    };
+    return otv;
   };
 };
 module.exports = Logger;
