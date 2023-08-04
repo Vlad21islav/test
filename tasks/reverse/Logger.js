@@ -14,7 +14,6 @@ class Logger {
       let otv = this.massages;
       for (let num = 0; num != value.length; num++) {
         otv = otv.replace(('$' + (num + 1)), value[num])
-        console.log(('$' + (num + 1)), value[num])
       };
       console.log(otv);
     };
