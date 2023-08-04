@@ -8,6 +8,7 @@ class Game {
     this.overTime = 0;
     this.index = 0;
     this.timeoutId;
+    this.floor = 
     this.rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -16,6 +17,7 @@ class Game {
   };
 
   start() {
+    let floor = 
     this.rl.on('line', (line) => {
       clearTimeout(this.timeoutId);
       if (this.index < this.words.length - 1) {
@@ -26,16 +28,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            this.logger.info('FIRST_YOU_HAVE_LOST', [this.index]);
+            this.logger.info('FIRST_YOU_HAVE_LOST', this.firstWords());
           } else {
-            this.logger.info('YOU_HAVE_LOST', [this.index, this.getAverageTime(), Math.floor(this.overTime / 1000 * 100) / 100]);
+            this.logger.info('YOU_HAVE_LOST', this.otherWords());
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        this.logger.info('YOU_WON', [this.index, this.getAverageTime(), Math.floor(this.overTime / 1000 * 100) / 100]);
+        this.logger.info('YOU_WON', this.otherWords());
         process.exit(0);
       };
     });
@@ -54,9 +56,9 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          this.logger.info('FIRST_TIME_IS_UP', [this.index]); 
+          this.logger.info('FIRST_TIME_IS_UP', this.firstWords()); 
         } else {
-          this.logger.info('TIME_IS_UP', [this.index, this.getAverageTime(), Math.floor(this.overTime / 1000 * 100) / 100]);
+          this.logger.info('TIME_IS_UP', this.otherWords());
         };
         process.exit(0);
       }, 5000);
@@ -75,6 +77,18 @@ class Game {
 
   getAverageTime() {
     return Math.floor(this.overTime / this.index / 1000 * 100) / 100;
+  };
+
+  getTotalTime() {
+    return Math.floor(this.overTime / 1000 * 100) / 100;
+  };
+
+  firstWords() {
+    return [this.index]
+  };
+
+  otherWords() {
+    return [this.index, this.getAverageTime(), this.getTotalTime()]
   };
 };
 
