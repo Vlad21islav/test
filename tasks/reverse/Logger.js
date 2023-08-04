@@ -6,21 +6,17 @@ class Logger {
   };
 
   info(str, value) {
-    if (value === undefined) {
+    if (this.massages[str] === undefined) {
+      console.log(str); 
+    } else if (value === undefined) {
       console.log(this.massages[str])
-    } else if (this.massages[str] === undefined) {
-      if (this.massages[str] === undefined) {
-        console.log(str);
-      } else if (value === undefined) {
-        console.log(this.massages[str])
-      } else {
-        let otv = this.massages;
-        for (let num = 0; num != value.length; num++) {
-          otv = otv.replace(('$' + (num + 1)), value[num])
-          console.log(('$' + (num + 1)), value[num])
-        };
-        console.log(otv);
+    } else {
+      let otv = this.massages;
+      for (let num = 0; num != value.length; num++) {
+        otv = otv.replace(('$' + (num + 1)), value[num])
+        console.log(('$' + (num + 1)), value[num])
       };
+      console.log(otv);
     };
   };
 };
