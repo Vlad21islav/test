@@ -11,7 +11,7 @@ class Logger {
     } else if (value === undefined) {
       console.log(this.massages[str])
     } else {
-      let otv = this.massages;
+      let otv = this.massages[str];
       for (let num = 0; num != value.length; num++) {
         otv = otv.replace(('$' + (num + 1)), value[num])
       };
