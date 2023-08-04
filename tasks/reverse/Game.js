@@ -26,16 +26,16 @@ class Game {
         } else {
           console.clear()
           if (this.index === 0) {
-            this.logger.info('FIRST_YOU_HAVE_LOST', this.firstWords());
+            this.logger.info('FIRST_YOU_HAVE_LOST', this.getTotalResult());
           } else {
-            this.logger.info('YOU_HAVE_LOST', this.otherWords());
+            this.logger.info('YOU_HAVE_LOST', this.resultMessageParams());
           };
           process.exit(0);
         };
       } else {
         console.clear();
         this.index++;
-        this.logger.info('YOU_WON', this.otherWords());
+        this.logger.info('YOU_WON', this.resultMessageParams());
         process.exit(0);
       };
     });
@@ -54,9 +54,9 @@ class Game {
       this.timeoutId = setTimeout(() => {
         console.clear();
         if (this.index === 0) {
-          this.logger.info('FIRST_TIME_IS_UP', this.firstWords()); 
+          this.logger.info('FIRST_TIME_IS_UP', this.getTotalResult()); 
         } else {
-          this.logger.info('TIME_IS_UP', this.otherWords());
+          this.logger.info('TIME_IS_UP', this.resultMessageParams());
         };
         process.exit(0);
       }, 5000);
@@ -81,11 +81,11 @@ class Game {
     return Math.floor(this.overTime / 1000 * 100) / 100;
   };
 
-  firstWords() {
+  getTotalResult() {
     return [this.index]
   };
 
-  otherWords() {
+  resultMessageParams() {
     return [this.index, this.getAverageTime(), this.getTotalTime()]
   };
 };
