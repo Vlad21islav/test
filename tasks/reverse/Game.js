@@ -8,7 +8,6 @@ class Game {
     this.overTime = 0;
     this.index = 0;
     this.timeoutId;
-    this.floor = 
     this.rl = readline.createInterface({
       input: process.stdin,
       output: process.stdout,
@@ -17,7 +16,6 @@ class Game {
   };
 
   start() {
-    let floor = 
     this.rl.on('line', (line) => {
       clearTimeout(this.timeoutId);
       if (this.index < this.words.length - 1) {
