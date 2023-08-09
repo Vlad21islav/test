@@ -7,7 +7,7 @@ class Logger {
 
   info(str, value) {
     let massage = this.get(str)
-    if (massage === undefined) return console.log('ошибка в massages')
+    if (massage === undefined) return console.log(str)
 
     if (value === undefined) return console.log(massage)
 
@@ -23,3 +23,4 @@ class Logger {
   }
 };
 module.exports = Logger;
+  

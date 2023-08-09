@@ -14,8 +14,8 @@ messages = {
         TIME_IS_UP: `время вышло, ваш рекорд $1, среднее время записи слова - $2 секунд, общее время - $3 секунд`,
     },
     eng: {
-        FIRST_RECORD: `You lost, your record is $1`,
-        RECORD: `You lost, your record is $1, the average time of writing a word is $2 second, total time is $3 seconds`,
+        FIRST_YOU_HAVE_LOST: `You lost, your record is $1`,
+        YOU_HAVE_LOST: `You lost, your record is $1, the average time of writing a word is $2 second, total time is $3 seconds`,
         YOU_WON: `The words are over, you have won, your record is $1, the average time of writing a word is $2 seconds, total time is $3 seconds`,
         REMEMBER_WORD: `Remember the word:`,
         ENTER_WORD: `Enter the word correctly:`,
