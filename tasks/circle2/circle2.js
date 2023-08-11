@@ -1,12 +1,5 @@
 'use strict';
 
-const readline = require('node:readline');
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
-
 const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
 const calculateTheAreaOfTheCircle = (radius) => (Math.PI*(Math.pow(radius, 2)));
