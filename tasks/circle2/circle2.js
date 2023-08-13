@@ -13,5 +13,6 @@ if (!Number.isNaN(radius)) {
   document.getElementById('Circumference').innerHTML = `Площадь окружности: ${circumference.toFixed(2)} см.кв.`;
   document.getElementById('Area').innerHTML = `Длина окружности: ${area.toFixed(2)} см.`;
 }else {
-  console.log(`${message} - это не число`);
+  document.getElementById('Circumference').innerHTML = `${message} - это не число`;
+  document.getElementById('Area').innerHTML = ``;
 };
