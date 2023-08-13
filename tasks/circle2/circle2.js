@@ -7,8 +7,8 @@ document.getElementById('number').addEventListener('input', function() {
   if (!Number.isNaN(radius)) {
     const circumference = calculateTheCircumference(radius);
     const area = calculateTheAreaOfTheCircle(radius);
-    document.getElementById('otv1').innerHTML = `Площадь окружности: ${area.toFixed(2)} см.кв.`;
-    document.getElementById('otv2').innerHTML = `Длина окружности: ${circumference.toFixed(2)} см.`;
+    document.getElementById('otv1').innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
+    document.getElementById('otv2').innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
   }else {
     document.getElementById('otv1').innerHTML = `${this.value} - это не число`;
     document.getElementById('otv2').innerHTML = ``;
