@@ -8,6 +8,7 @@ body {
 
 #inp {
     border: none;
+    border-bottom: 2px solid gray;
     background-color: rgb(223, 223, 231);
     color: green;
     font: normal 16px 'Rubik Wet Paint', cursive;
