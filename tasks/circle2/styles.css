@@ -3,42 +3,12 @@
 body {
     background-color: rgb(223, 223, 231);
     color: goldenrod;
-    font:normal 16px 'Rubik Wet Paint', cursive;
+    font: normal 16px 'Rubik Wet Paint', cursive;
 }
 
-.MP_icon {
-    width: 200px;
-    border-radius: 20%;
-    box-shadow: -15px -15px 5px rgb(100, 100, 100);
-}
-
-.info p {
-    color: #86898f;
-    margin: 0;
-    text-decoration: underline;
-    text-transform: capitalize;
-    letter-spacing: 5px;
-    word-spacing: 20px;
-}
-
-.fps {
+#inp {
+    border: none;
+    background-color: rgb(223, 223, 231);
     color: green;
-}
-
-a {
-    color: black;
-    text-decoration: none;
-}
-
-a:visited {
-    color: gray;
-}
-
-a:hover {
-    color: blue;
-}
-
-.table {
-    width: 100%;
-    background-color: rgb(212, 245, 232);
+    font: normal 16px 'Rubik Wet Paint', cursive;
 }
