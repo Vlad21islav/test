@@ -2,6 +2,10 @@ const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
 const calculateTheAreaOfTheCircle = (radius) => (Math.PI*(Math.pow(radius, 2)));
 
+if (document.getElementById('nunmber') === undefined || document.getElementById('otv1') === undefined || document.getElementById('otv2') === undefined) {
+  console.log('нет одного из элементов');
+};
+
 document.getElementById('number').addEventListener('input', function() {
   const radius = Number(this.value);
   if (!Number.isNaN(radius)) {
