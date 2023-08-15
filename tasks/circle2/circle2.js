@@ -6,8 +6,8 @@ if (document.getElementById('nunmber') === undefined || document.getElementById(
   console.log('нет одного из элементов');
 };
 
-document.getElementById('number').addEventListener('input', function() {
-  const radius = Number(this.value);
+document.getElementById('number').addEventListener('input', function(event) {
+  const radius = Number(event.target.value);
   if (!Number.isNaN(radius)) {
     const circumference = calculateTheCircumference(radius);
     const area = calculateTheAreaOfTheCircle(radius);
