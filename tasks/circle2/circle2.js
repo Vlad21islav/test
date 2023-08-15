@@ -1,26 +1,31 @@
+const number = document.getElementById('nunmber')
+const otv1 = document.getElementById('otv1')
+const otv2 = document.getElementById('otv2')
+const btn = document.getElementById('btn')
+
 const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
 const calculateTheAreaOfTheCircle = (radius) => (Math.PI*(Math.pow(radius, 2)));
 
-if (document.getElementById('nunmber') === undefined || document.getElementById('otv1') === undefined || document.getElementById('otv2') === undefined) {
+if (number === undefined || otv1 === undefined || otv2 === undefined) {
   console.log('нет одного из элементов');
 };
 
-document.getElementById('btn').addEventListener('click', function() {
-  document.getElementById('number').value = ``; 
-  document.getElementById('otv1').innerHTML = `The area of the circle: 0.00 sm.sq.`; 
-  document.getElementById('otv2').innerHTML = `Circumference length: 0.00 sm.`;
+btn.addEventListener('click', function() {
+  number.value = ``; 
+  otv1.innerHTML = `The area of the circle: 0.00 sm.sq.`; 
+  otv2.innerHTML = `Circumference length: 0.00 sm.`;
 });
 
-document.getElementById('number').addEventListener('input', function(event) {
+number.addEventListener('input', function(event) {
   const radius = Number(event.target.value);
   if (!Number.isNaN(radius)) {
     const circumference = calculateTheCircumference(radius);
     const area = calculateTheAreaOfTheCircle(radius);
-    document.getElementById('otv1').innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
-    document.getElementById('otv2').innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
-  }else {
-    document.getElementById('otv1').innerHTML = `${radius} - это не число`;
-    document.getElementById('otv2').innerHTML = ``;
+    otv1.innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
+    otv2.innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
+  } else {
+    otv1.innerHTML = `${radius} - это не число`;
+    otv2.innerHTML = ``;
   };
 });
