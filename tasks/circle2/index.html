@@ -6,10 +6,8 @@
     </head>
     <body>
         <div class="all">
-            <form class="input" onsubmit="document.getElementById('number').value = ``; document.getElementById('otv1').innerHTML = `The area of the circle: 0.00 sm.sq.`; document.getElementById('otv2').innerHTML = `Circumference length: 0.00 sm.`; return false">
-                <input id="number" type="text" placeholder="enter the radius of the circle" class="inp" />
-                <input type="submit" value="clear" class="btn">
-            </form>
+            <input id="number" type="text" placeholder="enter the radius of the circle" class="inp" />
+            <input type="button" value="clear" class="btn" onclick="clear()">
             <script src="circle2.js"></script>
             <p id="otv1" >The area of the circle: 0.00 sm.sq.</p>
             <p id="otv2" >Circumference length: 0.00 sm.</p>
