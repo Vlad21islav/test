@@ -6,7 +6,7 @@ if (document.getElementById('nunmber') === undefined || document.getElementById(
   console.log('нет одного из элементов');
 };
 
-document.getElementsByClassName('btn').addEventListener('click', function() {
+document.getElementById('btn').addEventListener('click', function() {
   document.getElementById('number').value = ``; 
   document.getElementById('otv1').innerHTML = `The area of the circle: 0.00 sm.sq.`; 
   document.getElementById('otv2').innerHTML = `Circumference length: 0.00 sm.`;
