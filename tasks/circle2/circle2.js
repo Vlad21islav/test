@@ -16,6 +16,7 @@ btn.addEventListener('click', function() {
   number.value = ``; 
   otv1.innerHTML = `The area of the circle: 0.00 sm.sq.`; 
   otv2.innerHTML = `Circumference length: 0.00 sm.`;
+  errors.innerHTML = '';
 });
 
 number.addEventListener('input', function(event) {
@@ -25,10 +26,10 @@ number.addEventListener('input', function(event) {
     const area = calculateTheAreaOfTheCircle(radius);
     otv1.innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
     otv2.innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
-    errors.innerHTML = ''
+    errors.innerHTML = '';
   }else {
     otv1.innerHTML = '';
     otv2.innerHTML = '';
-    errors.innerHTML = `${event.target.value} - это не число`
+    errors.innerHTML = `${event.target.value} - это не число`;
   };
 });
