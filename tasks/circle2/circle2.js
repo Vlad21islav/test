@@ -1,7 +1,7 @@
-const number = document.getElementById('nunmber')
-const otv1 = document.getElementById('otv1')
-const otv2 = document.getElementById('otv2')
-const btn = document.getElementById('btn')
+let number = document.getElementById('nunmber');
+let otv1 = document.getElementById('otv1')
+let otv2 = document.getElementById('otv2')
+let btn = document.getElementById('btn')
 
 const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
@@ -24,7 +24,7 @@ number.addEventListener('input', function(event) {
     const area = calculateTheAreaOfTheCircle(radius);
     otv1.innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
     otv2.innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
-  } else {
+  }else {
     otv1.innerHTML = `${radius} - это не число`;
     otv2.innerHTML = ``;
   };
