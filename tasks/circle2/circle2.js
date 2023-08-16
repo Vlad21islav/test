@@ -1,7 +1,7 @@
-let number = document.getElementById('nunmber');
-let otv1 = document.getElementById('otv1')
-let otv2 = document.getElementById('otv2')
-let btn = document.getElementById('btn')
+let number = document.getElementById('number');
+let otv1 = document.getElementById('otv1');
+let otv2 = document.getElementById('otv2');
+let btn = document.getElementById('btn');
 
 const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
