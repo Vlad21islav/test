@@ -30,6 +30,6 @@ number.addEventListener('input', function(event) {
   }else {
     otv1.innerHTML = '';
     otv2.innerHTML = '';
-    errors.innerHTML = `${event.target.value} - это не число`;
+    errors.innerHTML = `${event.target.value} - isn't a number`;
   };
 });
