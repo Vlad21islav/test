@@ -24,6 +24,7 @@ body {
     background-color: black;
     color: white;
     cursor: pointer;
+    height: 30px;
 }
 
 .bug {
