@@ -8,7 +8,7 @@ const calculateTheCircumference = (radius) => (2*Math.PI*radius);
 
 const calculateTheAreaOfTheCircle = (radius) => (Math.PI*(Math.pow(radius, 2)));
 
-if (number === undefined || otv1 === undefined || otv2 === undefined || btn  === undefined || errors === undefined) {
+if (number === null || otv1 === null || otv2 === null || btn  === null || errors === null) {
   console.log('нет одного из элементов');
 };
 
