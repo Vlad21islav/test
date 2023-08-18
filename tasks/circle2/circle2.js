@@ -13,8 +13,8 @@ if (number === null || otv1 === null || otv2 === null || btn  === null || errors
 } else {
   btn.addEventListener('click', function() {
     number.value = ``; 
-    otv1.innerHTML = `The area of the circle: 0.00 sm.sq.`; 
-    otv2.innerHTML = `Circumference length: 0.00 sm.`;
+    otv1.innerHTML = `0.00`; 
+    otv2.innerHTML = `0.00`;
     errors.innerHTML = '';
   });
 
@@ -23,12 +23,12 @@ if (number === null || otv1 === null || otv2 === null || btn  === null || errors
     if (!Number.isNaN(radius)) {
       const circumference = calculateTheCircumference(radius);
       const area = calculateTheAreaOfTheCircle(radius);
-      otv1.innerHTML = `The area of the circle: ${area.toFixed(2)} sm.sq.`;
-      otv2.innerHTML = `Circumference length: ${circumference.toFixed(2)} sm.`;
+      otv1.innerHTML = area.toFixed(2);
+      otv2.innerHTML = circumference.toFixed(2);
       errors.innerHTML = '';
     }else {
-      otv1.innerHTML = '';
-      otv2.innerHTML = '';
+      otv1.innerHTML = '0.00';
+      otv2.innerHTML = '0.00';
       errors.innerHTML = `${event.target.value} - isn't a number`;
     };
   });
