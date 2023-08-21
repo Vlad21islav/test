@@ -27,6 +27,7 @@ body {
     cursor: pointer;
     height: 30px;
     box-shadow: -5px -5px 3px rgb(100, 100, 100);
+    cursor: pointer;
 }
 
 .bug {
