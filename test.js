@@ -152,4 +152,3 @@ const myNamber = 42
 localStorage.setItem('number', myNamber.toString())
 console.log(localStorage.getItem('number'))
 
-console.log('hello')
